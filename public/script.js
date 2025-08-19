@@ -49,16 +49,33 @@ burger?.addEventListener('click', (e) => {
 
 document.addEventListener('click', closeNav);
 nav?.addEventListener('click', (e) => {
-  // клики по ссылкам/CTA/крестику — закрывают меню
-  if (e.target.closest('a, .cta, .nav__close')) {
+  // Крестик – просто закрываем меню
+  if (e.target.closest('.nav__close')) {
     e.preventDefault();
     e.stopPropagation();
     closeNav();
-  } else {
-    // внутри меню клики не должны закрывать его документ-слушателем
-    e.stopPropagation();
+    return;
   }
+
+  // CTA «Забронировать» в меню – закрываем меню и открываем модалку
+  if (e.target.closest('.open-booking')) {
+    // НЕ делаем preventDefault/stopPropagation — пусть глобальные обработчики тоже сработают
+    closeNav();
+    openModal('bookingModal');
+    return;
+  }
+
+  // Любая ссылка в меню – позволяем ей работать и просто закрываем меню
+  if (e.target.closest('a[href]')) {
+    // не мешаем якорям/переходам
+    closeNav();
+    return;
+  }
+
+  // Любые другие клики внутри меню не должны закрывать его глобальным слушателем
+  e.stopPropagation();
 });
+
 
 /* ===== modal windows (robust) ===== */
 // === MODALS ===
@@ -137,11 +154,29 @@ const form = document.getElementById('booking-form') || document.getElementById(
 
 function validate(data){
   const required = ['name','phone','date','time','quest','players'];
+  const labels = {
+    name: 'Имя',
+    phone: 'Телефон',
+    date: 'Дата',
+    time: 'Время',
+    quest: 'Квест',
+    players: 'Игроки'
+  };
+
   for (let k of required){
-    if (!data[k] || String(data[k]).trim() === '') return 'Заполните поле: ' + k;
+    if (!data[k] || String(data[k]).trim() === ''){
+      return { field: k, message: `Заполните поле «${labels[k]}»` };
+    }
   }
+
+  // honeypot
+  if (data.botcheck && String(data.botcheck).trim() !== ''){
+    return { field: null, message: 'Похоже, это спам. Попробуйте ещё раз.' };
+  }
+
   return null;
 }
+
 
 if (form) {
   form.addEventListener('submit', async (e) => {
@@ -154,10 +189,17 @@ if (form) {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
-      const err = validate(data);
-      if (err) { showToast(err, 'error'); return; }
+const err = validate(data);
+if (err) {
+  showToast(err.message, 'error', 4000);
+  if (err.field && form.elements[err.field]) form.elements[err.field].focus();
+  submitBtn?.removeAttribute('disabled');
+  return;
+}
 
-      showToast('Отправка...', 'success', 1200);
+// статус «Отправка…» — как информационный
+showToast('Отправка…', 'info', 1200);
+
 
       const resp = await fetch('/.netlify/functions/send-telegram', {
         method: 'POST',
@@ -276,14 +318,18 @@ document.addEventListener('click', (e) => {
   e.preventDefault();
 
   const targetSel = btn.dataset.target || btn.getAttribute('aria-controls');
-  const box = targetSel ? document.querySelector(targetSel) : null;
+  const card = targetSel ? document.querySelector(targetSel) : null;
+
+  // Нам нужен именно .qm-story внутри карточки
+  const box = card?.querySelector('.qm-story') || document.querySelector(targetSel) || null;
   if (!box) return;
 
-  const expanded = box.getAttribute('data-expanded') === 'true';
-  box.setAttribute('data-expanded', expanded ? 'false' : 'true');
-  btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  btn.textContent = expanded ? 'Развернуть' : 'Свернуть';
+  const isExpanded = box.getAttribute('data-expanded') === 'true';
+  box.setAttribute('data-expanded', isExpanded ? 'false' : 'true');
+  btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+  btn.textContent = isExpanded ? 'Развернуть' : 'Свернуть';
 });
+
 // === ANNOUNCEMENTS SLIDER (работает только если секция есть в DOM) ===
 (function(){
   const slider = document.getElementById('annSlider');
