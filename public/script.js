@@ -43,34 +43,48 @@ burger?.addEventListener('click', (e) => {
 document.addEventListener('click', closeNav);
 nav?.addEventListener('click', e => e.stopPropagation());
 
-/* ===== modal windows ===== */
+/* ===== modal windows (robust) ===== */
 function openModal(id){
-  const modal = $('#' + id);
+  const modal = document.getElementById(id.replace(/^#/, ''));
   if (!modal) return;
   modal.classList.add('open');
   document.body.classList.add('modal-open');
 }
 function closeModal(){
-  $$('.modal.open').forEach(m => m.classList.remove('open'));
+  document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
   document.body.classList.remove('modal-open');
 }
-$$('[data-modal]').forEach(btn => {
-  btn.addEventListener('click', e => {
+
+// делегирование кликов: открытие/закрытие
+document.addEventListener('click', (e) => {
+  // открыть: [data-modal] ИЛИ [data-target] ИЛИ .open-booking
+  const openBtn = e.target.closest('[data-modal], [data-target], .open-booking');
+  if (openBtn) {
     e.preventDefault();
-    openModal(btn.dataset.modal);
-  });
+    const raw = openBtn.dataset.modal ?? openBtn.dataset.target ?? 'bookingModal';
+    const id = String(raw).replace(/^#/, '');
+    openModal(id);
+    return;
+  }
+
+  // закрыть: [data-close] ИЛИ клик по фону .modal (оверлей с data-close тоже поймается)
+  if (e.target.closest('[data-close]')) {
+    e.preventDefault();
+    closeModal();
+    return;
+  }
+
+  const m = e.target.closest('.modal');
+  if (m && e.target === m) { // клик по самому контейнеру модалки
+    closeModal();
+  }
 });
-$$('.modal .close').forEach(btn => {
-  btn.addEventListener('click', closeModal);
-});
-document.addEventListener('keydown', e => {
+
+// Escape
+document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
-$$('.modal').forEach(modal => {
-  modal.addEventListener('click', e => {
-    if (e.target === modal) closeModal();
-  });
-});
+
 
 /* ===== toast notifications ===== */
 function showToast(msg, type='success', timeout=3000){
@@ -90,7 +104,8 @@ function showToast(msg, type='success', timeout=3000){
 }
 
 /* ===== form submit -> Netlify Function (Telegram) ===== */
-const form = $('#booking-form');
+const form = document.getElementById('booking-form') || document.getElementById('bookingForm');
+
 
 function validate(data){
   const required = ['name','phone','date','time','quest','players'];
