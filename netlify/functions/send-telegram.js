@@ -54,35 +54,33 @@ export async function handler(event) {
     const players = String(data.players).trim();
     const comment = (data.comment ? String(data.comment).trim() : '');
 
-    // форматируем сообщение
-    const text =
-`🎯 *Новая заявка (сайт)*
-*Имя:* ${escapeMd(name)}
-*Телефон:* ${escapeMd(phone)}
-*Квест:* ${escapeMd(quest)}
-*Дата/время:* ${escapeMd(date)} ${escapeMd(time)}
-*Игроки:* ${escapeMd(players)}
-${comment ? `*Комментарий:* ${escapeMd(comment)}` : ''}`;
+// ── форматируем сообщение ──────────────────────────────────
+const title = escapeMd('Новая заявка (сайт)'); // экранируем скобки
+const text = [
+  `🎯 *${title}*`,
+  `*Имя:* ${escapeMd(name)}`,
+  `*Телефон:* ${escapeMd(phone)}`,
+  `*Квест:* ${escapeMd(quest)}`,
+  `*Дата/время:* ${escapeMd(date)} ${escapeMd(time)}`,
+  `*Игроки:* ${escapeMd(players)}`,
+  comment ? `*Комментарий:* ${escapeMd(comment)}` : ''
+].filter(Boolean).join('\n');
 
-    const tgUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    const resp = await fetch(tgUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text,
-  parse_mode: 'MarkdownV2'
-      })
-    });
+const tgUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+const resp = await fetch(tgUrl, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'MarkdownV2' })
+});
+const tg = await resp.json();
+if (!tg.ok) {
+  return {
+    statusCode: 502,
+    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ok:false, error: tg.description || 'Telegram API error' }) // ← покажем причину
+  };
+}
 
-    const tg = await resp.json();
-    if (!tg.ok) {
-      return {
-        statusCode: 502,
-        headers: corsHeaders,
-        body: JSON.stringify({ ok: false, error: 'Telegram API error', details: tg })
-      };
-    }
 
     return {
       statusCode: 200,
