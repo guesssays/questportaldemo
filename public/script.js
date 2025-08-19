@@ -23,17 +23,18 @@ const burger = $('#burger');
 const nav = $('#nav');
 const navOriginalParent = nav ? nav.parentElement : null;
 
+// === NAV ===
 function openNav(){
   if (!nav) return;
-  if (nav.parentElement !== document.body) document.body.appendChild(nav); // iOS safari fixed-in-sticky баг
-  nav.classList.add('open');
-  burger?.classList.add('open');
+  if (nav.parentElement !== document.body) document.body.appendChild(nav);
+  nav.classList.add('is-open');                 // было 'open'
+  burger?.setAttribute('aria-expanded','true'); // чтобы менялись иконки
   document.body.classList.add('nav-open');
 }
 function closeNav(){
   if (!nav) return;
-  nav.classList.remove('open');
-  burger?.classList.remove('open');
+  nav.classList.remove('is-open');              // было 'open'
+  burger?.setAttribute('aria-expanded','false');
   document.body.classList.remove('nav-open');
   if (navOriginalParent && nav.parentElement === document.body){
     navOriginalParent.appendChild(nav);
@@ -41,22 +42,26 @@ function closeNav(){
 }
 burger?.addEventListener('click', (e) => {
   e.stopPropagation();
-  if (nav.classList.contains('open')) closeNav(); else openNav();
+  if (nav.classList.contains('is-open')) closeNav(); else openNav();
 });
+
 document.addEventListener('click', closeNav);
 nav?.addEventListener('click', e => e.stopPropagation());
 
 /* ===== modal windows (robust) ===== */
+// === MODALS ===
 function openModal(id){
   const modal = document.getElementById(id.replace(/^#/, ''));
   if (!modal) return;
-  modal.classList.add('open');
+  modal.classList.add('is-open');   // было 'open'
   document.body.classList.add('modal-open');
 }
 function closeModal(){
-  document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
+  document.querySelectorAll('.modal.is-open')   // было '.modal.open'
+          .forEach(m => m.classList.remove('is-open'));
   document.body.classList.remove('modal-open');
 }
+
 
 // делегирование кликов: открытие/закрытие
 document.addEventListener('click', (e) => {
@@ -207,18 +212,19 @@ if (form) {
   const imgs = Array.from(document.querySelectorAll('.mini-img, .qm-gallery img'));
   let idx = -1;
 
-  function openLB(i){
-    idx = i;
-    const src = imgs[idx].getAttribute('src');
-    const alt = imgs[idx].getAttribute('alt') || '';
-    lbImg.src = src; lbImg.alt = alt;
-    lb.classList.add('open');
-    document.body.classList.add('modal-open');
-  }
-  function closeLB(){
-    lb.classList.remove('open');
-    document.body.classList.remove('modal-open');
-  }
+// === LIGHTBOX ===
+function openLB(i){
+  idx = i;
+  const src = imgs[idx].getAttribute('src');
+  lbImg.src = src;
+  lb.classList.add('is-open');    // было 'open'
+  document.body.classList.add('modal-open');
+}
+function closeLB(){
+  lb.classList.remove('is-open'); // было 'open'
+  document.body.classList.remove('modal-open');
+}
+
   function navLB(step){
     if (idx < 0) return;
     idx = (idx + step + imgs.length) % imgs.length;
