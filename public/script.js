@@ -95,7 +95,7 @@ function closeModal(){
 // делегирование кликов: открытие/закрытие
 document.addEventListener('click', (e) => {
   // открыть: [data-modal] ИЛИ [data-target] ИЛИ .open-booking
-  const openBtn = e.target.closest('[data-modal], [data-target], .open-booking');
+const openBtn = e.target.closest('[data-modal], .open-booking, [data-target]:not(.story-toggle)');
   if (openBtn) {
     e.preventDefault();
     const raw = openBtn.dataset.modal ?? openBtn.dataset.target ?? 'bookingModal';

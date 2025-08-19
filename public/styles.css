@@ -905,3 +905,8 @@ footer.footer .contacts .item:hover::after{
   content: none !important; /* скрываем псевдо-элементы: "НОВИНКА" и "+150 000 ..." */
 }
 .hp-field { position: absolute !important; left: -9999px !important; height: 0 !important; width: 0 !important; opacity: 0 !important; }
+.logo__img {
+  display: block;
+  max-height: 50px; /* подгони под высоту хедера */
+  width: auto;
+}
