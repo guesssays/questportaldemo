@@ -27,13 +27,15 @@ const navOriginalParent = nav ? nav.parentElement : null;
 function openNav(){
   if (!nav) return;
   if (nav.parentElement !== document.body) document.body.appendChild(nav);
-  nav.classList.add('is-open');                 // было 'open'
-  burger?.setAttribute('aria-expanded','true'); // чтобы менялись иконки
+  nav.classList.add('is-open');
+  nav.setAttribute('aria-hidden','false');
+  burger?.setAttribute('aria-expanded','true');
   document.body.classList.add('nav-open');
 }
 function closeNav(){
   if (!nav) return;
-  nav.classList.remove('is-open');              // было 'open'
+  nav.classList.remove('is-open');
+  nav.setAttribute('aria-hidden','true');
   burger?.setAttribute('aria-expanded','false');
   document.body.classList.remove('nav-open');
   if (navOriginalParent && nav.parentElement === document.body){
@@ -46,7 +48,17 @@ burger?.addEventListener('click', (e) => {
 });
 
 document.addEventListener('click', closeNav);
-nav?.addEventListener('click', e => e.stopPropagation());
+nav?.addEventListener('click', (e) => {
+  // клики по ссылкам/CTA/крестику — закрывают меню
+  if (e.target.closest('a, .cta, .nav__close')) {
+    e.preventDefault();
+    e.stopPropagation();
+    closeNav();
+  } else {
+    // внутри меню клики не должны закрывать его документ-слушателем
+    e.stopPropagation();
+  }
+});
 
 /* ===== modal windows (robust) ===== */
 // === MODALS ===
@@ -95,21 +107,29 @@ document.addEventListener('keydown', (e) => {
 
 
 /* ===== toast notifications ===== */
+// === TOASTS (совместимо с твоим CSS) ===
 function showToast(msg, type='success', timeout=3000){
-  const wrap = $('#toast-wrap') || Object.assign(document.body.appendChild(document.createElement('div')), {
-    id: 'toast-wrap',
-    className: 'toast-wrap'
-  });
+  let root = document.getElementById('toast-root');
+  if (!root){
+    root = document.createElement('div');
+    root.id = 'toast-root';
+    document.body.appendChild(root);
+  }
+
   const t = document.createElement('div');
-  t.className = 'toast ' + type;
-  t.textContent = msg;
-  wrap.appendChild(t);
-  setTimeout(()=>t.classList.add('show'),10);
-  setTimeout(()=>{
-    t.classList.remove('show');
-    setTimeout(()=>t.remove(),300);
-  }, timeout);
+  t.className = `toast toast--${type}`; // <-- toast--success / toast--error / toast--info
+  t.innerHTML = `<div>${msg}</div><button class="toast__close" aria-label="Закрыть">×</button>`;
+
+  root.appendChild(t);
+
+  const remove = () => t.remove();
+  const timer = setTimeout(remove, timeout);
+  t.querySelector('.toast__close')?.addEventListener('click', () => {
+    clearTimeout(timer);
+    remove();
+  });
 }
+
 
 /* ===== form submit -> Netlify Function (Telegram) ===== */
 const form = document.getElementById('booking-form') || document.getElementById('bookingForm');
@@ -242,9 +262,60 @@ function closeLB(){
   btnNext?.addEventListener('click', () => navLB(1));
   lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
   document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
+   if (!lb.classList.contains('is-open')) return;
     if (e.key === 'Escape') closeLB();
     if (e.key === 'ArrowLeft') navLB(-1);
     if (e.key === 'ArrowRight') navLB(1);
   });
+})();
+// === STORY TOGGLE (разворот текста в модалках квестов) ===
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.story-toggle');
+  if (!btn) return;
+
+  e.preventDefault();
+
+  const targetSel = btn.dataset.target || btn.getAttribute('aria-controls');
+  const box = targetSel ? document.querySelector(targetSel) : null;
+  if (!box) return;
+
+  const expanded = box.getAttribute('data-expanded') === 'true';
+  box.setAttribute('data-expanded', expanded ? 'false' : 'true');
+  btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  btn.textContent = expanded ? 'Развернуть' : 'Свернуть';
+});
+// === ANNOUNCEMENTS SLIDER (работает только если секция есть в DOM) ===
+(function(){
+  const slider = document.getElementById('annSlider');
+  const dotsWrap = document.getElementById('annDots');
+  if (!slider) return;
+
+  const slides = Array.from(slider.querySelectorAll('.ann-slide'));
+  if (slides.length < 2) return;
+
+  let i = slides.findIndex(s => s.classList.contains('is-active'));
+  if (i < 0) i = 0;
+
+  function go(n){
+    slides[i].classList.remove('is-active');
+    dotsWrap?.children[i]?.setAttribute('aria-selected','false');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('is-active');
+    dotsWrap?.children[i]?.setAttribute('aria-selected','true');
+  }
+
+  if (dotsWrap){
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, idx) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-selected', idx === i ? 'true' : 'false');
+      b.addEventListener('click', () => go(idx));
+      dotsWrap.appendChild(b);
+    });
+  }
+
+  let timer = setInterval(() => go(i + 1), 5000);
+  slider.addEventListener('mouseenter', () => { clearInterval(timer); });
+  slider.addEventListener('mouseleave', () => { timer = setInterval(() => go(i + 1), 5000); });
 })();
