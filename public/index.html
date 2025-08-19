@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quest Portal</title>
+
+  <!-- Performance: preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- LCP image hints (above-the-fold backgrounds / first slide) -->
+  <link rel="preload" as="image" href="/images/hero-bg.png" imagesrcset="/images/hero-bg.png" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/anons-bg.png">
+  <link rel="preload" as="image" href="/images/anonsnew.jpg" fetchpriority="high">
+
+  <!-- Видео для фона -->
+  <link rel="preload" as="video" href="/images/fire-mobile.mp4" type="video/mp4" media="(max-width:720px)">
+  <link rel="preload" as="video" href="/images/fire.mp4" type="video/mp4" media="(min-width:721px)">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Russo+One&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- ШАПКА С НАВИГАЦИЕЙ И CTA -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a href="#hero" class="logo">ЛОГО</a>
+
+      <nav class="nav" id="nav" aria-hidden="true">
+        <button type="button" class="nav__close" aria-label="Закрыть меню">×</button>
+        <!-- <a href="#anons">Акции</a> -->
+        <a href="#hero">Главная</a>
+        <a href="#quests">Квесты</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+        <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Меню" aria-controls="nav" aria-expanded="false">
+        <!-- иконка «бургер» -->
+        <svg class="i i--menu" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+        <!-- иконка «крестик» -->
+        <svg class="i i--close" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12M18 6l-12 12"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!--
+    <section id="anons" class="section section--bg bg-anons" style="--bg-image:url('/images/anons-bg.png'); content-visibility:auto; contain-intrinsic-size: 800px;">
+      <div class="inner">
+        <div class="ann-wrap">
+          <div class="ann-slider" id="annSlider" aria-roledescription="carousel" aria-label="Акции">
+            <a class="ann-slide is-active" href="/promo/halloween" aria-label="Хэллоуин-неделя: -20% ночью">
+              <img src="/images/anonsnew.jpg" alt="Хэллоуин-неделя: -20% на ночные сеансы" loading="eager" fetchpriority="high" decoding="async" width="1120" height="300">
+            </a>
+            <a class="ann-slide" href="/promo/birthday" aria-label="День рождения: имениннику бесплатно">
+              <img src="/images/anonsnew2.jpg" alt="День рождения в квесте — имениннику вход бесплатно" loading="lazy" decoding="async" width="1120" height="300" fetchpriority="low">
+            </a>
+            <a class="ann-slide" href="/promo/student" aria-label="Студенческий вторник: -30%">
+              <img src="/images/anonsnew3.jpg" alt="Студенческий вторник — скидка 30% по студенческому билету" loading="lazy" decoding="async" width="1120" height="300" fetchpriority="low">
+            </a>
+            <a class="ann-slide" href="/promo/earlybird" aria-label="Скидка раннего бронирования: -15%">
+              <img src="/images/anonsnew4.jpg" alt="Скидка 15% при бронировании за неделю" loading="lazy" decoding="async" width="1120" height="300" fetchpriority="low">
+            </a>
+          </div>
+          <div class="ann-dots" id="annDots" role="tablist" aria-label="Навигация по акциям"></div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- HERO -->
+    <section id="hero" class="section section--bg bg-hero"
+             style="--bg-image:url('/images/hero-bg.png'); contain-intrinsic-size:880px;">
+      <div class="bg-video" aria-hidden="true">
+        <video id="heroVideo"
+               class="bg-video__media"
+               muted
+               playsinline
+               webkit-playsinline
+               autoplay
+               loop
+               preload="metadata"
+               poster="/images/hero-bg.png"
+               disablepictureinpicture
+               disableremoteplayback>
+          <source src="/images/fire-mobile.mp4" type="video/mp4" media="(max-width:720px)">
+          <source src="/images/fire.mp4"     type="video/mp4" media="(min-width:721px)">
+        </video>
+      </div>
+
+      <div class="hero-copy">
+        <h1>QUEST PORTAL</h1>
+        <h3>ПО-НАСТОЯЩЕМУ<br>СТРАШНЫЕ КВЕСТЫ</h3>
+        <p><strong>ДАРИМ ЭМОЦИИ УЖЕ БОЛЕЕ 2 ЛЕТ!</strong></p>
+        <p>Хоррор квесты с актёрами и реальный адреналин.<br>Выдержишь ли ты 60 минут?</p>
+        <div class="hero-cta-row">
+          <a class="btn" href="https://t.me/quest_horror_tashkent" target="_blank" rel="noopener">Телеграм</a>
+          <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- НАШИ КВЕСТЫ -->
+    <section id="quests" class="section section--bg bg-quests" style="--bg-image:url('/images/quest-bg.png'); content-visibility:auto; contain-intrinsic-size: 1200px;">
+      <div class="inner section-quests">
+        <h2 class="title-center">НАШИ КВЕСТЫ</h2>
+
+        <div class="qgrid">
+          <!-- КЛАДБИЩЕ БЕЗЫМЯННЫХ -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/kladbyshe.jpg"  alt="Кладбище Безымянных — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/kladbyshe2.jpg" alt="Кладбище Безымянных — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/kladbyshe3.jpg" alt="Кладбище Безымянных — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <video class="qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/kladbysheprev.jpg" width="1280" height="720">
+                <source src="/images/quests/kladbyshe.mp4" type="video/mp4">
+              </video>
+              <div class="qprice">800 000 сум (4 чел.)</div>
+            </div>
+
+            <div class="qtitle">КЛАДБИЩЕ БЕЗЫМЯННЫХ</div>
+            <div class="qmeta">2–12 игроков • 60 мин • 16+</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-nameless">ПОДРОБНЕЕ</button>
+              <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+            </div>
+          </article>
+
+          <!-- ПОСЛЕДНИЙ РЕПОРТАЖ -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/reportaj.png" alt="Последний репортаж — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/reportaj2.jpg" alt="Последний репортаж — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/reportaj3.jpg" alt="Последний репортаж — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <video class="qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/reportajprev.jpg" width="1280" height="720">
+                <source src="/images/quests/reportaj.mp4" type="video/mp4">
+              </video>
+              <div class="qprice">700 000 сум (4 чел.)</div>
+            </div>
+
+            <div class="qtitle">ПОСЛЕДНИЙ РЕПОРТАЖ</div>
+            <div class="qmeta">2–12 игроков • 60 мин • 16+ • ~350 м²</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-blackwood">ПОДРОБНЕЕ</button>
+              <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+            </div>
+          </article>
+
+          <!-- НОЧЬ ДЕМОНОВ: БАЛ САТАНЫ -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/nochdemonov.jpeg" alt="Ночь Демонов — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/nochdemonov3.jpg"  alt="Ночь Демонов — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/nochdemonov5.jpg"  alt="Ночь Демонов — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <video class="qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/nochdemonovprev.jpg" width="1280" height="720">
+                <source src="/images/quests/nochdemonov.mp4" type="video/mp4">
+              </video>
+              <div class="qprice">700 000 сум (4 чел.)</div>
+            </div>
+
+            <div class="qtitle">НОЧЬ ДЕМОНОВ: БАЛ САТАНЫ</div>
+            <div class="qmeta">2–12 игроков • 60 мин • 16+ • ~350 м²</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-demons">ПОДРОБНЕЕ</button>
+              <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+            </div>
+          </article>
+
+          <!-- ЭКЗОРЦИЗМ: ПОСЛЕДНИЙ РИТУАЛ -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/exorcism.jpeg" alt="Экзорцизм — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/exorcism2.jpg" alt="Экзорцизм — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/exorcism5.png" alt="Экзорцизм — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <video class="qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/exorcismprev.jpg" width="1280" height="720">
+                <source src="/images/quests/exorcism.mp4" type="video/mp4">
+              </video>
+              <div class="qprice">700 000 сум (4 чел.)</div>
+            </div>
+
+            <div class="qtitle">ЭКЗОРЦИЗМ: ПОСЛЕДНИЙ РИТУАЛ</div>
+            <div class="qmeta">2–12 игроков • 60 мин • 16+ • ~350 м²</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-exorcism">ПОДРОБНЕЕ</button>
+              <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+            </div>
+          </article>
+
+          <!-- КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/brams.jpg"  alt="Кукла Брамса — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/brams3.jpeg" alt="Кукла Брамса — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/brams5.jpg"  alt="Кукла Брамса — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <video class="qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/bramsprev.jpg" width="1280" height="720">
+                <source src="/images/quests/brams.mp4" type="video/mp4">
+              </video>
+              <div class="qprice">700 000 сум (4 чел.)</div>
+            </div>
+
+            <div class="qtitle">КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА</div>
+            <div class="qmeta">2–12 игроков • 60 мин • 16+ • ~350 м²</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-brahms">ПОДРОБНЕЕ</button>
+              <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section id="reviews" class="section section--bg bg-reviews" style="--bg-image:url('/images/reviews-bg.png'); content-visibility:auto; contain-intrinsic-size: 900px;">
+      <div class="reviews-inner section-reviews">
+        <h2 class="reviews-title">ОТЗЫВЫ</h2>
+
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-quote">«Орали всю дорогу. Актёр — топ! Эмоции на месяц вперёд.»</div>
+            <div class="review-footer">
+              <div class="review-author">Алина</div>
+              <a class="btn-reviews" 
+                 href="https://www.google.com/maps/place/Quest+Portal-Страшные+квесты+Ташкента/@41.2764981,69.2602637,17z/data=!4m8!3m7!1s0x38ae8bf3cc734343:0x4e2b0e4bddb2e052!8m2!3d41.2764981!4d69.2602637!9m1!1b1!16s%2Fg%2F11x129w9ss?entry=ttu&review=1" 
+                 target="_blank" rel="noopener">
+                все отзывы <span class="dot"></span>
+              </a>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div class="review-quote">«Орали всю дорогу. Актёр — топ! Эмоции на месяц вперёд.»</div>
+            <div class="review-footer">
+              <div class="review-author">Константин</div>
+              <a class="btn-reviews" 
+                 href="https://www.google.com/maps/place/Quest+Portal-Страшные+квесты+Ташкента/@41.2764981,69.2602637,17z/data=!4m8!3m7!1s0x38ae8bf3cc734343:0x4e2b0e4bddb2e052!8m2!3d41.2764981!4d69.2602637!9m1!1b1!16s%2Fg%2F11x129w9ss?entry=ttu&review=1" 
+                 target="_blank" rel="noopener">
+                все отзывы <span class="dot"></span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section faq-wrap" style="content-visibility:auto; contain-intrinsic-size: 800px;">
+      <div class="container">
+        <h2 class="title-center">ЧАСТЫЕ ВОПРОСЫ</h2>
+        <div class="faq-card">
+          <div class="faq">
+            <details>
+              <summary>Это страшно?</summary>
+              <div class="content">Да, но всё в рамках безопасности. По запросу можем сделать легче.</div>
+            </details>
+            <details>
+              <summary>Можно ли вернуть деньги?</summary>
+              <div class="content">Предоплата не возвращается. Но вы можете перенести игру на другой день или время — просто свяжитесь с нами заранее.</div>
+            </details>
+            <details>
+              <summary>Безопасно ли это?</summary>
+              <div class="content">Мы следим за безопасностью и состоянием игроков, маршруты продуманы.</div>
+            </details>
+            <details>
+              <summary>Сколько человек в комнате?</summary>
+              <div class="content">Оптимально 2–10 человек, зависит от квеста.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- КОНТАКТЫ / ЛОКАЦИЯ -->
+  <footer id="contacts" class="section section--bg footer bg-footer" style="--bg-image:url('/images/footer-bg.png'); content-visibility:auto; contain-intrinsic-size: 900px;">
+    <div class="inner">
+      <div class="contacts-grid">
+        <div class="contacts">
+          <h2>КОНТАКТЫ</h2>
+          <div class="item"><div class="icon">📍</div><div>Яккасарайский р-н, ул. Бабура,73А</div></div>
+          <div class="item"><div class="icon">📞</div><div><a href="tel:+998994016996">+998 99 401 69 96</a></div></div>
+          <div class="item"><div class="icon">⏰</div><div>Ежедневно с 14:00</div></div>
+          <div class="item"><div class="icon">✉️</div><div><a href="https://t.me/quest_horror_tashkent" target="_blank" rel="noopener">@QUEST_HORROR_TASHKENT</a></div></div>
+          <div class="item"><div class="icon">📷</div><div><a href="https://www.instagram.com/quest_portal_01" target="_blank" rel="noopener">@quest_portal_01</a></div></div>
+
+          <div class="flex-btns" style="margin-top:16px;">
+            <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Quest+Portal,+Babur+Street+73А,+Tashkent" target="_blank" rel="noopener" class="btn">Маршрут</a>
+          </div>
+        </div>
+
+        <div class="location">
+          <h2>ЛОКАЦИЯ</h2>
+          <div class="section map">
+            <a href="https://maps.app.goo.gl/szknJniDYcavUoDW8" target="_blank" rel="noopener">
+              <img src="/images/map.png" 
+                   alt="Как нас найти на карте"
+                   loading="lazy"
+                   width="600" height="250"
+                   style="max-width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.3)">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="copy">© <span id="y"></span> Quest Portal</div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <div class="booking-card">
+        <h2 id="bookingTitle" style="text-align:center">БРОНЬ</h2>
+
+        <form id="bookingForm" autocomplete="on" novalidate>
+          <div class="form-grid">
+            <input class="input" type="text" name="name" placeholder="ИМЯ *" required>
+            <input class="input" type="tel" name="phone" inputmode="tel" placeholder="ТЕЛЕФОН *" required>
+            <input class="input" type="date" name="date" placeholder="ДАТА *" required>
+            <input class="input" type="time" name="time" placeholder="ВРЕМЯ *" required>
+            <input type="text" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <select class="select" name="quest" id="quest" required>
+              <option value="">— выберите квест —</option>
+              <option>КЛАДБИЩЕ БЕЗЫМЯННЫХ</option>
+              <option>ПОСЛЕДНИЙ РЕПОРТАЖ</option>
+              <option>НОЧЬ ДЕМОНОВ: БАЛ САТАНЫ</option>
+              <option>ЭКЗОРЦИЗМ: ПОСЛЕДНИЙ РИТУАЛ</option>
+              <option>КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА</option>
+            </select>
+            <input class="input" type="number" name="players" min="2" max="10" placeholder="ИГРОКИ *" required>
+            <textarea class="textarea" name="comment" placeholder="Комментарий (необязательно)"></textarea>
+          </div>
+
+          <p class="prepayment-note" style="margin:10px 0; font-size:14px; color:#f0f0f0; text-align:center;">
+            ⚠️ Бронирование подтверждается по предоплате. <br>
+            Предоплата не возвращается, но игру можно перенести на другой день или время.
+          </p>
+
+          <div style="margin-top:12px">
+            <button class="btn btn--block btn-submit" type="submit">ОТПРАВИТЬ</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Quest Modal: КЛАДБИЩЕ БЕЗЫМЯННЫХ -->
+  <div class="modal quest-modal" id="qm-nameless" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-nameless-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <header class="qm-head">
+        <h2 id="qm-nameless-title" class="qm-title">КЛАДБИЩЕ БЕЗЫМЯННЫХ</h2>
+      </header>
+
+      <div class="qm-scroll">
+        <div class="qm-grid">
+          <div class="qm-media">
+            <div class="qm-media-top">
+              <video class="qm-video qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/kladbysheprev.jpg" width="1280" height="720">
+                <source src="/images/quests/kladbyshe.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qm-gallery">
+              <img src="/images/quests/kladbyshe.jpg"  alt="Кадр 1" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/kladbyshe2.jpg" alt="Кадр 2" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/kladbyshe3.jpg" alt="Кадр 3" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/kladbysheprev.jpg" alt="Кадр 4" loading="lazy" decoding="async" width="640" height="400">
+            </div>
+          </div>
+
+          <aside class="qm-side">
+            <ul class="qm-facts">
+              <li><b>Игроки:</b> 2–12</li>
+              <li><b>Время:</b> 60 минут</li>
+              <li><b>Возраст:</b> 16+</li>
+              <li><b>Цена:</b> 800 000 сум (4 чел.)</li>
+            </ul>
+
+            <div class="qm-card qm-story-card" id="story-nameless">
+              <h3>История</h3>
+              <div class="qm-story" data-collapsed>
+                <p>Много лет назад Элеонора Лоусон, молодая невеста, исчезла в день своей свадьбы.
+                На рассвете её нашли мёртвой у болота — в свадебном платье, с разбитым лицом, без кольца.
+                Жених, Виктор, обезумел от горя. Он отказался прощаться.</p>
+
+                <p>Виктор устроил постмортем-съёмку, чтобы сохранить её «такой, как была в последний миг».
+                Но это была проклятая съёмка. Он нашёл фотографа, о котором шептались в подвалах — того, кто умел снимать не тела, а души.
+                Виктор провёл ритуал, чтобы связать Элеонору с изображением.</p>
+
+                <p>Когда вспышка сработала, в комнате стало холодно. Элеонора на снимке улыбалась.</p>
+
+                <p>На следующее утро фотограф исчез. Виктор пропал через неделю. Дом остался пуст, лишь в углу валялась разбитая фоторамка.</p>
+
+                <p>Элеонору похоронили на Безымянном кладбище — месте, куда свозят тех, от кого отворачивается даже смерть.
+                Ни имени, ни креста. Только камень и сырость.</p>
+
+                <p>С тех пор прошло много лет. Но люди говорят, что по ночам, среди безымянных плит, можно увидеть их двоих — Виктора и Элеонору.
+                Он стоит, как живой, держа в руках фотографию. А она — идёт рядом, с фатой, развевающейся, как дым.</p>
+              </div>
+
+              <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-nameless">Развернуть</button>
+            </div>
+
+            <div class="qm-bar">
+              <div class="qm-cta">
+                <button type="button" class="btn" data-close>Закрыть</button>
+                <button type="button" class="btn btn--accent open-booking">Забронировать</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Quest Modal: ПОСЛЕДНИЙ РЕПОРТАЖ -->
+  <div class="modal quest-modal" id="qm-blackwood" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-blackwood-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <header class="qm-head">
+        <h2 id="qm-blackwood-title" class="qm-title">ПОСЛЕДНИЙ РЕПОРТАЖ</h2>
+      </header>
+
+      <div class="qm-scroll">
+        <div class="qm-grid">
+          <div class="qm-media">
+            <div class="qm-media-top">
+              <video class="qm-video qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/reportajprev.jpg" width="1280" height="720">
+                <source src="/images/quests/reportaj.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qm-gallery">
+              <img src="/images/quests/reportaj.png" alt="Последний репортаж — кадр 1" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/reportaj2.jpg" alt="Последний репортаж — кадр 2" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/reportaj3.jpg" alt="Последний репортаж — кадр 3" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/reportajprev.jpg" alt="Последний репортаж — кадр 4" loading="lazy" decoding="async" width="640" height="400">
+            </div>
+          </div>
+
+          <aside class="qm-side">
+            <ul class="qm-facts">
+              <li><b>Игроки:</b> 2–12</li>
+              <li><b>Время:</b> 60 минут</li>
+              <li><b>Возраст:</b> 16+</li>
+              <li><b>Цена:</b> 800 000 сум (4 чел.)</li>
+            </ul>
+
+            <div class="qm-card qm-story-card" id="story-blackwood">
+              <h3>История</h3>
+              <div class="qm-story" data-collapsed style="white-space: pre-wrap">
+Съемочная группа известных репортеров, снимающих документальные шоу о мистических явлениях, решила сделать репортаж о проклятом доме. Они были уверены, что смогут запечатлеть на камеру нечто сверхъестественное, а возможно, даже вступить в контакт с духами бывших жильцов.
+Но это расследование стало их последним.
+Съемочная группа исчезла бесследно. Все записи обрываются на самом интересном месте. Никто так и не узнал, что произошло той ночью.
+Теперь двери особняка открылись для вас...
+Ваша задача — найти ту самую видеокамеру с Последним Репортажем.
+              </div>
+
+              <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-blackwood">Развернуть</button>
+            </div>
+
+            <div class="qm-bar">
+              <div class="qm-cta">
+                <button type="button" class="btn" data-close>Закрыть</button>
+                <button type="button" class="btn btn--accent open-booking">Забронировать</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quest Modal: НОЧЬ ДЕМОНОВ: БАЛ САТАНЫ -->
+  <div class="modal quest-modal" id="qm-demons" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-demons-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <header class="qm-head">
+        <h2 id="qm-demons-title" class="qm-title">НОЧЬ ДЕМОНОВ: БАЛ САТАНЫ</h2>
+      </header>
+
+      <div class="qm-scroll">
+        <div class="qm-grid">
+          <div class="qm-media">
+            <div class="qm-media-top">
+              <video class="qm-video qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/nochdemonovprev.jpg" width="1280" height="720">
+                <source src="/images/quests/nochdemonov.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qm-gallery">
+              <img src="/images/quests/nochdemonov.jpeg"  alt="Ночь Демонов — кадр 1" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/nochdemonov4.jpg"  alt="Ночь Демонов — кадр 2" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/nochdemonov3.jpg"  alt="Ночь Демонов — кадр 3" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/nochdemonov2.jpeg" alt="Ночь Демонов — постер" loading="lazy" decoding="async" width="640" height="400">
+            </div>
+          </div>
+
+          <aside class="qm-side">
+            <ul class="qm-facts">
+              <li><b>Игроки:</b> 2–12</li>
+              <li><b>Время:</b> 60 минут</li>
+              <li><b>Возраст:</b> 16+</li>
+              <li><b>Цена:</b> 800 000 сум (4 чел.)</li>
+            </ul>
+
+            <div class="qm-card qm-story-card" id="story-demons">
+              <h3>История</h3>
+              <div class="qm-story" data-collapsed style="white-space: pre-wrap">
+История квеста  ночь демонов:бал Сатаны : 
+Хеллоуин отмечается в канун дня всех святых.
+Традиционно считается единственным днём в году, когда духи умерших могут вернутся в мир живых.
+Этот праздник решили отметить и вы. Собравшись компанией друзей, вы начали выбирать место для празднования. В интернете вы нашли афишу, что в одном заброшенном доме устраивается вечеринка. Вы отправились в тот дом. По приезду зайдя в дом, вы не обнаружили ни следа праздника и вечеринки. приняв решение уехать, дверь открыть не получилось, она была заперта. Услышав странные звуки, оказалось что по мимо вас в доме есть ещё кое кто. А потому ваша задача, выбраться из этого дома живыми.
+              </div>
+
+              <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-demons">Развернуть</button>
+            </div>
+
+            <div class="qm-bar">
+              <div class="qm-cta">
+                <button type="button" class="btn" data-close>Закрыть</button>
+                <button type="button" class="btn btn--accent open-booking">Забронировать</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Quest Modal: ЭКЗОРЦИЗМ: ПОСЛЕДНИЙ РИТУАЛ -->
+  <div class="modal quest-modal" id="qm-exorcism" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-exorcism-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+    <header class="qm-head">
+      <h2 id="qm-exorcism-title" class="qm-title">ЭКЗОРЦИЗМ: ПОСЛЕДНИЙ РИТУАЛ</h2>
+    </header>
+
+    <div class="qm-scroll">
+      <div class="qm-grid">
+        <div class="qm-media">
+          <div class="qm-media-top">
+            <video class="qm-video qvideo" controls playsinline preload="metadata"
+                   poster="/images/quests/exorcismprev.jpg" width="1280" height="720">
+              <source src="/images/quests/exorcism.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div class="qm-gallery">
+            <img src="/images/quests/exorcism.jpeg"  alt="Экзорцизм — кадр 1" loading="lazy" decoding="async" width="640" height="400">
+            <img src="/images/quests/exorcism2.jpg"  alt="Экзорцизм — кадр 2" loading="lazy" decoding="async" width="640" height="400">
+            <img src="/images/quests/exorcism4.png"  alt="Экзорцизм — кадр 3" loading="lazy" decoding="async" width="640" height="400">
+            <img src="/images/quests/exorcism5.png" alt="Экзорцизм — постер" loading="lazy" decoding="async" width="640" height="400">
+          </div>
+        </div>
+
+        <aside class="qm-side">
+          <ul class="qm-facts">
+            <li><b>Игроки:</b> 2–12</li>
+            <li><b>Время:</b> 60 минут</li>
+            <li><b>Возраст:</b> 16+</li>
+            <li><b>Цена:</b> 800 000 сум (4 чел.)</li>
+          </ul>
+
+          <div class="qm-card qm-story-card" id="story-exorcism">
+            <h3>История</h3>
+            <div class="qm-story" data-collapsed style="white-space: pre-wrap">
+История квеста экзорцизм:последний ритуал : 
+Экзорцизм- это обряд или ритуал для изгнания бесов, демонов из тела человека. Грета, девушка которая подверглась этому не раз. В детстве гуляя на заднем дворе своего дома, девочка нашла в траве красивый кулон. Одев кулон на себя, она обреклась на вечные муки. У девочки начало ухудшатся здоровье, она слышала странные голоса и начала сходить с ума. Мать Грету всегда недолюбливала, потому издевалась над ней. Но Грету любил ее дедушка, потому навещал всегда. В очередной визит дедушки, он обнаружил мертвую мать девочки. Тогда он начал понимать что с девочкой происходит. Он звал и врачей и целителей, даже священников. Но никто не смог помочь девочке. Соседи говорили, что на окраине города живёт святой отец Лукас, который точно поможет девочке. Дедушка найдя отца Лукаса, привел его в дом. Решено было провести очередное изгнание, но заметив на шее девочки кулон, отец Лукас сдёрнул его и глубоко пожалел об этом. Девочка оказалась мертва, а телом управлял уже давно поселившийся в ней демон. Отец Лукас не сумел довести экзорцизм до конца, но успел спрятать в доме тот самый кулон и узнал имя демона. Прошло много времени с последнего экзорцизма, но ни отца Лукаса, ни дедушки, ни самой девочки в живых больше не видели.
+            </div>
+
+            <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-exorcism">Развернуть</button>
+          </div>
+
+          <div class="qm-bar">
+            <div class="qm-cta">
+              <button type="button" class="btn" data-close>Закрыть</button>
+              <button type="button" class="btn btn--accent open-booking">Забронировать</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Quest Modal: КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА -->
+  <div class="modal quest-modal" id="qm-brahms" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-brahms-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <header class="qm-head">
+        <h2 id="qm-brahms-title" class="qm-title">КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА</h2>
+      </header>
+
+      <div class="qm-scroll">
+        <div class="qm-grid">
+          <div class="qm-media">
+            <div class="qm-media-top">
+              <video class="qm-video qvideo" controls playsinline preload="metadata"
+                     poster="/images/quests/bramsprev.jpg" width="1280" height="720">
+                <source src="/images/quests/brams.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qm-gallery">
+              <img src="/images/quests/brams2.jpeg" alt="Кукла Брамса — кадр 2" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/brams3.jpeg" alt="Кукла Брамса — кадр 3" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/brams4.jpg"  alt="Кукла Брамса — кадр 4" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/brams5.jpg"  alt="Кукла Брамса — кадр 5" loading="lazy" decoding="async" width="640" height="400">
+            </div>
+          </div>
+
+          <aside class="qm-side">
+            <ul class="qm-facts">
+              <li><b>Игроки:</b> 2–12</li>
+              <li><b>Время:</b> 60 минут</li>
+              <li><b>Возраст:</b> 16+</li>
+              <li><b>Цена:</b> 800 000 сум (4 чел.)</li>
+            </ul>
+
+            <div class="qm-card qm-story-card" id="story-brahms">
+              <h3>История</h3>
+              <div class="qm-story" data-collapsed style="white-space: pre-wrap">
+История квеста Кукла Брамса: проклятие мальчика:
+Где-то на окраине города, в большом поместье, жила семья Хильшер. Молодая пара и ребенок по имени Брамс. На восьмой день рождения мальчика родители решили устроить вечеринку. Взрослые пировали в беседке во дворе дома, дети играли в комнате Брамса. Но в тот роковой день, по неизвестным причинам, в доме случился пожар. Выжили все, кроме одного — Брамса. В тот день его не стало. Родители были в отчаянии, не могли смириться с потерей ребенка. В том пожаре уцелела кукла, которую очень любил Брамс. Отстроив дом заново и забрав куклу, они начали обращаться с ней, как с родным ребенком. Через какое-то время в доме начали происходить странные вещи: обрывались телефонные звонки, в коридорах был слышен плач ребенка, пропадали вещи, а кукла каждый раз меняла свое местоположение. Хильшеры начали сходить с ума. Так прошло почти 20 лет. Не смирившись с утратой сына, они обратились к оккультистам, дабы упокоить душу мальчика. Оккультисты, прибыв в дом, попросили ту самую игрушку. Зайдя в комнату мальчика, они провели ритуал. Но что-то пошло не так. Душа уже давно не мальчика явилась в этот мир и поселилась в этом доме. В доме не осталось живых — они пропали без вести. Спустя месяц родителей нашли на дне озера неподалеку от поместья. Остальные тела найти так и не удалось. Причину смерти установить не смогли. Говорят, кукла до сих пор находится в этом доме, а в ней — душа мальчика. Вы, узнав об этой истории, решили поехать в поместье и освободить душу. Но сможете ли вы это сделать? Позволит ли Брамс?
+              </div>
+
+              <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-brahms">Развернуть</button>
+            </div>
+
+            <div class="qm-bar">
+              <div class="qm-cta">
+                <button type="button" class="btn" data-close>Закрыть</button>
+                <button type="button" class="btn btn--accent open-booking">Забронировать</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Лайтбокс -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" style="content-visibility:auto; contain-intrinsic-size: 600px;">
+    <button class="lightbox__close" type="button" aria-label="Закрыть">×</button>
+    <button class="lightbox__btn lightbox__prev" type="button" aria-label="Предыдущее">‹</button>
+    <div class="lightbox__img-wrap">
+      <img class="lightbox__img" src="" alt="" loading="lazy" decoding="async" width="1280" height="720">
+    </div>
+    <button class="lightbox__btn lightbox__next" type="button" aria-label="Следующее">›</button>
+  </div>
+
+  <!-- Toasts -->
+  <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Скрипт -->
+  <script src="/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[build]
+publish = "public"   # публикуем именно папку public
+# команда сборки НЕ нужна для статичного сайта
+command = ""
+
+[functions]
+directory = "netlify/functions"
+node_bundler = "esbuild"
+
+# (необязательно) прокси на функции
+[[redirects]]
+from = "/.netlify/functions/*"
+to   = "/.netlify/functions/:splat"
+status = 200

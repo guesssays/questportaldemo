@@ -1,0 +1,14 @@
+{
+  "name": "quest-portal-site",
+  "version": "3.0.0",
+  "description": "Quest Portal site rebuilt with full-screen backgrounds and precise styles",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5"
+  }
+}
