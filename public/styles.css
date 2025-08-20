@@ -910,3 +910,34 @@ footer.footer .contacts .item:hover::after{
   max-height: 50px; /* подгони под высоту хедера */
   width: auto;
 }
+/* Бейдж "(4 чел.)" только для ПЕРВОГО квеста */
+.qgrid > .quest:first-of-type .qprice::after{
+  content: "4 чел.";
+  position: absolute;
+  top: 34px;                 /* ниже самой цены */
+  right: 12px;
+  z-index: 5;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(4px);
+  font-family: "WidockTrial", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+/* Сдвигаем "+150 000..." ещё ниже, чтобы оказался после "(4 чел.)" */
+.qgrid > .quest:first-of-type .thumb::after{
+  top: 60px;                 /* было 46px */
+}
+
+/* На узких экранах уменьшить расстояния */
+@media (max-width:460px){
+  .qgrid > .quest:first-of-type .qprice::after{ 
+    top: 32px; padding: 5px 8px; font-size: 10px; border-radius: 8px;
+  }
+  .qgrid > .quest:first-of-type .thumb::after{ top: 56px; }
+}
