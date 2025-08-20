@@ -879,7 +879,7 @@ footer.footer .contacts .item:hover::after{
 .thumb::after {
   content: "+150 000 сум за каждого доп.";
   position: absolute;
-  top: 46px;          /* ниже чем цена (12px у .qprice) */
+  top: 80px;          /* ниже чем цена (12px у .qprice) */
   right: 12px;
   z-index: 5;
   padding: 6px 10px;
@@ -909,4 +909,23 @@ footer.footer .contacts .item:hover::after{
   display: block;
   max-height: 50px; /* подгони под высоту хедера */
   width: auto;
+}
+/* Бейдж стоимости — под ценой */
+.thumb::after {
+  content: "(4 чел.)";
+  position: absolute;
+  top: 46px;          /* ниже чем цена (12px у .qprice) */
+  right: 12px;
+  z-index: 5;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(4px);
+  font-family: "WidockTrial", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: .06em;
+  white-space: pre-wrap; /* перенос строк */
+  text-align: right;     /* аккуратно выравниваем по правому краю */
 }
