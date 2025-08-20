@@ -998,6 +998,6 @@ footer.footer .contacts .item:hover::after{
     top: 48px; /* базовое компактное */
   }
   .qgrid > .quest:first-of-type .thumb::after {
-    top: 72px; /* уменьшенный отступ только на первом квесте */
+    top: 90px; /* увеличенный отступ на мобильных для первого квеста */
   }
 }
