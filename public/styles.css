@@ -911,10 +911,10 @@ footer.footer .contacts .item:hover::after{
   width: auto;
 }
 /* Бейдж "(4 чел.)" только для ПЕРВОГО квеста */
-.qgrid > .quest:first-of-type .qprice::after{
+.qgrid > .quest:first-of-type .qprice::after {
   content: "4 чел.";
   position: absolute;
-  top: 34px;                 /* ниже самой цены */
+  top: 34px;                /* сразу под ценой */
   right: 12px;
   z-index: 5;
   padding: 6px 10px;
@@ -929,15 +929,20 @@ footer.footer .contacts .item:hover::after{
   white-space: nowrap;
 }
 
-/* Сдвигаем "+150 000..." ещё ниже, чтобы оказался после "(4 чел.)" */
-.qgrid > .quest:first-of-type .thumb::after{
-  top: 60px;                 /* было 46px */
+/* Сдвигаем "+150 000…" ещё ниже, чтобы не налезало */
+.qgrid > .quest:first-of-type .thumb::after {
+  top: 64px;                /* было 46px → стало ниже */
 }
 
-/* На узких экранах уменьшить расстояния */
-@media (max-width:460px){
-  .qgrid > .quest:first-of-type .qprice::after{ 
-    top: 32px; padding: 5px 8px; font-size: 10px; border-radius: 8px;
+/* Мобильная адаптация */
+@media (max-width:460px) {
+  .qgrid > .quest:first-of-type .qprice::after { 
+    top: 32px;
+    padding: 5px 8px;
+    font-size: 10px;
+    border-radius: 8px;
   }
-  .qgrid > .quest:first-of-type .thumb::after{ top: 56px; }
+  .qgrid > .quest:first-of-type .thumb::after { 
+    top: 58px;              /* чуть ближе, но всё равно ниже */
+  }
 }
