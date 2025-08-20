@@ -935,7 +935,7 @@ footer.footer .contacts .item:hover::after{
 .qgrid > .quest .thumb::after {
   content: "+150 000 сум за каждого доп.";
   position: absolute;
-  top: 80px;               /* сдвигаем ниже, чтобы не пересекалось */
+  top: 52px;               /* сдвигаем ниже, чтобы не пересекалось */
   right: 12px;
   z-index: 5;
   padding: 6px 10px;
@@ -960,5 +960,44 @@ footer.footer .contacts .item:hover::after{
     font-size: 10px;
     padding: 5px 8px;
     top: 48px;             /* чуть компактнее */
+  }
+}
+/* "+150 000…" — для всех квестов */
+.qgrid > .quest .thumb::after {
+  content: "+150 000 сум за каждого доп.";
+  position: absolute;
+  top: 52px;               /* базовое положение */
+  right: 12px;
+  z-index: 5;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(4px);
+  font-family: "WidockTrial", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+/* Переопределение: только для первого квеста */
+.qgrid > .quest:first-of-type .thumb::after {
+  top: 85px;  /* у первого отступ больше */
+}
+
+/* Мобильная адаптация */
+@media (max-width:460px) {
+  .qgrid > .quest:first-of-type .qprice::after {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+  .qgrid > .quest .thumb::after {
+    font-size: 10px;
+    padding: 5px 8px;
+    top: 48px; /* базовое компактное */
+  }
+  .qgrid > .quest:first-of-type .thumb::after {
+    top: 72px; /* уменьшенный отступ только на первом квесте */
   }
 }
