@@ -999,3 +999,44 @@ footer.footer .contacts .item:hover::after{
     font-size:10px; padding:5px 8px; border-radius:8px;
   }
 }
+/* Бейдж "(4 чел.)" только для ПЕРВОГО квеста */
+.qgrid > .quest:first-of-type .qprice::after {
+  content: "4 чел.";
+  position: absolute;
+  top: 34px;                /* под ценой */
+  right: 12px;
+  z-index: 5;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(4px);
+  font-family: "WidockTrial", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+/* Бейдж "+150 000…" — он остаётся на .thumb, но сдвигаем ниже */
+.qgrid > .quest:first-of-type .thumb::after {
+  top: 64px;                /* раньше было меньше — теперь под "(4 чел.)" */
+}
+
+/* Для всех остальных квестов "+150 000…" оставляем как есть */
+.qgrid > .quest:not(:first-of-type) .thumb::after {
+  top: 46px;                /* стандартное положение */
+}
+
+/* Мобильная адаптация */
+@media (max-width:460px) {
+  .qgrid > .quest:first-of-type .qprice::after { 
+    top: 32px;
+    padding: 5px 8px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+  .qgrid > .quest:first-of-type .thumb::after { 
+    top: 58px;              /* чуть ниже, чем "(4 чел.)" */
+  }
+}
