@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://questportal.uz/sitemap.xml

@@ -7,8 +7,26 @@ command = ""
 directory = "netlify/functions"
 node_bundler = "esbuild"
 
-# (необязательно) прокси на функции
 [[redirects]]
-from = "/.netlify/functions/*"
-to   = "/.netlify/functions/:splat"
-status = 200
+  from = "http://questportal.uz/*"
+  to   = "https://questportal.uz/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+  Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+  X-Content-Type-Options = "nosniff"
+  X-Frame-Options = "SAMEORIGIN"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/script.js"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
