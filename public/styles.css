@@ -935,7 +935,7 @@ footer.footer .contacts .item:hover::after{
 .qgrid > .quest .thumb::after {
   content: "+150 000 сум за каждого доп.";
   position: absolute;
-  top: 52px;               /* сдвигаем ниже, чтобы не пересекалось */
+  top: 80px;               /* сдвигаем ниже, чтобы не пересекалось */
   right: 12px;
   z-index: 5;
   padding: 6px 10px;
