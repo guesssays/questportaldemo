@@ -946,3 +946,56 @@ footer.footer .contacts .item:hover::after{
     top: 58px;              /* чуть ближе, но всё равно ниже */
   }
 }
+/* ——— СТАБИЛЬНАЯ КОЛОНКА БЕЙДЖЕЙ СПРАВА ——— */
+
+/* Отключаем старый оверлей на .thumb */
+.thumb::after{ content:none !important; }
+
+/* Базовый контейнер с ценой — держит всю колонку */
+.qprice{
+  position:absolute; top:12px; right:12px; z-index:6;  /* выше всего в углу */
+  display:grid;                   /* три строки одной колонкой */
+  gap:6px;                        /* равномерный отступ между бейджами */
+}
+
+/* Общий стиль «плашек» */
+.qprice,
+.qprice::after,
+.qprice::before{
+  padding:6px 10px;
+  border-radius:10px;
+  background:rgba(0,0,0,.6);
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(4px);
+  font-family:"WidockTrial", system-ui, sans-serif;
+  font-weight:700;
+  letter-spacing:.06em;
+  white-space:nowrap;
+  width:max-content;              /* чтобы ширина подстраивалась под текст */
+  justify-self:end;               /* выравниваем по правому краю */
+}
+
+/* 2-я строка: (4 чел.) — только у первого квеста */
+.qgrid > .quest:first-of-type .qprice::after{
+  content:"4 чел.";
+  font-size:11px;
+}
+
+/* 3-я строка: +150 000… — у всех квестов */
+.qprice::before{
+  content:"+150 000 сум за каждого доп.";
+  font-size:10px;
+  white-space:normal;             /* можно переносить, если узко */
+  text-align:right;
+}
+
+/* Мобильная подстройка */
+@media (max-width:460px){
+  .qprice{ gap:5px; }
+  .qgrid > .quest:first-of-type .qprice::after{
+    font-size:10px; padding:5px 8px; border-radius:8px;
+  }
+  .qprice::before{
+    font-size:10px; padding:5px 8px; border-radius:8px;
+  }
+}
