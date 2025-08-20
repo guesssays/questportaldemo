@@ -879,7 +879,7 @@ footer.footer .contacts .item:hover::after{
 .thumb::after {
   content: "+150 000 сум за каждого доп.";
   position: absolute;
-  top: 80px;          /* ниже чем цена (12px у .qprice) */
+  top: 46px;          /* ниже чем цена (12px у .qprice) */
   right: 12px;
   z-index: 5;
   padding: 6px 10px;
@@ -910,11 +910,32 @@ footer.footer .contacts .item:hover::after{
   max-height: 50px; /* подгони под высоту хедера */
   width: auto;
 }
-/* Бейдж стоимости — под ценой */
-.thumb::after {
-  content: "(4 чел.)";
+/* Цена (оставляем как есть) */
+
+/* "(4 чел.)" — идёт внутри .qprice */
+.qgrid > .quest:first-of-type .qprice::after {
+  content: "4 чел.";
   position: absolute;
-  top: 46px;          /* ниже чем цена (12px у .qprice) */
+  top: calc(100% + 6px);   /* сразу под ценой */
+  right: 0;
+  z-index: 5;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(4px);
+  font-family: "WidockTrial", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+/* "+150 000…" — оставляем на .thumb */
+.qgrid > .quest .thumb::after {
+  content: "+150 000 сум за каждого доп.";
+  position: absolute;
+  top: 52px;               /* сдвигаем ниже, чтобы не пересекалось */
   right: 12px;
   z-index: 5;
   padding: 6px 10px;
@@ -926,6 +947,18 @@ footer.footer .contacts .item:hover::after{
   font-weight: 700;
   font-size: 10px;
   letter-spacing: .06em;
-  white-space: pre-wrap; /* перенос строк */
-  text-align: right;     /* аккуратно выравниваем по правому краю */
+  white-space: nowrap;
+}
+
+/* Мобильная адаптация */
+@media (max-width:460px) {
+  .qgrid > .quest:first-of-type .qprice::after {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+  .qgrid > .quest .thumb::after {
+    font-size: 10px;
+    padding: 5px 8px;
+    top: 48px;             /* чуть компактнее */
+  }
 }
