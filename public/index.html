@@ -158,20 +158,21 @@
 <!-- ШАПКА С НАВИГАЦИЕЙ И CTA -->
 <header class="site-header">
   <div class="container header-row">
- <a href="#hero" class="logo" aria-label="Quest Portal — на главную">
+<a href="/" class="logo" aria-label="Quest Portal — на главную">
   <img src="./images/logo.png" alt="Quest Portal — страшные квесты в Ташкенте" class="logo__img">
 </a>
+
 
 
     <nav class="nav" id="nav" aria-hidden="true">
       <button type="button" class="nav__close" aria-label="Закрыть меню">×</button>
       <!-- <a href="#anons">Акции</a> -->
-      <a href="#hero">Главная</a>
-      <a href="#quests">Квесты</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contacts">Контакты</a>
-      <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
+  <a href="/">Главная</a>
+  <a href="/quests">Квесты</a>
+  <a href="/reviews">Отзывы</a>
+  <a href="/faq">FAQ</a>
+  <a href="/contacts">Контакты</a>
+  <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
     </nav>
 
     <button class="burger" id="burger" aria-label="Меню" aria-controls="nav" aria-expanded="false">
@@ -911,6 +912,13 @@
       canonical: 'https://www.questportal.uz/reviews',
       onEnter(){ scrollToId('reviews'); }
     },
+    '/faq': {
+  title: 'FAQ — частые вопросы | Quest Portal',
+  desc: 'Ответы на частые вопросы о хоррор-квестах Quest Portal.',
+  canonical: 'https://www.questportal.uz/faq',
+  onEnter(){ scrollToId('faq'); }
+},
+
     '/contacts': {
       title: 'Контакты и адрес — Quest Portal',
       desc: 'Ташкент, ул. Бабура, 73А. Как добраться и как связаться.',
