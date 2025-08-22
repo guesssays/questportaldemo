@@ -1047,3 +1047,25 @@ footer.footer .contacts .item:hover::after{
 @media (max-width: 860px){
   .b2b-grid{ grid-template-columns:1fr; }
 }
+/* Кнопки в B2B */
+.b2b-cta{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* по умолчанию — можно переносить */
+}
+
+.b2b-cta .btn{
+  flex: 1 1 auto;           /* пусть кнопки растягиваются равномерно */
+  text-align: center;
+}
+
+@media (max-width: 600px){
+  .b2b-cta{
+    flex-wrap: nowrap;      /* на мобилках — всегда в ряд */
+  }
+  .b2b-cta .btn{
+    flex: 1 1 50%;          /* каждая занимает половину ряда */
+    font-size: 14px;        /* можно чуть уменьшить шрифт для влезания */
+    padding: 10px;
+  }
+}
