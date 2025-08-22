@@ -365,3 +365,27 @@ document.addEventListener('click', (e) => {
   slider.addEventListener('mouseenter', () => { clearInterval(timer); });
   slider.addEventListener('mouseleave', () => { timer = setInterval(() => go(i + 1), 5000); });
 })();
+// ===== Модалка "услуги/франшиза" =====
+(function(){
+  const openBtns = document.querySelectorAll('.open-services');
+  const modal = document.getElementById('servicesModal');
+  if (!modal || !openBtns.length) return;
+
+  function openModal(m){
+    m.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(m){
+    m.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openBtns.forEach(b => b.addEventListener('click', () => openModal(modal)));
+  modal.addEventListener('click', (e) => {
+    if (e.target.hasAttribute('data-close') || e.target.classList.contains('modal')) closeModal(modal);
+  });
+  // закрытие по Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal(modal);
+  });
+})();
