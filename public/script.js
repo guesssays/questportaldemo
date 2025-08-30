@@ -91,15 +91,69 @@ function closeModal(){
   document.body.classList.remove('modal-open');
 }
 
+/* ===== Booking helpers: prefill quest ===== */
+function getQuestNameFromBtn(btn){
+  if (!btn) return '';
+  if (btn.dataset.quest) return btn.dataset.quest.trim();
+
+  // карточка на главной
+  const card = btn.closest('.quest');
+  const title1 = card?.querySelector('.qtitle')?.textContent?.trim();
+  if (title1) return title1;
+
+  // модалка «Подробнее»
+  const qmodal = btn.closest('.quest-modal');
+  const title2 = qmodal?.querySelector('.qm-title')?.textContent?.trim();
+  if (title2) return title2;
+
+  return '';
+}
+
+function prefillBooking(questName){
+  const sel = document.getElementById('quest');
+  if (!sel) return;
+  if (!questName) { sel.value = ''; return; }
+
+  const norm = s => String(s).trim().toLowerCase();
+  let opt = Array.from(sel.options).find(o => norm(o.text) === norm(questName));
+
+  if (!opt){
+    // если по тексту не нашли — пробуем по value
+    opt = Array.from(sel.options).find(o => norm(o.value) === norm(questName));
+  }
+
+  if (opt){
+    sel.value = opt.value;
+  } else {
+    // добавим опцию на лету, если название нестандартно
+    const o = document.createElement('option');
+    o.value = questName;
+    o.textContent = questName;
+    sel.appendChild(o);
+    sel.value = o.value;
+  }
+  sel.dispatchEvent(new Event('change', { bubbles: true }));
+
+  // лёгкий фокус после открытия модалки
+  setTimeout(() => sel.focus({ preventScroll: true }), 60);
+}
+
 
 // делегирование кликов: открытие/закрытие
 document.addEventListener('click', (e) => {
   // открыть: [data-modal] ИЛИ [data-target] ИЛИ .open-booking
-const openBtn = e.target.closest('[data-modal], .open-booking, [data-target]:not(.story-toggle)');
+  const openBtn = e.target.closest('[data-modal], .open-booking, [data-target]:not(.story-toggle)');
   if (openBtn) {
     e.preventDefault();
     const raw = openBtn.dataset.modal ?? openBtn.dataset.target ?? 'bookingModal';
     const id = String(raw).replace(/^#/, '');
+
+    // если открываем форму брони — подставим квест
+    if (id === 'bookingModal') {
+      const questName = getQuestNameFromBtn(openBtn);
+      if (questName) prefillBooking(questName);
+    }
+
     openModal(id);
     return;
   }
@@ -189,17 +243,16 @@ if (form) {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
-const err = validate(data);
-if (err) {
-  showToast(err.message, 'error', 4000);
-  if (err.field && form.elements[err.field]) form.elements[err.field].focus();
-  submitBtn?.removeAttribute('disabled');
-  return;
-}
+      const err = validate(data);
+      if (err) {
+        showToast(err.message, 'error', 4000);
+        if (err.field && form.elements[err.field]) form.elements[err.field].focus();
+        submitBtn?.removeAttribute('disabled');
+        return;
+      }
 
-// статус «Отправка…» — как информационный
-showToast('Отправка…', 'info', 1200);
-
+      // статус «Отправка…» — как информационный
+      showToast('Отправка…', 'info', 1200);
 
       const resp = await fetch('/.netlify/functions/send-telegram', {
         method: 'POST',
@@ -261,6 +314,7 @@ showToast('Отправка…', 'info', 1200);
     qvIO.observe(v);
   });
 })();
+
 /* ===== lightbox for galleries ===== */
 (function(){
   const lb = document.getElementById('lightbox');
@@ -274,18 +328,18 @@ showToast('Отправка…', 'info', 1200);
   const imgs = Array.from(document.querySelectorAll('.mini-img, .qm-gallery img'));
   let idx = -1;
 
-// === LIGHTBOX ===
-function openLB(i){
-  idx = i;
-  const src = imgs[idx].getAttribute('src');
-  lbImg.src = src;
-  lb.classList.add('is-open');    // было 'open'
-  document.body.classList.add('modal-open');
-}
-function closeLB(){
-  lb.classList.remove('is-open'); // было 'open'
-  document.body.classList.remove('modal-open');
-}
+  // === LIGHTBOX ===
+  function openLB(i){
+    idx = i;
+    const src = imgs[idx].getAttribute('src');
+    lbImg.src = src;
+    lb.classList.add('is-open');    // было 'open'
+    document.body.classList.add('modal-open');
+  }
+  function closeLB(){
+    lb.classList.remove('is-open'); // было 'open'
+    document.body.classList.remove('modal-open');
+  }
 
   function navLB(step){
     if (idx < 0) return;
@@ -304,12 +358,13 @@ function closeLB(){
   btnNext?.addEventListener('click', () => navLB(1));
   lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
   document.addEventListener('keydown', e => {
-   if (!lb.classList.contains('is-open')) return;
+    if (!lb.classList.contains('is-open')) return;
     if (e.key === 'Escape') closeLB();
     if (e.key === 'ArrowLeft') navLB(-1);
     if (e.key === 'ArrowRight') navLB(1);
   });
 })();
+
 // === STORY TOGGLE (разворот текста в модалках квестов) ===
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.story-toggle');
@@ -365,27 +420,28 @@ document.addEventListener('click', (e) => {
   slider.addEventListener('mouseenter', () => { clearInterval(timer); });
   slider.addEventListener('mouseleave', () => { timer = setInterval(() => go(i + 1), 5000); });
 })();
+
 // ===== Модалка "услуги/франшиза" =====
 (function(){
   const openBtns = document.querySelectorAll('.open-services');
   const modal = document.getElementById('servicesModal');
   if (!modal || !openBtns.length) return;
 
-  function openModal(m){
+  function openModalLocal(m){
     m.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
-  function closeModal(m){
+  function closeModalLocal(m){
     m.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
-  openBtns.forEach(b => b.addEventListener('click', () => openModal(modal)));
+  openBtns.forEach(b => b.addEventListener('click', () => openModalLocal(modal)));
   modal.addEventListener('click', (e) => {
-    if (e.target.hasAttribute('data-close') || e.target.classList.contains('modal')) closeModal(modal);
+    if (e.target.hasAttribute('data-close') || e.target.classList.contains('modal')) closeModalLocal(modal);
   });
   // закрытие по Esc
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal(modal);
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModalLocal(modal);
   });
 })();
