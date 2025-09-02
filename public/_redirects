@@ -1,2 +1,5 @@
-https://questportal.uz/*   https://www.questportal.uz/:splat 301
-/*                        /index.html                     200
+http://questportal.uz/*     https://www.questportal.uz/:splat 301!
+https://questportal.uz/*    https://www.questportal.uz/:splat 301!
+http://www.questportal.uz/* https://www.questportal.uz/:splat 301!
+
+ /*  /index.html  200
