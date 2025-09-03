@@ -230,7 +230,7 @@ h3{ font-size:clamp(16px,3.8vw,18px); }
 
 /* =================== HERO =================== */
 .bg-hero .hero-copy{ max-width:720px; background:transparent; border:0; padding:0; transform: translateX(-60%); }
-.bg-hero h3{ font-family:"Ustroke", sans-serif; font-size:38px; text-transform:uppercase; color:var(--accent); line-height:1.2; }
+.bg-hero h3{ font-family:"Ustroke", sans-serif; font-size:38px; text-transform:uppercase; color:var(--contacts-h); line-height:1.2; }
 .bg-hero .hero-copy p:first-of-type{
   font-family:"WidockTrial", sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin:14px 0 6px; font-size:22px;
 }
