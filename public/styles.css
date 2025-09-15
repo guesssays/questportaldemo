@@ -1084,3 +1084,17 @@ footer.footer .contacts .item:hover::after{
     /* text-align: left;  // оставь как есть, если не хочешь центрировать */
   }
 }
+.pricing-note {
+  background: rgba(255, 255, 255, 0.08); /* лёгкий светлый фон */
+  border: 2px solid #ff4444;             /* яркая красная рамка */
+  border-radius: 10px;
+  padding: 14px 18px;
+  max-width: 820px;
+  margin: 20px auto;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
