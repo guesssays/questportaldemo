@@ -50,7 +50,8 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/styles.css" />
+<link rel="stylesheet" href="/styles.css?v=8">
+
   <!-- LocalBusiness -->
 <script type="application/ld+json">
 {
@@ -151,6 +152,20 @@
  ]
 }
 </script>
+<style>
+/* HERO: вернуть блок в кадр на десктопе */
+@media (min-width: 901px){
+  .bg-hero .hero-copy{ transform:none !important; margin:0 auto !important; }
+}
+/* HERO: на мобиле тоже без сдвига */
+@media (max-width: 900px){
+  .bg-hero .hero-copy{ transform:none !important; }
+}
+/* Видимая заметка о цене под "НАШИ КВЕСТЫ" */
+.pricing-note{
+  text-align:center; font-size:14px; margin:0 auto 16px; color:#f0f0f0; opacity:.95;
+}
+</style>
 
 </head>
 
@@ -235,7 +250,7 @@
         <noscript><img src="/images/hero-bg.png" alt="Quest Portal — хоррор-квесты" width="1600" height="900"></noscript>
 
       </div>
-      
+
       <div class="hero-copy">
         <h1>QUEST PORTAL</h1>
         <h3>САМЫЕ СТРАШНЫЕ<br>КВЕСТЫ ТАШКЕНТА</h3>
