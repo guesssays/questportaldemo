@@ -50,6 +50,43 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/styles.css" />
+
+  <!-- Фиксы layout: убираем горизонтальный скролл, центрируем hero, заставляем видео обрезаться по контейнеру -->
+  <style>
+    html, body { max-width: 100%; overflow-x: hidden; }
+    * { box-sizing: border-box; }
+
+    /* HERO: видео заполняет блок корректно */
+    #hero .bg-video { position: absolute; inset: 0; overflow: hidden; }
+    #hero .bg-video__media { width: 100%; height: 100%; object-fit: cover; }
+
+    /* HERO: копия по центру, с безопасными отступами */
+    #hero .hero-copy {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .hero-cta-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center }
+
+    @media (max-width: 720px) {
+      #hero { position: relative; }
+      #hero .hero-copy { padding: 20px 16px; text-align: center; }
+      .hero-cta-row { justify-content: center; }
+    }
+
+    /* Заметка в секции квестов */
+    .pricing-note {
+      background: rgba(0,0,0,.5);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 8px auto 18px;
+      max-width: 820px;
+      font-weight: 700;
+    }
+  </style>
+
   <!-- LocalBusiness -->
   <script type="application/ld+json">
 {
@@ -240,15 +277,10 @@
         <p><strong>ДАРИМ ЭМОЦИИ УЖЕ БОЛЕЕ 2 ЛЕТ!</strong></p>
         <p>Хоррор квесты с актёрами и реальный адреналин.<br>Выдержишь ли ты 60 минут?</p>
 
-        <!-- Чёткое ценовое пояснение -->
-        <p class="price-note" style="margin:.6rem 0 1rem; font-weight:700; background:rgba(0,0,0,.45); display:inline-block; padding:.4rem .6rem; border-radius:6px">
-          700–800 тыс — <u>за команду до 4 человек</u>. Каждый доп. игрок: +150 тыс.
-        </p>
-
         <div class="hero-cta-row">
           <a class="btn" href="https://t.me/quest_horror_tashkent" target="_blank" rel="noopener">Телеграм</a>
           <button type="button" class="btn btn--accent cta open-booking">Забронировать</button>
-          <!-- Новая кнопка звонка -->
+          <!-- Кнопка звонка в hero -->
           <a class="btn btn--ghost" href="tel:+998994016996" aria-label="Позвонить в Quest Portal">
             Позвонить: +998&nbsp;99&nbsp;401&nbsp;69&nbsp;96
           </a>
@@ -260,6 +292,12 @@
     <section id="quests" class="section section--bg bg-quests" style="--bg-image:url('/images/quest-bg.png'); content-visibility:auto; contain-intrinsic-size: 1200px;">
       <div class="inner section-quests">
         <h2 class="title-center">НАШИ КВЕСТЫ</h2>
+
+        <!-- Перенесённая и единая заметка о ценах -->
+        <div class="pricing-note">
+          700–800 тыс — <u>за команду до 4 человек</u>. Каждый дополнительный игрок: +150 тыс.
+        </div>
+
         <p class="lead" style="max-width:760px;margin:0 auto 14px;text-align:center">
           Quest Portal — самые страшные квесты Ташкента, хоррор-квесты с актёрами в Ташкенте. 60 минут
           адреналина, команда 2–12 человек, возраст 16+. Онлайн-бронирование, удобная
@@ -281,7 +319,7 @@
                      poster="/images/quests/kladbysheprev.jpg" width="1280" height="720">
                 <source src="/images/quests/kladbyshe.mp4" type="video/mp4">
               </video>
-              <div class="qprice">800 000 сум (до 4 чел.)</div>
+              <div class="qprice">800 000 сум</div>
             </div>
 
             <div class="qtitle">КЛАДБИЩЕ БЕЗЫМЯННЫХ</div>
@@ -309,7 +347,7 @@
                      poster="/images/quests/reportajprev.jpg" width="1280" height="720">
                 <source src="/images/quests/reportaj.mp4" type="video/mp4">
               </video>
-              <div class="qprice">700 000 сум (до 4 чел.)</div>
+              <div class="qprice">700 000 сум</div>
             </div>
 
             <div class="qtitle">ПОСЛЕДНИЙ РЕПОРТАЖ</div>
@@ -337,7 +375,7 @@
                      poster="/images/quests/nochdemonovprev.jpg" width="1280" height="720">
                 <source src="/images/quests/nochdemonov.mp4" type="video/mp4">
               </video>
-              <div class="qprice">700 000 сум (до 4 чел.)</div>
+              <div class="qprice">700 000 сум</div>
             </div>
 
             <div class="qtitle">НОЧЬ ДЕМОНОВ: БАЛ САТАНЫ</div>
@@ -365,7 +403,7 @@
                      poster="/images/quests/exorcismprev.jpg" width="1280" height="720">
                 <source src="/images/quests/exorcism.mp4" type="video/mp4">
               </video>
-              <div class="qprice">700 000 сум (до 4 чел.)</div>
+              <div class="qprice">700 000 сум</div>
             </div>
 
             <div class="qtitle">ЭКЗОРЦИЗМ: ПОСЛЕДНИЙ РИТУАЛ</div>
@@ -393,7 +431,7 @@
                      poster="/images/quests/bramsprev.jpg" width="1280" height="720">
                 <source src="/images/quests/brams.mp4" type="video/mp4">
               </video>
-              <div class="qprice">700 000 сум (до 4 чел.)</div>
+              <div class="qprice">700 000 сум</div>
             </div>
 
             <div class="qtitle">КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА</div>
@@ -409,7 +447,7 @@
           </article>
         </div>
 
-        <!-- Дополнительная заметка под сеткой, чтобы исключить недопонимание -->
+        <!-- Дополнительная краткая пометка под сеткой -->
         <p style="text-align:center; opacity:.9; margin-top:12px">
           <small>Стоимость указана за команду до 4 человек. Каждый дополнительный игрок: +150&nbsp;тыс.</small>
         </p>
@@ -769,7 +807,7 @@
               <img src="/images/quests/nochdemonov.jpeg"  alt="Ночь Демонов — кадр 1" loading="lazy" decoding="async" width="640" height="400">
               <img src="/images/quests/nochdemonov4.jpg"  alt="Ночь Демонов — кадр 2" loading="lazy" decoding="async" width="640" height="400">
               <img src="/images/quests/nochdemonov3.jpg"  alt="Ночь Демонов — кадр 3" loading="lazy" decoding="async" width="640" height="400">
-              <img src="/images/quests/nochdemonov2.jpeg" alt="Ночь Демонов — постер" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/nochdemonов2.jpeg" alt="Ночь Демонов — постер" loading="lazy" decoding="async" width="640" height="400">
             </div>
           </div>
 <aside class="qm-side">
