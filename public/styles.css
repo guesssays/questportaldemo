@@ -1069,3 +1069,18 @@ footer.footer .contacts .item:hover::after{
     padding: 10px;
   }
 }
+.pricing-note{
+  text-align:center;
+  font-size:14px;
+  margin:0 auto 16px;
+  color:#f0f0f0;
+  opacity:.9;
+}
+/* --- FIX: чтобы кнопки в hero не обрезались на десктопе --- */
+@media (min-width: 901px){
+  .bg-hero .hero-copy{
+    transform: none;      /* убираем сдвиг -60% */
+    margin: 0 auto;       /* держим блок в пределах экрана */
+    /* text-align: left;  // оставь как есть, если не хочешь центрировать */
+  }
+}
