@@ -182,14 +182,14 @@
     font-weight:800; font-size:12px; letter-spacing:.2px; box-shadow:0 2px 10px rgba(0,0,0,.35);
   }
   .thumb{ position:relative; }
-  /* Убрать любой «короткий» бейдж Новинка, если он добавляется стилями/псевдо-элементами */
-.thumb .badge:not(.badge-new),
-.thumb [data-badge="new"],
-.thumb::before,
-.thumb::after {
-  display: none !important;
-  content: none !important;
-}
+/* Скрыть только короткий бейдж «Новинка» у Франкенштейна */
+.thumb--frank .badge--new-short,
+.thumb--frank [data-badge="new-short"] { display:none !important; }
+
+/* Если «короткий» бейдж рисуется псевдо-элементами на этой карточке */
+.thumb--frank.is-new::before,
+.thumb--frank.is-new::after { display:none !important; }
+
 
   </style>
 
@@ -293,8 +293,8 @@
               <img class="mini-img" src="/images/quests/frankenstein3.jpg"  alt="Франкенштейн: воскрешение — кадр 3" loading="lazy" decoding="async" width="360" height="277">
             </div>
 
-            <div class="thumb">
-              <span class="badge-new">Новинка! Откроется 6 октября.</span>
+            <div class="thumb thumb--frank">
+  <span class="badge-new">Новинка! Откроется 6 октября.</span>
               <video class="qvideo" controls playsinline preload="metadata"
                      poster="/images/quests/frankensteinprev.jpg" width="1280" height="720">
                 <source src="/images/quests/frankenstein.mp4" type="video/mp4">
