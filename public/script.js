@@ -1,5 +1,4 @@
-console.log('script.js build v3 connected');
-
+console.log('script.js build v8 connected');
 
 // ===== helpers =====
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -67,7 +66,6 @@ nav?.addEventListener('click', (e) => {
 
   // Любая ссылка в меню – позволяем ей работать и просто закрываем меню
   if (e.target.closest('a[href]')) {
-    // не мешаем якорям/переходам
     closeNav();
     return;
   }
@@ -82,13 +80,22 @@ nav?.addEventListener('click', (e) => {
 function openModal(id){
   const modal = document.getElementById(id.replace(/^#/, ''));
   if (!modal) return;
-  modal.classList.add('is-open');   // было 'open'
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden','false'); // важно для a11y
   document.body.classList.add('modal-open');
 }
 function closeModal(){
-  document.querySelectorAll('.modal.is-open')   // было '.modal.open'
-          .forEach(m => m.classList.remove('is-open'));
+  document.querySelectorAll('.modal.is-open')
+          .forEach(m => {
+            m.classList.remove('is-open');
+            m.setAttribute('aria-hidden','true');
+          });
   document.body.classList.remove('modal-open');
+
+  // если модалка была открыта через hash — убираем его из URL
+  if (location.hash) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
 }
 
 /* ===== Booking helpers: prefill quest ===== */
@@ -155,6 +162,13 @@ document.addEventListener('click', (e) => {
     }
 
     openModal(id);
+
+    // Если открыли модалку квеста – добавим # в URL, чтобы ссылка была шарибельной
+    const modalEl = document.getElementById(id);
+    if (modalEl?.classList.contains('quest-modal') && location.hash !== ('#' + id)) {
+      history.replaceState(null, '', '#' + id);
+    }
+
     return;
   }
 
@@ -176,6 +190,18 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
 
+// === deep-link: открыть модалку, если URL уже содержит #qm-... ===
+function openHashModalIfAny(){
+  const id = location.hash.replace(/^#/, '');
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (el && el.classList.contains('modal')) {
+    openModal(id);
+  }
+}
+window.addEventListener('hashchange', openHashModalIfAny);
+openHashModalIfAny();
+
 
 /* ===== toast notifications ===== */
 // === TOASTS (совместимо с твоим CSS) ===
@@ -188,7 +214,7 @@ function showToast(msg, type='success', timeout=3000){
   }
 
   const t = document.createElement('div');
-  t.className = `toast toast--${type}`; // <-- toast--success / toast--error / toast--info
+  t.className = `toast toast--${type}`; // toast--success / toast--error / toast--info
   t.innerHTML = `<div>${msg}</div><button class="toast__close" aria-label="Закрыть">×</button>`;
 
   root.appendChild(t);
@@ -204,7 +230,6 @@ function showToast(msg, type='success', timeout=3000){
 
 /* ===== form submit -> Netlify Function (Telegram) ===== */
 const form = document.getElementById('booking-form') || document.getElementById('bookingForm');
-
 
 function validate(data){
   const required = ['name','phone','date','time','quest','players'];
@@ -230,7 +255,6 @@ function validate(data){
 
   return null;
 }
-
 
 if (form) {
   form.addEventListener('submit', async (e) => {
@@ -279,6 +303,7 @@ if (form) {
     }
   });
 }
+
 
 /* ===== video: hide badges while playing (scoped & safe) ===== */
 (function(){
