@@ -186,9 +186,12 @@
 .thumb--frank .badge--new-short,
 .thumb--frank [data-badge="new-short"] { display:none !important; }
 
-/* Если «короткий» бейдж рисуется псевдо-элементами на этой карточке */
-.thumb--frank.is-new::before,
-.thumb--frank.is-new::after { display:none !important; }
+/* Убрать только короткий бейдж "НОВИНКА" у карточки Франкенштейна */
+.thumb--frank::before,
+.thumb--frank::after{
+  content: none !important;
+  display: none !important;
+}
 
 
   </style>
