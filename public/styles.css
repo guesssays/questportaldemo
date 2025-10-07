@@ -1128,3 +1128,9 @@ footer.footer .contacts .item:hover::after{
 
 /* И полностью прячем заметку над сеткой (если нужна — убери эту строку) */
 .pricing-note{ display:none !important; }
+/* Спрятать только "+150 000 сум за каждого доп." на карточках */
+.qgrid > .quest .thumb::after,
+.qgrid > .quest:first-of-type .thumb::after{
+  content: none !important;
+  display: none !important;
+}
