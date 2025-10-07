@@ -1114,3 +1114,17 @@ footer.footer .contacts .item:hover::after{
 /* Спрятать ценник-бейдж у всех карточек квестов */
 .qgrid .qprice { display: none !important; }
 #quests .inner > p small { display: none !important; }
+/* Убрать все бейджи "+150 тыс за каждого доп." на карточках */
+.qgrid .thumb::after{
+  content: none !important;
+  display: none !important;
+}
+
+/* На всякий: глушим возможный подпояс к цене "(4 чел.)" */
+.qgrid .qprice::after{
+  content: none !important;
+  display: none !important;
+}
+
+/* И полностью прячем заметку над сеткой (если нужна — убери эту строку) */
+.pricing-note{ display:none !important; }
