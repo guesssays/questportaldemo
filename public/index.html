@@ -1162,22 +1162,6 @@
   handleRoute(location.pathname);
 })();
 </script>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    // Убираем заметку над сеткой и приписку под сеткой
-    document.querySelectorAll('.pricing-note, #quests .inner > p small')
-      .forEach(el => el.remove());
-
-    // Пример: если где-то в будущем появится отдельный бейдж с текстом "+150 тыс"
-    document.querySelectorAll('*')
-      .forEach(el => {
-        if (el.firstChild && el.firstChild.nodeType === Node.TEXT_NODE) {
-          const t = el.firstChild.textContent;
-          if (/\+?\s*150\s*тыс/i.test(t)) el.style.display = 'none';
-        }
-      });
-  });
-</script>
 
 
 </body>
