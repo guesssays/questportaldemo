@@ -313,31 +313,31 @@ if (form) {
     });
   }, { threshold: 0.2 });
 
-  $$('.qvideo').forEach(v => {
-    if (v.dataset.badgeBound) return; // чтобы не навешивать повторно
-    v.dataset.badgeBound = '1';
+$$('.qvideo').forEach(v => {
+  if (v.dataset.badgeBound) return;
+  v.dataset.badgeBound = '1';
 
+  // Вешаем клик-тоггл ТОЛЬКО если у видео нет нативных контролов
+  if (!v.hasAttribute('controls')) {
     v.addEventListener('click', (e) => {
-      e.preventDefault();
+      // e.preventDefault() больше не трогаем!
       e.stopPropagation();
-      if (v.paused) v.play(); else v.pause();
+      v.paused ? v.play() : v.pause();
     });
-    v.addEventListener('mousedown', (e) => e.stopPropagation());
+  }
 
-    v.addEventListener('play', () => {
-      $$('.qvideo').forEach(o => { if (o !== v && !o.paused) o.pause(); });
-      const thumb = v.closest('.thumb');
-      if (thumb) thumb.classList.add('is-playing');
-    });
-    const off = () => {
-      const thumb = v.closest('.thumb');
-      if (thumb) thumb.classList.remove('is-playing');
-    };
-    v.addEventListener('pause', off);
-    v.addEventListener('ended', off);
-
-    qvIO.observe(v);
+  v.addEventListener('play', () => {
+    $$('.qvideo').forEach(o => { if (o !== v && !o.paused) o.pause(); });
+    v.closest('.thumb')?.classList.add('is-playing');
   });
+
+  const off = () => v.closest('.thumb')?.classList.remove('is-playing');
+  v.addEventListener('pause', off);
+  v.addEventListener('ended', off);
+
+  qvIO.observe(v);
+});
+
 })();
 
 /* ===== lightbox for galleries ===== */
