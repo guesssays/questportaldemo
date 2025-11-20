@@ -1,4 +1,4 @@
-console.log('script.js build v8 connected');
+console.log('script.js build v9 connected');
 
 // ===== helpers =====
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -313,30 +313,35 @@ if (form) {
     });
   }, { threshold: 0.2 });
 
-$$('.qvideo').forEach(v => {
-  if (v.dataset.badgeBound) return;
-  v.dataset.badgeBound = '1';
+  $$('.qvideo').forEach(v => {
+    // Теперь .qvideo может стоять и на iframe YouTube — работаем только с <video>
+    if (!(v instanceof HTMLVideoElement)) return;
 
-  // Вешаем клик-тоггл ТОЛЬКО если у видео нет нативных контролов
-  if (!v.hasAttribute('controls')) {
-    v.addEventListener('click', (e) => {
-      // e.preventDefault() больше не трогаем!
-      e.stopPropagation();
-      v.paused ? v.play() : v.pause();
+    if (v.dataset.badgeBound) return;
+    v.dataset.badgeBound = '1';
+
+    // Вешаем клик-тоггл ТОЛЬКО если у видео нет нативных контролов
+    if (!v.hasAttribute('controls')) {
+      v.addEventListener('click', (e) => {
+        // e.preventDefault() больше не трогаем!
+        e.stopPropagation();
+        v.paused ? v.play() : v.pause();
+      });
+    }
+
+    v.addEventListener('play', () => {
+      $$('.qvideo').forEach(o => {
+        if (o !== v && o instanceof HTMLVideoElement && !o.paused) o.pause();
+      });
+      v.closest('.thumb')?.classList.add('is-playing');
     });
-  }
 
-  v.addEventListener('play', () => {
-    $$('.qvideo').forEach(o => { if (o !== v && !o.paused) o.pause(); });
-    v.closest('.thumb')?.classList.add('is-playing');
+    const off = () => v.closest('.thumb')?.classList.remove('is-playing');
+    v.addEventListener('pause', off);
+    v.addEventListener('ended', off);
+
+    qvIO.observe(v);
   });
-
-  const off = () => v.closest('.thumb')?.classList.remove('is-playing');
-  v.addEventListener('pause', off);
-  v.addEventListener('ended', off);
-
-  qvIO.observe(v);
-});
 
 })();
 
