@@ -813,53 +813,7 @@ footer.footer .contacts .item::after{
 footer.footer .contacts .item:hover::after{
   opacity:.9; transform: translateY(0);
 }
-/* === Бейдж "Новинка" для первого квеста (Кладбище Безымянных) === */
-.qgrid > .quest:first-of-type .thumb::before{
-  content:"НОВИНКА";
-  position:absolute;
-  top:12px;              /* противоположный угол от .qprice (которая справа) */
-  left:12px;
-  z-index:5;
-  padding:6px 10px;
-  border-radius:10px;
-  background:rgba(122,0,4,.9);                 /* можно сменить на var(--accent) */
-  border:1px solid rgba(255,255,255,.22);
-  backdrop-filter: blur(4px);
-  font-family:"WidockTrial", system-ui, sans-serif;
-  font-weight:700;
-  font-size:12px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:#fff;
-  box-shadow:0 6px 16px rgba(0,0,0,.35);
-}
 
-/* На очень узких экранах чуть уменьшим бейдж */
-@media (max-width:460px){
-  .qgrid > .quest:first-of-type .thumb::before{ 
-    padding:5px 8px; font-size:11px; border-radius:8px; 
-  }
-}
-/* Чёткий бейдж на мобилках */
-.qgrid > .quest:first-of-type .thumb::before{
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  transform: translateZ(0); /* отдельный слой — меньше артефактов */
-}
-
-@media (max-width: 540px){
-  .qgrid > .quest:first-of-type .thumb::before{
-    background: var(--accent);              /* плотный фон вместо полупрозрачного */
-    border-color: rgba(255,255,255,.18);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;                   /* убираем blur */
-    box-shadow: 0 4px 10px rgba(0,0,0,.3);   /* помягче тень */
-    padding: 5px 9px;
-    font-size: 11px;
-    border-radius: 8px;
-    filter: none;                            /* на всякий случай */
-  }
-}
 .bg-hero{ overflow:hidden; }
 .bg-hero::before{ z-index:-1; }
 
