@@ -180,6 +180,13 @@
     font-weight:800; font-size:12px; letter-spacing:.2px; box-shadow:0 2px 10px rgba(0,0,0,.35);
   }
   .thumb{ position:relative; }
+
+    /* Полностью убираем автогенерируемый бейдж у первого квеста */
+  .qgrid > .quest:first-of-type .thumb::before{
+    content: none !important;
+    display: none !important;
+  }
+
   /* Скрыть только короткий бейдж «Новинка» у Франкенштейна */
   .thumb--frank .badge--new-short,
   .thumb--frank [data-badge="new-short"] { display:none !important; }
