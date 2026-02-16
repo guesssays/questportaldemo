@@ -334,6 +334,43 @@
   </div>
 </article>
 
+<!-- ЦИРК: СИНИЙ КИТ -->
+<article class="quest">
+  <div class="mini-thumbs">
+    <img class="mini-img" src="/images/quests/bluewhale1.jpg" alt="Цирк Синий Кит — кадр 1" loading="lazy">
+    <img class="mini-img" src="/images/quests/bluewhale2.jpg" alt="Цирк Синий Кит — кадр 2" loading="lazy">
+    <img class="mini-img" src="/images/quests/bluewhale3.jpg" alt="Цирк Синий Кит — кадр 3" loading="lazy">
+  </div>
+
+  <div class="thumb">
+    <span class="badge-new" style="background:#111;">
+      CHERDAK QUEST
+    </span>
+
+    <img class="qimage" src="/images/quests/bluewhale-main.jpg"
+         alt="Цирк Синий Кит — постер"
+         loading="lazy"
+         style="width:100%; border-radius:8px;">
+
+    <div class="qprice">600 000 сум</div>
+  </div>
+
+  <div class="qtitle">ЦИРК: СИНИЙ КИТ</div>
+  <div class="qmeta">
+    2–6 игроков • 60 минут • 16+
+  </div>
+
+  <div class="qactions">
+    <button type="button" class="btn open-quest" data-target="#qm-bluewhale">
+      ПОДРОБНЕЕ
+    </button>
+    <button type="button"
+      class="btn btn--accent cta open-booking"
+      data-quest="ЦИРК: СИНИЙ КИТ">
+      Забронировать
+    </button>
+  </div>
+</article>
 
 
 
@@ -744,6 +781,7 @@
             <select class="select" name="quest" id="quest" required>
               <option value="">— выберите квест —</option>
               <option>ВОССТАНИЕ ЗЛОВЕЩИХ МЕРТВЕЦОВ</option>
+              <option>ЦИРК: СИНИЙ КИТ</option>
               <option>ФРАНКЕНШТЕЙН: ВОСКРЕШЕНИЕ</option>
               <option>КЛАДБИЩЕ БЕЗЫМЯННЫХ</option>
               <option>ПОСЛЕДНИЙ РЕПОРТАЖ</option>
@@ -768,6 +806,99 @@
       </div>
     </div>
   </div>
+<!-- Quest Modal: ЦИРК СИНИЙ КИТ -->
+<div class="modal quest-modal" id="qm-bluewhale" aria-hidden="true">
+  <div class="modal__overlay" data-close></div>
+
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-bluewhale-title">
+    <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+    <header class="qm-head">
+      <h2 id="qm-bluewhale-title" class="qm-title">
+        ЦИРК: СИНИЙ КИТ
+      </h2>
+      <div style="margin-top:6px; color:#888; font-weight:700; text-align:center;">
+        Квест от Cherdak
+      </div>
+    </header>
+
+    <div class="qm-scroll">
+      <div class="qm-grid">
+
+        <div class="qm-media">
+          <div class="qm-media-top">
+            <img src="/images/quests/bluewhale-main.jpg"
+                 alt="Цирк Синий Кит — постер"
+                 class="qm-video"
+                 style="border-radius:8px;">
+          </div>
+
+          <div class="qm-gallery">
+            <img src="/images/quests/bluewhale1.jpg" alt="Кадр 1" loading="lazy">
+            <img src="/images/quests/bluewhale2.jpg" alt="Кадр 2" loading="lazy">
+            <img src="/images/quests/bluewhale3.jpg" alt="Кадр 3" loading="lazy">
+            <img src="/images/quests/bluewhale-main.jpg" alt="Постер" loading="lazy">
+          </div>
+        </div>
+
+        <aside class="qm-side">
+          <ul class="qm-facts">
+            <li><b>Игроки:</b> 2–6</li>
+            <li><b>Время:</b> 60 минут</li>
+            <li><b>Возраст:</b> 16+</li>
+            <li><b>Цена:</b> 600 000 сум (2–4 чел)</li>
+            <li><b>Доп игрок:</b> +150 000 сум</li>
+            <li><b>Адрес:</b> Юнусабад, Чинабад 49А</li>
+            <li><b>Телефон:</b> +998 99 434 44 52</li>
+          </ul>
+
+          <div class="qm-card qm-story-card" id="story-bluewhale">
+            <h3>История</h3>
+            <div class="qm-story" data-collapsed style="white-space: pre-wrap">
+
+Филипп был гением кода, но его разум породил монстра — онлайн-игру «Синий кит». Он упивался властью над чужими жизнями, не подозревая, что самая дорогая ему душа уже попала в его сети.
+
+Его девушка, хрупкая акробатка Мари, тайно прошла все 50 заданий, ища в боли вдохновение для своих номеров.
+
+Вечер премьеры. Филипп в первом ряду с букетом роз.
+
+Мари взмывает под купол без страховки.
+
+«Я выполнила последнее задание», — шепчет она…
+
+…и камнем падает вниз.
+
+Филипп не выдержал правды. Он выкупил цирк и превратил его в ловушку.
+
+Теперь каждая новая жертва — номер, посвящённый Мари.
+
+Вы — случайные прохожие, услышавшие музыку из шатра.
+
+Засов захлопнулся.
+
+У вас есть 60 минут пройти программу безумного кукловода  
+и не стать финальным аккордом его шоу.
+            </div>
+
+            <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-bluewhale">
+              Развернуть
+            </button>
+          </div>
+
+          <div class="qm-bar">
+            <div class="qm-cta">
+              <button type="button" class="btn" data-close>Закрыть</button>
+              <button type="button" class="btn btn--accent open-booking">
+                Забронировать
+              </button>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Quest Modal: ВОССТАНИЕ ЗЛОВЕЩИХ МЕРТВЕЦОВ -->
 <div class="modal quest-modal" id="qm-evildead" aria-hidden="true">
