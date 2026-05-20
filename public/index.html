@@ -38,7 +38,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.questportal.uz/">
   <meta property="og:title" content="Квесты Ташкента - страшные квесты с актёрами в Ташкенте">
-  <meta property="og:description" content="6 хоррор-квестов, 60 минут страха. Забронируй онлайн.">
+  <meta property="og:description" content="8 хоррор-квестов, 60 минут страха. Забронируй онлайн.">
   <meta property="og:image" content="https://www.questportal.uz/images/og-cover.jpg">
   <meta property="og:image:alt" content="Quest Portal — хоррор-квесты с актёрами в Ташкенте">
   <meta property="og:locale" content="ru_RU">
@@ -141,6 +141,17 @@
        "description":"60 минут, 2–12 игроков, 16+.",
        "brand":"Quest Portal",
        "offers":{"@type":"Offer","price":"700000","priceCurrency":"UZS","availability":"https://schema.org/InStock","url":"https://www.questportal.uz/#qm-brahms"}
+     }
+    },
+    {
+     "@type":"ListItem","position":7,
+     "item":{
+       "@type":"Product",
+       "name":"Заклятие 2 — хоррор-квест с актёрами",
+       "image":["https://www.questportal.uz/images/quests/conjuring2prev.jpg"],
+       "description":"60 минут, 2–8 игроков, 16+. Основано на реальных событиях.",
+       "brand":"Quest Portal",
+       "offers":{"@type":"Offer","price":"800000","priceCurrency":"UZS","availability":"https://schema.org/InStock","url":"https://www.questportal.uz/#qm-conjuring2"}
      }
     }
    ]
@@ -246,6 +257,22 @@
     border-color:rgba(255,255,255,.28);
   }
 
+
+  .qbadge-real{
+    display:inline-flex;
+    align-items:center;
+    padding:6px 12px;
+    border-radius:999px;
+    background:rgba(122,0,4,.88);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff;
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:.35px;
+    text-transform:uppercase;
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+  }
+
   .qm-warning{
     margin-top:14px;
     padding:12px 14px;
@@ -338,7 +365,7 @@
         <!-- Перенесённая и единая заметка о ценах -->
         <div class="pricing-note">
           💡 <strong>Цена указана</strong> — <u>за команду до 4 человек</u>.<br>
-          Каждый дополнительный игрок: <strong>+150 тыс</strong>.
+          Каждый дополнительный игрок: <strong>+200 тыс</strong>.
         </div>
 
         <p class="lead" style="max-width:760px;margin:0 auto 14px;text-align:center">
@@ -397,6 +424,46 @@
 
 
 
+
+
+
+          <!-- ЗАКЛЯТИЕ 2 -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/conjuring2-1.jpg" alt="Заклятие 2 — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/conjuring2-2.jpg" alt="Заклятие 2 — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/conjuring2-3.jpg" alt="Заклятие 2 — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <div class="qbadges">
+                <span class="qbadge-real">Основано на реальных событиях</span>
+              </div>
+              <iframe
+                class="qvideo"
+                width="1280"
+                height="720"
+                src="https://www.youtube.com/embed/tVGfdszzSG0?si=v2CPeusLdBpFC1jx"
+                title="Заклятие 2 — трейлер квеста"
+                frameborder="0"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+              <div class="qprice">800 000 сум</div>
+            </div>
+
+            <div class="qtitle">ЗАКЛЯТИЕ 2</div>
+            <div class="qmeta">2–8 игроков • 60 минут • 16+ • основано на реальных событиях</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-conjuring2">ПОДРОБНЕЕ</button>
+              <button type="button"
+                class="btn btn--accent cta open-booking"
+                data-quest="ЗАКЛЯТИЕ 2">
+                Забронировать
+              </button>
+            </div>
+          </article>
 
 
           <!-- ФРАНКЕНШТЕЙН: ВОСКРЕШЕНИЕ (НОВИНКА) -->
@@ -612,7 +679,7 @@
 
         <!-- Дополнительная краткая пометка под сеткой -->
         <p style="text-align:center; opacity:.9; margin-top:12px">
-          <small>Стоимость указана за команду до 4 человек. Каждый дополнительный игрок: +150&nbsp;тыс.</small>
+          <small>Стоимость указана за команду до 4 человек. Каждый дополнительный игрок: +200&nbsp;тыс.</small>
         </p>
       </div>
     </section>
@@ -767,6 +834,7 @@
             <select class="select" name="quest" id="quest" required>
               <option value="">— выберите квест —</option>
               <option>ВОССТАНИЕ ЗЛОВЕЩИХ МЕРТВЕЦОВ</option>
+              <option>ЗАКЛЯТИЕ 2</option>
               <option>ФРАНКЕНШТЕЙН: ВОСКРЕШЕНИЕ</option>
               <option>КЛАДБИЩЕ БЕЗЫМЯННЫХ</option>
               <option>ПОСЛЕДНИЙ РЕПОРТАЖ</option>
@@ -841,6 +909,11 @@
             <li><b>Доп. игрок:</b> +200 000 сум</li>
             <li><b>Формат:</b> 6 одиночных заданий</li>
           </ul>
+
+          <div class="qm-card">
+            <h3>Видеозапись прохождения</h3>
+            <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
+          </div>
 
           <div class="qm-card qm-story-card" id="story-evildead">
             <h3>История</h3>
@@ -918,6 +991,104 @@
 
 
 
+
+<!-- Quest Modal: ЗАКЛЯТИЕ 2 -->
+<div class="modal quest-modal" id="qm-conjuring2" aria-hidden="true">
+  <div class="modal__overlay" data-close></div>
+
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-conjuring2-title">
+    <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+    <header class="qm-head">
+      <h2 id="qm-conjuring2-title" class="qm-title">
+        ЗАКЛЯТИЕ 2
+      </h2>
+    </header>
+
+    <div class="qm-scroll">
+      <div class="qm-grid">
+        <div class="qm-media">
+          <div class="qm-media-top">
+            <iframe
+              class="qm-video qvideo"
+              width="1280"
+              height="720"
+              src="https://www.youtube.com/embed/tVGfdszzSG0?si=v2CPeusLdBpFC1jx"
+              title="Заклятие 2 — трейлер квеста"
+              frameborder="0"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div class="qm-gallery">
+            <img src="/images/quests/conjuring2-1.jpg" alt="Заклятие 2 — кадр 1" loading="lazy" decoding="async" width="640" height="400">
+            <img src="/images/quests/conjuring2-2.jpg" alt="Заклятие 2 — кадр 2" loading="lazy" decoding="async" width="640" height="400">
+            <img src="/images/quests/conjuring2-3.jpg" alt="Заклятие 2 — кадр 3" loading="lazy" decoding="async" width="640" height="400">
+            <img src="/images/quests/conjuring2prev.jpg" alt="Заклятие 2 — обложка" loading="lazy" decoding="async" width="640" height="400">
+          </div>
+        </div>
+
+        <aside class="qm-side">
+          <ul class="qm-facts">
+            <li><b>Игроки:</b> 2–8</li>
+            <li><b>Время:</b> 60 минут</li>
+            <li><b>Возраст:</b> 16+</li>
+            <li><b>Цена:</b> 2–4 человека 800 000 сум</li>
+            <li><b>Доп. игрок:</b> +200 000 сум</li>
+            <li><b>Основа:</b> основано на реальных событиях</li>
+          </ul>
+
+          <div class="qm-card">
+            <h3>Видеозапись прохождения</h3>
+            <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
+          </div>
+
+          <div class="qm-card qm-story-card" id="story-conjuring2">
+            <h3>История</h3>
+            <div class="qm-story" data-collapsed data-nosnippet style="white-space: pre-wrap">
+1977 год.
+Семья Ходжсонов переезжает в старый дом в тихом пригороде Энфилд. Всё кажется обычным… пока однажды Джанет — вторая по старшинству дочь — не начинает играть с самодельной доской Уиджи вместе со своей подругой.
+
+После этого в доме начинают происходить необъяснимые вещи.
+По ночам Джанет разговаривает во сне с невидимым стариком. Скрипят половицы. Двери открываются сами. В темноте слышится тяжёлое дыхание. Хотя в комнате никого нет...
+
+Вскоре семья понимает: в доме живёт нечто.
+Дух пожилого мужчины по имени Билл Уилкинс утверждает, что дом принадлежит ему и он не позволит никому здесь жить. Но чем дальше заходит расследование, тем страшнее становится правда — старик оказывается лишь марионеткой древнего демона.
+
+Вам предстоит стать командой исследователей паранормального. Вас вызывают в дом Ходжсонов, чтобы выяснить:
+— действительно ли Джанет одержима,
+или всё происходящее — искусный обман?
+
+Но после того как двери дома захлопываются за вашей спиной, становится ясно: выбраться отсюда будет не так просто.
+            </div>
+
+            <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-conjuring2">
+              Развернуть
+            </button>
+          </div>
+
+          <div class="qm-warning">
+            ⚠️ Квест основан на реальных событиях. Все игровые элементы безопасны и проходят под контролем команды Quest Portal.
+          </div>
+
+          <div class="qm-bar">
+            <div class="qm-cta">
+              <button type="button" class="btn" data-close>Закрыть</button>
+              <button type="button" class="btn btn--accent open-booking">
+                Забронировать
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
   <!-- Quest Modal: ФРАНКЕНШТЕЙН: ВОСКРЕШЕНИЕ -->
   <div class="modal quest-modal" id="qm-frankenstein" aria-hidden="true">
     <div class="modal__overlay" data-close></div>
@@ -965,7 +1136,7 @@
             <!-- ВИДЕОЗАПИСЬ ПРОХОЖДЕНИЯ -->
             <div class="qm-card">
               <h3>Видеозапись прохождения</h3>
-              <p>Полное прохождение вашей игры (10–15 минут) — <b>300 000 сум</b>. Оплачивается отдельно.</p>
+              <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
             </div>
 
             <div class="qm-card qm-story-card" id="story-frankenstein">
@@ -1053,7 +1224,7 @@
             <!-- ВИДЕОЗАПИСЬ ПРОХОЖДЕНИЯ -->
             <div class="qm-card">
               <h3>Видеозапись прохождения</h3>
-              <p>Полное прохождение вашей игры (10–15 минут) — <b>300 000 сум</b>. Оплачивается отдельно.</p>
+              <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
             </div>
 
             <div class="qm-card qm-story-card" id="story-nameless">
@@ -1142,7 +1313,7 @@
             <!-- ВИДЕОЗАПИСЬ ПРОХОЖДЕНИЯ -->
             <div class="qm-card">
               <h3>Видеозапись прохождения</h3>
-              <p>Полное прохождение вашей игры (10–15 минут) — <b>300 000 сум</b>. Оплачивается отдельно.</p>
+              <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
             </div>
 
             <div class="qm-card qm-story-card" id="story-blackwood">
@@ -1217,7 +1388,7 @@
             <!-- ВИДЕОЗАПИСЬ ПРОХОЖДЕНИЯ -->
             <div class="qm-card">
               <h3>Видеозапись прохождения</h3>
-              <p>Полное прохождение вашей игры (10–15 минут) — <b>300 000 сум</b>. Оплачивается отдельно.</p>
+              <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
             </div>
 
             <div class="qm-card qm-story-card" id="story-demons">
@@ -1293,7 +1464,7 @@
             <!-- ВИДЕОЗАПИСЬ ПРОХОЖДЕНИЯ -->
             <div class="qm-card">
               <h3>Видеозапись прохождения</h3>
-              <p>Полное прохождение вашей игры (10–15 минут) — <b>300 000 сум</b>. Оплачивается отдельно.</p>
+              <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
             </div>
 
             <div class="qm-card qm-story-card" id="story-exorcism">
@@ -1367,7 +1538,7 @@
             <!-- ВИДЕОЗАПИСЬ ПРОХОЖДЕНИЯ -->
             <div class="qm-card">
               <h3>Видеозапись прохождения</h3>
-              <p>Полное прохождение вашей игры (10–15 минут) — <b>300 000 сум</b>. Оплачивается отдельно.</p>
+              <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
             </div>
 
             <div class="qm-card qm-story-card" id="story-brahms">
