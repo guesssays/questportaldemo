@@ -48,7 +48,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.questportal.uz/">
   <meta property="og:title" content="Квесты Ташкента - страшные квесты с актёрами в Ташкенте">
-  <meta property="og:description" content="8 хоррор-квестов, 60 минут страха. Забронируй онлайн.">
+  <meta property="og:description" content="8 хоррор-квестов и новый квест скоро. Забронируй онлайн.">
   <meta property="og:image" content="https://www.questportal.uz/images/og-cover.jpg">
   <meta property="og:image:alt" content="Quest Portal — хоррор-квесты с актёрами в Ташкенте">
   <meta property="og:locale" content="ru_RU">
@@ -451,6 +451,78 @@
     }
   }
 
+
+  /* Карточка квеста, который скоро откроется */
+  .quest--soon .thumb--soon{
+    overflow:hidden;
+    min-height:220px;
+    background:#080808;
+  }
+
+  .quest--soon .soon-img{
+    display:block;
+    width:100%;
+    aspect-ratio:16 / 9;
+    height:auto;
+    object-fit:cover;
+    filter:brightness(.62) contrast(1.08) saturate(.92);
+    transform:scale(1.01);
+  }
+
+  .quest--soon .soon-overlay{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.58)),
+      radial-gradient(circle at 50% 50%, rgba(228,0,43,.18), transparent 58%);
+    text-align:center;
+    pointer-events:none;
+  }
+
+  .quest--soon .soon-label{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px 20px;
+    border-radius:999px;
+    background:rgba(228,0,43,.92);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff;
+    font-family:'Russo One', Inter, sans-serif;
+    font-size:clamp(18px, 4.8vw, 34px);
+    line-height:1.1;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 28px rgba(0,0,0,.52), 0 0 26px rgba(228,0,43,.42);
+  }
+
+  .quest--soon .qtitle{
+    margin-top:14px;
+  }
+
+  .qmeta--soon{
+    color:#f2f2f2;
+    opacity:.92;
+    font-weight:800;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+
+  @media (max-width:520px){
+    .quest--soon .thumb--soon{
+      min-height:190px;
+    }
+    .quest--soon .soon-label{
+      padding:10px 16px;
+    }
+  }
+
+
   .qm-warning{
     margin-top:14px;
     padding:12px 14px;
@@ -603,6 +675,28 @@
               </button>
             </div>
           </article>
+
+
+          <!-- ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ (СКОРО ОТКРОЕТСЯ) -->
+          <article class="quest quest--soon" aria-label="ОНО: Добро пожаловать в Дерри — скоро откроется">
+            <div class="thumb thumb--soon">
+              <img
+                class="soon-img"
+                src="/images/quests/ono.PNG"
+                alt="ОНО: Добро пожаловать в Дерри — скоро откроется"
+                loading="lazy"
+                decoding="async"
+                width="1280"
+                height="720">
+              <div class="soon-overlay" aria-hidden="true">
+                <span class="soon-label">Скоро откроется</span>
+              </div>
+            </div>
+
+            <div class="qtitle">ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ</div>
+            <div class="qmeta qmeta--soon">Скоро откроется</div>
+          </article>
+
 
 
 
