@@ -453,31 +453,56 @@
 
 
   /* Карточка квеста, который скоро откроется */
-  .quest--soon .thumb--soon{
-    overflow:hidden;
+  .quest--soon{
+    align-self:start;
+  }
+
+  .quest--soon .soon-thumb{
+    position:relative;
+    width:100%;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    aspect-ratio:auto !important;
+    overflow:visible !important;
+    padding:0 !important;
     background:#080808;
+    border-radius:14px;
+  }
+
+  .quest--soon .soon-thumb::before,
+  .quest--soon .soon-thumb::after{
+    content:none !important;
+    display:none !important;
   }
 
   .quest--soon .soon-img{
-    display:block;
-    width:100%;
-    height:auto;
-    max-height:none;
-    object-fit:contain;
-    filter:none;
-    transform:none;
+    position:static !important;
+    inset:auto !important;
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    aspect-ratio:auto !important;
+    object-fit:contain !important;
+    object-position:center center !important;
+    filter:none !important;
+    opacity:1 !important;
+    transform:none !important;
+    border-radius:14px;
   }
 
   .quest--soon .soon-overlay{
     position:absolute;
-    top:12px;
-    right:12px;
+    top:10px;
+    right:10px;
     left:auto;
     bottom:auto;
     z-index:2;
     display:block;
     padding:0;
-    background:none;
+    background:none !important;
     text-align:right;
     pointer-events:none;
   }
@@ -486,17 +511,17 @@
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    padding:6px 10px;
+    padding:5px 9px;
     border-radius:999px;
-    background:rgba(228,0,43,.94);
+    background:rgba(228,0,43,.96);
     border:1px solid rgba(255,255,255,.22);
     color:#fff;
     font-family:'Russo One', Inter, sans-serif;
-    font-size:clamp(10px, 2.5vw, 13px);
+    font-size:clamp(9px, 2.1vw, 12px);
     line-height:1;
-    letter-spacing:.06em;
+    letter-spacing:.04em;
     text-transform:uppercase;
-    box-shadow:0 6px 18px rgba(0,0,0,.45), 0 0 18px rgba(228,0,43,.32);
+    box-shadow:0 5px 14px rgba(0,0,0,.42), 0 0 14px rgba(228,0,43,.28);
     white-space:nowrap;
   }
 
@@ -518,8 +543,8 @@
       right:8px;
     }
     .quest--soon .soon-label{
-      padding:5px 8px;
-      font-size:10px;
+      padding:4px 7px;
+      font-size:9px;
     }
   }
 
@@ -680,15 +705,13 @@
 
           <!-- ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ (СКОРО ОТКРОЕТСЯ) -->
           <article class="quest quest--soon" aria-label="ОНО: Добро пожаловать в Дерри — скоро откроется">
-            <div class="thumb thumb--soon">
+            <div class="soon-thumb">
               <img
                 class="soon-img"
                 src="/images/quests/ono.PNG"
                 alt="ОНО: Добро пожаловать в Дерри — скоро откроется"
                 loading="lazy"
-                decoding="async"
-                width="1280"
-                height="720">
+                decoding="async">
               <div class="soon-overlay" aria-hidden="true">
                 <span class="soon-label">Скоро откроется</span>
               </div>
