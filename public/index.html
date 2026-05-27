@@ -455,32 +455,30 @@
   /* Карточка квеста, который скоро откроется */
   .quest--soon .thumb--soon{
     overflow:hidden;
-    min-height:220px;
     background:#080808;
   }
 
   .quest--soon .soon-img{
     display:block;
     width:100%;
-    aspect-ratio:16 / 9;
     height:auto;
-    object-fit:cover;
-    filter:brightness(.62) contrast(1.08) saturate(.92);
-    transform:scale(1.01);
+    max-height:none;
+    object-fit:contain;
+    filter:none;
+    transform:none;
   }
 
   .quest--soon .soon-overlay{
     position:absolute;
-    inset:0;
+    top:12px;
+    right:12px;
+    left:auto;
+    bottom:auto;
     z-index:2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:18px;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.58)),
-      radial-gradient(circle at 50% 50%, rgba(228,0,43,.18), transparent 58%);
-    text-align:center;
+    display:block;
+    padding:0;
+    background:none;
+    text-align:right;
     pointer-events:none;
   }
 
@@ -488,17 +486,18 @@
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    padding:12px 20px;
+    padding:6px 10px;
     border-radius:999px;
-    background:rgba(228,0,43,.92);
+    background:rgba(228,0,43,.94);
     border:1px solid rgba(255,255,255,.22);
     color:#fff;
     font-family:'Russo One', Inter, sans-serif;
-    font-size:clamp(18px, 4.8vw, 34px);
-    line-height:1.1;
+    font-size:clamp(10px, 2.5vw, 13px);
+    line-height:1;
     letter-spacing:.06em;
     text-transform:uppercase;
-    box-shadow:0 8px 28px rgba(0,0,0,.52), 0 0 26px rgba(228,0,43,.42);
+    box-shadow:0 6px 18px rgba(0,0,0,.45), 0 0 18px rgba(228,0,43,.32);
+    white-space:nowrap;
   }
 
   .quest--soon .qtitle{
@@ -514,11 +513,13 @@
   }
 
   @media (max-width:520px){
-    .quest--soon .thumb--soon{
-      min-height:190px;
+    .quest--soon .soon-overlay{
+      top:8px;
+      right:8px;
     }
     .quest--soon .soon-label{
-      padding:10px 16px;
+      padding:5px 8px;
+      font-size:10px;
     }
   }
 
