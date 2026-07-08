@@ -278,8 +278,21 @@ h3{ font-size:clamp(16px,3.8vw,18px); }
 
 .qtitle{ padding:10px 12px 0; font-family:"EternaBreaks", sans-serif; font-size:22px; letter-spacing:.02em; }
 .qmeta{ padding:4px 12px 10px; color:#dedede; font-size:12px; font-family:"EternaBreaks", sans-serif; text-transform:uppercase; letter-spacing:.02em; }
-.qactions{ display:flex; gap:8px; padding:8px 12px 12px; }
+.qactions{ display:flex; gap:8px; padding:8px 12px 12px; flex-wrap:wrap; }
 .qactions .btn{ flex:1; }
+
+/* Подпись «бронь по предоплате» под кнопками брони */
+.prepay-note{
+  flex-basis:100%;
+  width:100%;
+  order:99;
+  margin-top:6px;
+  text-align:center;
+  font-size:12px;
+  line-height:1.35;
+  color:#e0b8b8;
+  opacity:.9;
+}
 
 .qgrid > .quest:last-child:nth-child(odd){
   grid-column:1 / -1; justify-self:center; max-width:560px;
