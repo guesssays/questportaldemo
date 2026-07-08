@@ -55,7 +55,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/styles.css?v=8">
+  <link rel="stylesheet" href="/styles.css?v=9">
 
   <!-- LocalBusiness -->
   <script type="application/ld+json">
@@ -426,10 +426,23 @@
   }
 
   .booking-phone-hint{
-    font-size:clamp(13px, 3.2vw, 17px);
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:4px;
+    padding:6px 14px;
+    border-radius:12px;
+    font-size:clamp(12px, 3vw, 15px);
     font-weight:700;
-    color:#f1f1f1;
-    opacity:.92;
+    color:#ffd9d9;
+    background:rgba(228,0,43,.14);
+    border:1px solid rgba(228,0,43,.46);
+  }
+  .booking-phone-hint::before{
+    content:"⚠";
+    font-size:15px;
+    line-height:1;
+    color:#ff5a5a;
   }
 
   @media (max-width:520px){
