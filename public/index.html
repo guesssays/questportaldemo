@@ -55,7 +55,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/styles.css?v=9">
+  <link rel="stylesheet" href="/styles.css?v=10">
 
   <!-- LocalBusiness -->
   <script type="application/ld+json">
@@ -445,6 +445,59 @@
     color:#ff5a5a;
   }
 
+  /* Объявление о ночных играх (после 23:00) */
+  .late-notice{
+    max-width:820px;
+    margin:0 auto 40px;
+    padding:0 18px;
+  }
+  .late-notice__box{
+    text-align:center;
+    padding:26px 24px;
+    border-radius:22px;
+    color:#fff;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(228,0,43,.30), transparent 62%),
+      rgba(10,4,4,.82);
+    border:1px solid rgba(228,0,43,.5);
+    box-shadow:0 16px 44px rgba(0,0,0,.5), 0 0 30px rgba(228,0,43,.28);
+  }
+  .late-notice__icon{
+    display:block;
+    font-size:clamp(30px, 7vw, 44px);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .late-notice__title{
+    margin:0 0 8px;
+    font-family:'Russo One', Inter, sans-serif;
+    font-size:clamp(22px, 5.4vw, 38px);
+    line-height:1.1;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    text-shadow:0 3px 16px rgba(0,0,0,.55), 0 0 20px rgba(228,0,43,.4);
+  }
+  .late-notice__text{
+    margin:0 0 8px;
+    font-size:clamp(17px, 4.2vw, 26px);
+    font-weight:700;
+    line-height:1.25;
+  }
+  .late-notice__text strong{
+    color:#ff6a6a;
+  }
+  .late-notice__sub{
+    margin:0;
+    font-size:clamp(13px, 3.2vw, 16px);
+    font-weight:600;
+    color:#e6c9c9;
+    opacity:.92;
+  }
+  @media (max-width:520px){
+    .late-notice{ margin:0 auto 28px; padding:0 14px; }
+    .late-notice__box{ padding:20px 16px; border-radius:18px; }
+  }
+
   @media (max-width:520px){
     .booking-phone-spot{
       margin:-76px auto 24px;
@@ -653,6 +706,19 @@
         <span class="booking-phone-number">+998&nbsp;99&nbsp;401&nbsp;69&nbsp;96</span>
         <span class="booking-phone-hint">Бронь подтверждается только после предоплаты</span>
       </a>
+    </section>
+
+
+    <!-- ОБЪЯВЛЕНИЕ О НОЧНЫХ ИГРАХ -->
+    <section class="late-notice" aria-label="Важно о ночных играх">
+      <div class="late-notice__box">
+        <span class="late-notice__icon" aria-hidden="true">🕚</span>
+        <p class="late-notice__title">Хотите играть после 23:00?</p>
+        <p class="late-notice__text">
+          Бронируйте <strong>заранее</strong> — позвоните нам <strong>до 23:00</strong>.
+        </p>
+        <p class="late-notice__sub">Ночные игры проводятся только по предварительной брони.</p>
+      </div>
     </section>
 
 
