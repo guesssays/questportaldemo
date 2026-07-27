@@ -476,6 +476,62 @@ document.addEventListener('click', (e) => {
   });
 })();
 
+/* ===== Авто-калькулятор стоимости в форме брони ===== */
+(function(){
+  const BASE_PRICE   = 800000; // за команду до 4 человек
+  const BASE_PLAYERS = 4;
+  const EXTRA_PRICE  = 200000; // за каждого игрока свыше базы
+
+  const input  = document.getElementById('players');
+  const box     = document.getElementById('priceBox');
+  const countEl = document.getElementById('priceCount');
+  const valueEl = document.getElementById('priceValue');
+  const hintEl  = document.getElementById('priceHint');
+  if (!input || !box) return;
+
+  const fmt = (n) => n.toLocaleString('ru-RU').replace(/ /g, ' ');
+  const plural = (n) => {
+    const d = n % 10, dd = n % 100;
+    if (dd >= 11 && dd <= 14) return 'игроков';
+    if (d === 1) return 'игрок';
+    if (d >= 2 && d <= 4) return 'игрока';
+    return 'игроков';
+  };
+
+  function update(){
+    const raw = parseInt(input.value, 10);
+    const min = parseInt(input.min, 10) || 2;
+    const max = parseInt(input.max, 10) || 12;
+
+    if (!raw || raw < min) {
+      countEl.textContent = '—';
+      valueEl.textContent = '—';
+      hintEl.textContent  = `Укажите количество игроков (от ${min} до ${max})`;
+      box.classList.remove('is-active');
+      return;
+    }
+
+    const players = Math.min(raw, max);
+    const extra   = Math.max(0, players - BASE_PLAYERS);
+    const total   = BASE_PRICE + extra * EXTRA_PRICE;
+
+    countEl.textContent = `${players} ${plural(players)}`;
+    valueEl.textContent = `${fmt(total)} сум`;
+    hintEl.textContent  = extra > 0
+      ? `Команда до ${BASE_PLAYERS} чел. — ${fmt(BASE_PRICE)} сум + ${extra} × ${fmt(EXTRA_PRICE)} сум`
+      : `Базовая цена за команду до ${BASE_PLAYERS} человек`;
+    box.classList.add('is-active');
+  }
+
+  input.addEventListener('input', update);
+  input.addEventListener('change', update);
+  // пересчёт при открытии модалки брони
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.open-booking')) setTimeout(update, 80);
+  });
+  update();
+})();
+
 /* ===== Подпись «бронь по предоплате» под кнопками брони ===== */
 (function(){
   const NOTE = 'Бронь подтверждается только после предоплаты';

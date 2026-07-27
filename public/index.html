@@ -55,7 +55,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/styles.css?v=10">
+  <link rel="stylesheet" href="/styles.css?v=11">
 
   <!-- LocalBusiness -->
   <script type="application/ld+json">
@@ -254,6 +254,42 @@
   /* Видимая заметка о цене под "НАШИ КВЕСТЫ" */
   .pricing-note{
     text-align:center; font-size:14px; margin:0 auto 16px; color:#f0f0f0; opacity:.95;
+  }
+  /* Авто-калькулятор стоимости в форме брони */
+  .price-box{
+    margin:12px 0 0;
+    padding:14px 16px;
+    border-radius:14px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(228,0,43,.22), transparent 65%),
+      rgba(10,4,4,.6);
+    border:1px solid rgba(228,0,43,.4);
+  }
+  .price-box__row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .price-box__label{
+    font-size:15px;
+    font-weight:700;
+    color:#f3f3f3;
+  }
+  .price-box__value{
+    font-family:'Russo One', Inter, sans-serif;
+    font-size:clamp(22px, 6vw, 30px);
+    line-height:1;
+    color:#fff;
+    text-shadow:0 2px 12px rgba(0,0,0,.5), 0 0 16px rgba(228,0,43,.4);
+    white-space:nowrap;
+  }
+  .price-box__hint{
+    margin-top:6px;
+    font-size:12.5px;
+    color:#e6c9c9;
+    opacity:.9;
   }
   /* Бейдж «Новинка» */
   .badge-new{
@@ -1230,8 +1266,17 @@
               <option>ЭКЗОРЦИЗМ: ПОСЛЕДНИЙ РИТУАЛ</option>
               <option>КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА</option>
             </select>
-            <input class="input" type="number" name="players" min="2" max="10" placeholder="ИГРОКИ *" required>
+            <input class="input" type="number" name="players" id="players" min="2" max="12" placeholder="ИГРОКИ *" required>
             <textarea class="textarea" name="comment" placeholder="Комментарий (необязательно)"></textarea>
+          </div>
+
+          <!-- Авто-калькулятор стоимости -->
+          <div class="price-box" id="priceBox" aria-live="polite">
+            <div class="price-box__row">
+              <span class="price-box__label">Стоимость за <span id="priceCount">—</span></span>
+              <span class="price-box__value" id="priceValue">— </span>
+            </div>
+            <div class="price-box__hint" id="priceHint">Укажите количество игроков, чтобы увидеть сумму</div>
           </div>
 
           <p class="prepayment-note" style="margin:10px 0; font-size:14px; color:#f0f0f0; text-align:center;">
@@ -1965,7 +2010,7 @@
   <!-- Toasts -->
   <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="/script.js?v=10" defer></script>
+  <script src="/script.js?v=12" defer></script>
 
   <script>
   (function(){
