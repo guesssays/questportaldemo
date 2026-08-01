@@ -478,16 +478,26 @@ document.addEventListener('click', (e) => {
 
 /* ===== Авто-калькулятор стоимости в форме брони ===== */
 (function(){
-  const BASE_PRICE   = 800000; // за команду до 4 человек
+  const BASE_PRICE   = 800000; // за команду до 4 человек (день)
+  const NIGHT_PRICE  = 900000; // базовая цена с ночной доплатой (с 23:00)
   const BASE_PLAYERS = 4;
   const EXTRA_PRICE  = 200000; // за каждого игрока свыше базы
 
   const input  = document.getElementById('players');
+  const timeEl  = document.getElementById('time');
   const box     = document.getElementById('priceBox');
   const countEl = document.getElementById('priceCount');
   const valueEl = document.getElementById('priceValue');
   const hintEl  = document.getElementById('priceHint');
   if (!input || !box) return;
+
+  // Ночная доплата действует с 23:00 и до утра (00:00–05:59)
+  function isNight(){
+    if (!timeEl || !timeEl.value) return false;
+    const h = parseInt(timeEl.value.split(':')[0], 10);
+    if (Number.isNaN(h)) return false;
+    return h >= 23 || h < 6;
+  }
 
   const fmt = (n) => n.toLocaleString('ru-RU').replace(/ /g, ' ');
   const plural = (n) => {
@@ -513,18 +523,30 @@ document.addEventListener('click', (e) => {
 
     const players = Math.min(raw, max);
     const extra   = Math.max(0, players - BASE_PLAYERS);
-    const total   = BASE_PRICE + extra * EXTRA_PRICE;
+    const night   = isNight();
+    const base    = night ? NIGHT_PRICE : BASE_PRICE;
+    const total   = base + extra * EXTRA_PRICE;
 
     countEl.textContent = `${players} ${plural(players)}`;
     valueEl.textContent = `${fmt(total)} сум`;
-    hintEl.textContent  = extra > 0
-      ? `Команда до ${BASE_PLAYERS} чел. — ${fmt(BASE_PRICE)} сум + ${extra} × ${fmt(EXTRA_PRICE)} сум`
+
+    const baseLabel = night
+      ? `Команда до ${BASE_PLAYERS} чел. — ${fmt(NIGHT_PRICE)} сум (ночная доплата с 23:00)`
       : `Базовая цена за команду до ${BASE_PLAYERS} человек`;
+    hintEl.textContent = extra > 0
+      ? `${baseLabel} + ${extra} × ${fmt(EXTRA_PRICE)} сум`
+      : baseLabel;
+
+    box.classList.toggle('is-night', night);
     box.classList.add('is-active');
   }
 
   input.addEventListener('input', update);
   input.addEventListener('change', update);
+  if (timeEl){
+    timeEl.addEventListener('input', update);
+    timeEl.addEventListener('change', update);
+  }
   // пересчёт при открытии модалки брони
   document.addEventListener('click', (e) => {
     if (e.target.closest('.open-booking')) setTimeout(update, 80);
