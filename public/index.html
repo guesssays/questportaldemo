@@ -210,18 +210,18 @@
       "position": 7,
       "item": {
         "@type": "Product",
-        "name": "Кукла Брамса: Проклятие мальчика — хоррор-квест с актёрами",
+        "name": "Ночь демонов 2: Тьма возвращается — хоррор-квест с актёрами",
         "image": [
-          "https://www.questportal.uz/images/quests/bramsprev.jpg"
+          "https://www.questportal.uz/images/quests/demons2-main.jpg"
         ],
-        "description": "60 минут, 2–12 игроков, 16+.",
+        "description": "Открытие 15 августа. 60 минут, 2–12 игроков, 16+.",
         "brand": "Quest Portal",
         "offers": {
           "@type": "Offer",
-          "price": "700000",
+          "price": "800000",
           "priceCurrency": "UZS",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.questportal.uz/#qm-brahms"
+          "availability": "https://schema.org/PreOrder",
+          "url": "https://www.questportal.uz/#qm-demons2"
         }
       }
     }
@@ -409,6 +409,31 @@
     text-transform:uppercase;
     box-shadow:0 4px 14px rgba(0,0,0,.35);
   }
+
+  /* Плашка-анонс «15 августа — открытие» */
+  .qbadge-open{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:6px 12px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#e4002b,#7a0004);
+    color:#fff;
+    font-weight:900;
+    font-size:12px;
+    letter-spacing:.4px;
+    text-transform:uppercase;
+    box-shadow:0 4px 16px rgba(228,0,43,.45);
+    animation:openPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes openPulse{
+    0%,100%{ box-shadow:0 4px 16px rgba(228,0,43,.35); }
+    50%{ box-shadow:0 4px 22px rgba(228,0,43,.75); }
+  }
+
+  /* Вертикальное (портретное) видео-трейлер — не обрезаем */
+  .qvideo--portrait{ object-fit:contain !important; background:#000; }
+  .qm-video--portrait{ object-fit:contain !important; background:#000; }
 
   @media (max-width:520px){
     .qbadges--conjuring{
@@ -848,6 +873,42 @@
           </article>
 
 
+          <!-- НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/demons2-1.jpg" alt="Ночь демонов 2 — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/demons2-2.jpg" alt="Ночь демонов 2 — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/demons2-3.jpg" alt="Ночь демонов 2 — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <div class="qbadges">
+                <span class="qbadge-open">🔥 15 августа — открытие</span>
+              </div>
+              <video
+                class="qvideo qvideo--portrait"
+                playsinline
+                preload="none"
+                controls
+                poster="/images/quests/demons2-main.jpg">
+                <source src="/images/quests/demons2-trailer.mp4" type="video/mp4">
+              </video>
+              <div class="qprice">800 000 сум</div>
+            </div>
+
+            <div class="qtitle">НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ</div>
+            <div class="qmeta">2–12 игроков • 60 мин • 16+</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-demons2">ПОДРОБНЕЕ</button>
+              <button type="button"
+                class="btn btn--accent cta open-booking"
+                data-quest="НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ">
+                Забронировать
+              </button>
+            </div>
+          </article>
+
+
 
 
 
@@ -1075,40 +1136,6 @@
             </div>
           </article>
 
-          <!-- КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА -->
-          <article class="quest">
-            <div class="mini-thumbs">
-              <img class="mini-img" src="/images/quests/brams.jpg"  alt="Кукла Брамса — кадр 1" loading="lazy" decoding="async" width="360" height="277">
-              <img class="mini-img" src="/images/quests/brams3.jpeg" alt="Кукла Брамса — кадр 2" loading="lazy" decoding="async" width="360" height="277">
-              <img class="mini-img" src="/images/quests/brams5.jpg"  alt="Кукла Брамса — кадр 3" loading="lazy" decoding="async" width="360" height="277">
-            </div>
-
-            <div class="thumb">
-              <iframe
-                class="qvideo"
-                width="1280"
-                height="720"
-                src="https://www.youtube.com/embed/7Kj08FKORvI?si=w5Hj3gApHj42xz2M"
-                title="Кукла Брамса: Проклятие мальчика — трейлер квеста"
-                frameborder="0"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-              </iframe>
-              <div class="qprice">700 000 сум</div>
-            </div>
-
-            <div class="qtitle">КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА</div>
-            <div class="qmeta">2–12 игроков • 60 мин • 16+ • ~350 м²</div>
-            <div class="qactions">
-              <button type="button" class="btn open-quest" data-target="#qm-brahms">ПОДРОБНЕЕ</button>
-              <button type="button"
-                class="btn btn--accent cta open-booking"
-                data-quest="КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА">
-                Забронировать
-              </button>
-            </div>
-          </article>
         </div>
 
         <!-- Дополнительная краткая пометка под сеткой -->
@@ -1273,8 +1300,8 @@
               <option>КЛАДБИЩЕ БЕЗЫМЯННЫХ</option>
               <option>ПОСЛЕДНИЙ РЕПОРТАЖ</option>
               <option>НОЧЬ ДЕМОНОВ: БАЛ САТАНЫ</option>
+              <option>НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ</option>
               <option>ЭКЗОРЦИЗМ: ПОСЛЕДНИЙ РИТУАЛ</option>
-              <option>КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА</option>
             </select>
             <input class="input" type="number" name="players" id="players" min="2" max="12" placeholder="ИГРОКИ *" required>
             <textarea class="textarea" name="comment" placeholder="Комментарий (необязательно)"></textarea>
@@ -1933,49 +1960,46 @@
     </div>
   </div>
 
-  <!-- Quest Modal: КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА -->
-  <div class="modal quest-modal" id="qm-brahms" aria-hidden="true">
+  <!-- Quest Modal: НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ -->
+  <div class="modal quest-modal" id="qm-demons2" aria-hidden="true">
     <div class="modal__overlay" data-close></div>
 
-    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-brahms-title">
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-demons2-title">
       <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
 
       <header class="qm-head">
-        <h2 id="qm-brahms-title" class="qm-title">КУКЛА БРАМСА: ПРОКЛЯТИЕ МАЛЬЧИКА</h2>
+        <h2 id="qm-demons2-title" class="qm-title">НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ</h2>
       </header>
 
       <div class="qm-scroll">
         <div class="qm-grid">
           <div class="qm-media">
             <div class="qm-media-top">
-              <iframe
-                class="qm-video qvideo"
-                width="1280"
-                height="720"
-                src="https://www.youtube.com/embed/7Kj08FKORvI?si=w5Hj3gApHj42xz2M"
-                title="Кукла Брамса: Проклятие мальчика — трейлер квеста"
-                frameborder="0"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-              </iframe>
+              <video
+                class="qm-video qvideo qm-video--portrait qvideo--portrait"
+                playsinline
+                preload="none"
+                controls
+                poster="/images/quests/demons2-main.jpg">
+                <source src="/images/quests/demons2-trailer.mp4" type="video/mp4">
+              </video>
             </div>
 
             <div class="qm-gallery">
-              <img src="/images/quests/brams2.jpeg" alt="Кукла Брамса — кадр 2" loading="lazy" decoding="async" width="640" height="400">
-              <img src="/images/quests/brams3.jpeg" alt="Кукла Брамса — кадр 3" loading="lazy" decoding="async" width="640" height="400">
-              <img src="/images/quests/brams4.jpg"  alt="Кукла Брамса — кадр 4" loading="lazy" decoding="async" width="640" height="400">
-              <img src="/images/quests/brams5.jpg"  alt="Кукла Брамса — кадр 5" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/demons2-1.jpg"    alt="Ночь демонов 2 — кадр 1" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/demons2-2.jpg"    alt="Ночь демонов 2 — кадр 2" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/demons2-3.jpg"    alt="Ночь демонов 2 — кадр 3" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/demons2-main.jpg" alt="Ночь демонов 2 — постер" loading="lazy" decoding="async" width="640" height="400">
             </div>
           </div>
 
           <aside class="qm-side">
             <ul class="qm-facts">
+              <li><b>Открытие:</b> 15 августа</li>
               <li><b>Игроки:</b> 2–12</li>
               <li><b>Время:</b> 60 минут</li>
               <li><b>Возраст:</b> 16+</li>
               <li><b>Цена:</b> 4 человека 800 000 сум, каждый доп игрок +200 000</li>
-
             </ul>
 
             <!-- ВИДЕОЗАПИСЬ ПРОХОЖДЕНИЯ -->
@@ -1984,20 +2008,22 @@
               <p>Полное прохождение вашей игры (10–15 минут) — <b>350 000 сум</b>. Оплачивается отдельно.</p>
             </div>
 
-            <div class="qm-card qm-story-card" id="story-brahms">
+            <div class="qm-card qm-story-card" id="story-demons2">
               <h3>История</h3>
               <div class="qm-story" data-collapsed data-nosnippet style="white-space: pre-wrap">
-История квеста Кукла Брамса: проклятие мальчика:
-Где-то на окраине города, в большом поместье, жила семья Хильшер. Молодая пара и ребенок по имени Брамс. На восьмой день рождения мальчика родители решили устроить вечеринку. Взрослые пировали в беседке во дворе дома, дети играли в комнате Брамса. Но в тот роковой день, по неизвестным причинам, в доме случился пожар. Выжили все, кроме одного — Брамса. В тот день его не стало. Родители были в отчаянии, не могли смириться с потерей ребенка. В том пожаре уцелела кукла, которую очень любил Брамс. Отстроив дом заново и забрав куклу, они начали обращаться с ней, как с родным ребенком. Через какое-то время в доме начали происходить странные вещи: обрывались телефонные звонки, в коридорах был слышен плач ребенка, пропадали вещи, а кукла каждый раз меняла свое местоположение. Хильшеры начали сходить с ума. Так прошло почти 20 лет. Не смирившись с утратой сына, они обратились к оккультистам, дабы упокоить душу мальчика. Оккультисты, прибыв в дом, попросили ту самую игрушку. Зайдя в комнату мальчика, они провели ритуал. Но что-то пошло не так. Душа уже давно не мальчика явилась в этот мир и поселилась в этом доме. В доме не осталось живых — они пропали без вести. Спустя месяц родителей нашли на дне озера неподалеку от поместья. Остальные тела найти так и не удалось. Причину смерти установить не смогли. Говорят, кукла до сих пор находится в этом доме, а в ней — душа мальчика. Вы, узнав об этой истории, решили поехать в поместье и освободить душу. Но сможете ли вы это сделать? Позволит ли Брамс?
+Много лет назад в этом доме был проведен запретный ритуал. Ведьма, жаждущая бессмертия, заключила сделку с демонами и запечатала свою душу в собственном имени. Пока ее настоящее имя остается неизвестным, она не может быть уничтожена.
+Перед своей смертью священник сумел узнать это имя. Понимая, что уничтожить ведьму невозможно, он спрятал подсказки, которые ведут к разгадке, надеясь, что однажды найдутся те, кто завершит начатое им дело.
+Но в ночь, когда демоны возвращаются в этот мир, дом вновь оживает. Его коридоры наполняются кошмарами, а те, кто осмелится войти внутрь, становятся частью древнего ритуала.
+У вас есть только одна ночь, чтобы найти все подсказки, восстановить настоящее имя ведьмы и произнести его раньше, чем ритуал будет завершен. Если вы успеете — проклятие исчезнет. Если нет — двери дома закроются навсегда, а ваши души пополнят ряды тех, кто уже никогда не сможет выбраться из «Ночи демонов».
               </div>
 
-              <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-brahms">Развернуть</button>
+              <button class="btn btn--ghost story-toggle" type="button" aria-expanded="false" data-target="#story-demons2">Развернуть</button>
             </div>
 
             <div class="qm-bar">
               <div class="qm-cta">
                 <button type="button" class="btn" data-close>Закрыть</button>
-                <button type="button" class="btn btn--accent open-booking">Забронировать</button>
+                <button type="button" class="btn btn--accent open-booking" data-quest="НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ">Забронировать</button>
               </div>
             </div>
           </aside>
