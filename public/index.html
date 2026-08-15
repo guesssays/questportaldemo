@@ -214,11 +214,11 @@
         "image": [
           "https://www.questportal.uz/images/quests/demons2-main.jpg"
         ],
-        "description": "Открытие 15 августа. 60 минут, 2–12 игроков, 16+.",
+        "description": "Открытие 15 августа. До 4 человек — 900 000 сум. 60 минут, 2–12 игроков, 16+.",
         "brand": "Quest Portal",
         "offers": {
           "@type": "Offer",
-          "price": "800000",
+          "price": "900000",
           "priceCurrency": "UZS",
           "availability": "https://schema.org/PreOrder",
           "url": "https://www.questportal.uz/#qm-demons2"
@@ -434,6 +434,25 @@
   /* Вертикальное (портретное) видео-трейлер — не обрезаем */
   .qvideo--portrait{ object-fit:contain !important; background:#000; }
   .qm-video--portrait{ object-fit:contain !important; background:#000; }
+
+  /* Заметная цена на карточке (обычный .qprice на карточках скрыт) */
+  .qprice-visible{
+    margin:2px 12px 8px;
+    padding:8px 12px;
+    border-radius:10px;
+    background:linear-gradient(90deg, rgba(228,0,43,.18), rgba(122,0,4,.14));
+    border:1px solid rgba(228,0,43,.45);
+    color:#fff;
+    font-family:"EternaBreaks", sans-serif;
+    font-size:15px;
+    letter-spacing:.02em;
+    text-align:center;
+  }
+  .qprice-visible b{
+    font-family:'Russo One', Inter, sans-serif;
+    font-size:18px;
+    color:#ff6a6a;
+  }
 
   @media (max-width:520px){
     .qbadges--conjuring{
@@ -833,11 +852,12 @@
                 poster="/images/quests/demons2-main.jpg">
                 <source src="/images/quests/demons2-trailer.mp4" type="video/mp4">
               </video>
-              <div class="qprice">800 000 сум</div>
+              <div class="qprice">900 000 сум</div>
             </div>
 
             <div class="qtitle">НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ</div>
             <div class="qmeta">2–12 игроков • 60 мин • 16+</div>
+            <div class="qprice-visible">До 4 человек — <b>900 000</b> сум</div>
             <div class="qactions">
               <button type="button" class="btn open-quest" data-target="#qm-demons2">ПОДРОБНЕЕ</button>
               <button type="button"
@@ -1996,7 +2016,7 @@
               <li><b>Игроки:</b> 2–12</li>
               <li><b>Время:</b> 60 минут</li>
               <li><b>Возраст:</b> 16+</li>
-              <li><b>Цена:</b> 4 человека 800 000 сум, каждый доп игрок +200 000</li>
+              <li><b>Цена:</b> до 4 человек — 900 000 сум, каждый доп игрок +200 000</li>
             </ul>
 
             <!-- ВИДЕОЗАПИСЬ ПРОХОЖДЕНИЯ -->
