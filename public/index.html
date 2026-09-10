@@ -435,6 +435,145 @@
   .qvideo--portrait{ object-fit:contain !important; background:#000; }
   .qm-video--portrait{ object-fit:contain !important; background:#000; }
 
+  /* Праздник в квесте + мерч */
+  .celebration-wrap{ padding:48px 0; }
+  .celebration-inner{ max-width:1100px; margin:0 auto; padding:0 18px; }
+  .celebration-inner .title-center{ text-align:center; margin-bottom:8px; }
+  .celebration-lead{
+    max-width:760px; margin:8px auto 26px; text-align:center;
+    color:#eaeaea; font-size:16px; line-height:1.5;
+  }
+  .celebration-lead strong{ color:#ff6a6a; }
+  .celebration-grid{
+    display:grid; gap:16px; grid-template-columns:repeat(4,1fr);
+  }
+  .celebration-card{
+    position:relative;
+    display:flex; flex-direction:column;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(228,0,43,.18), transparent 62%),
+      rgba(12,8,10,.72);
+    border:1px solid rgba(228,0,43,.32);
+    border-radius:18px;
+    padding:22px 18px;
+    text-align:center;
+    transition:transform .18s ease, border-color .18s ease;
+  }
+  .celebration-card:hover{ transform:translateY(-3px); border-color:rgba(228,0,43,.6); }
+  .celebration-ico{ font-size:40px; line-height:1; margin-bottom:10px; }
+  .celebration-card h3{
+    margin:0 0 8px; font-family:"EternaBreaks", sans-serif;
+    font-size:19px; letter-spacing:.02em; color:#fff;
+  }
+  .celebration-card p{ margin:0; font-size:14px; line-height:1.45; color:#d7d7d7; }
+
+  /* Цена под карточкой */
+  .celebration-price{
+    margin:14px 0 12px;
+    padding-top:12px;
+    border-top:1px dashed rgba(228,0,43,.35);
+    font-family:'Russo One', Inter, sans-serif;
+    font-size:22px; line-height:1; color:#ff6a6a;
+    white-space:nowrap;
+  }
+  .celebration-card > .celebration-price{ margin-top:auto; }
+  .celebration-price--bundle{ font-size:26px; color:#fff; text-shadow:0 0 18px rgba(228,0,43,.6); }
+  .celebration-card .btn{ width:100%; }
+
+  /* Карточка-комплект */
+  .celebration-card--bundle{
+    background:
+      radial-gradient(circle at 50% 0%, rgba(228,0,43,.34), transparent 66%),
+      rgba(18,4,8,.86);
+    border-color:rgba(228,0,43,.75);
+    box-shadow:0 14px 40px rgba(0,0,0,.45), 0 0 26px rgba(228,0,43,.28);
+  }
+  .celebration-badge{
+    position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+    padding:4px 12px; border-radius:999px; white-space:nowrap;
+    background:#e4002b; color:#fff;
+    font-size:11px; font-weight:900; letter-spacing:.4px; text-transform:uppercase;
+    box-shadow:0 4px 14px rgba(0,0,0,.4);
+  }
+  .celebration-cta{
+    display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:26px;
+  }
+  .celebration-note{
+    margin:14px auto 0; max-width:640px; text-align:center;
+    font-size:13px; color:#e6c9c9; opacity:.9;
+  }
+  @media (max-width:900px){
+    .celebration-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:520px){
+    .celebration-grid{ grid-template-columns:1fr; }
+  }
+
+  /* Праздничный набор в форме брони */
+  .addons{
+    margin:12px 0 0; padding:12px 14px;
+    border-radius:12px;
+    background:rgba(228,0,43,.09);
+    border:1px solid rgba(228,0,43,.4);
+  }
+  .addons__head{
+    font-size:14px; font-weight:800; color:#fff; margin-bottom:8px;
+  }
+  .addons__head span{ font-weight:600; color:#e6c9c9; opacity:.85; font-size:12.5px; }
+  .addon{
+    display:flex; align-items:center; gap:10px;
+    padding:8px 10px; margin-bottom:6px;
+    border-radius:9px; cursor:pointer;
+    background:rgba(0,0,0,.28);
+    border:1px solid rgba(255,255,255,.09);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .addon:hover{ border-color:rgba(228,0,43,.5); background:rgba(0,0,0,.4); }
+  .addon input{ width:18px; height:18px; accent-color:#e4002b; flex:none; cursor:pointer; }
+  .addon__name{ flex:1; font-size:13.5px; color:#f3f3f3; }
+  .addon__price{
+    font-family:'Russo One', Inter, sans-serif;
+    font-size:14px; color:#ff8a8a; white-space:nowrap;
+  }
+  .addon:has(input:checked){
+    border-color:rgba(228,0,43,.75);
+    background:rgba(228,0,43,.16);
+  }
+  .addons__all{ width:100%; margin-top:4px; font-size:13px; }
+  .addons__note{
+    margin:10px 0 0; font-size:12px; line-height:1.4;
+    color:#ffd9d9; text-align:center;
+  }
+  .addons__note b{ color:#ff8a8a; }
+
+  /* Строки праздничного набора и итога в калькуляторе */
+  .price-box__addons{
+    margin-top:10px; padding-top:10px;
+    border-top:1px dashed rgba(255,255,255,.2);
+  }
+  .price-box__addons-row{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  }
+  .price-box__addons-val{
+    font-family:'Russo One', Inter, sans-serif;
+    font-size:17px; color:#ff8a8a; white-space:nowrap;
+  }
+  .price-box__addons-list{
+    margin-top:4px; font-size:12px; line-height:1.45; color:#e6c9c9; opacity:.9;
+  }
+  .price-box__total{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    margin-top:10px; padding-top:10px;
+    border-top:1px solid rgba(228,0,43,.45);
+  }
+  .price-box__total-label{ font-size:15px; font-weight:900; letter-spacing:.06em; color:#fff; }
+  .price-box__total-val{
+    font-family:'Russo One', Inter, sans-serif;
+    font-size:clamp(22px, 6vw, 30px); line-height:1; color:#fff;
+    text-shadow:0 2px 12px rgba(0,0,0,.5), 0 0 16px rgba(228,0,43,.5);
+    white-space:nowrap;
+  }
+
   /* Заметная цена на карточке (обычный .qprice на карточках скрыт) */
   .qprice-visible{
     margin:2px 12px 8px;
@@ -732,6 +871,7 @@
       <!-- <a href="#anons">Акции</a> -->
       <a href="/">Главная</a>
       <a href="/quests">Квесты</a>
+      <a href="/celebration">Праздник</a>
       <a href="/reviews">Отзывы</a>
       <a href="/faq">FAQ</a>
       <a href="/contacts">Контакты</a>
@@ -808,6 +948,58 @@
           Бронируйте <strong>заранее</strong> — позвоните нам <strong>до 23:00</strong>.
         </p>
         <p class="late-notice__sub">Ночные игры проводятся только по предварительной брони.</p>
+      </div>
+    </section>
+
+    <!-- ПРАЗДНИК В КВЕСТЕ + МЕРЧ -->
+    <section id="celebration" class="section celebration-wrap" aria-label="Праздник в квесте и фирменный мерч">
+      <div class="inner celebration-inner">
+        <h2 class="title-center">🎉 ПРАЗДНИК В КВЕСТЕ</h2>
+        <p class="celebration-lead">
+          Отмечаете день рождения или особенный повод? Сделаем ваш квест незабываемым:
+          поздравим именинника прямо во время игры и подарим фирменный мерч
+          <strong>Quest Portal</strong>.
+        </p>
+
+        <div class="celebration-grid">
+          <div class="celebration-card">
+            <div class="celebration-ico">🎂</div>
+            <h3>Торт «София»</h3>
+            <p>Поздравим именинника прямо во время игры: торт, тёплые слова и атмосфера, которую запомнят все.</p>
+            <div class="celebration-price">350 000 сум</div>
+            <button type="button" class="btn btn--ghost open-booking" data-addon="cake">Добавить к брони</button>
+          </div>
+          <div class="celebration-card">
+            <div class="celebration-ico">👕</div>
+            <h3>Футболка</h3>
+            <p>С фирменным принтом и логотипом Quest Portal — качественная печать с собственной фабрики.</p>
+            <div class="celebration-price">600 000 сум</div>
+            <button type="button" class="btn btn--ghost open-booking" data-addon="tshirt">Добавить к брони</button>
+          </div>
+          <div class="celebration-card">
+            <div class="celebration-ico">☕</div>
+            <h3>Кружка</h3>
+            <p>С оригинальным принтом квеста — приятный подарок на память об игре.</p>
+            <div class="celebration-price">150 000 сум</div>
+            <button type="button" class="btn btn--ghost open-booking" data-addon="mug">Добавить к брони</button>
+          </div>
+          <div class="celebration-card celebration-card--bundle">
+            <div class="celebration-badge">Выгодно одним нажатием</div>
+            <div class="celebration-ico">🎁</div>
+            <h3>Всё сразу</h3>
+            <p>Торт «София» + футболка + кружка — полный праздничный набор.</p>
+            <div class="celebration-price celebration-price--bundle">1 100 000 сум</div>
+            <button type="button" class="btn btn--accent open-booking" data-addon="all">Взять всё сразу</button>
+          </div>
+        </div>
+
+        <div class="celebration-cta">
+          <a class="btn btn--ghost" href="tel:+998994016996" aria-label="Позвонить, чтобы узнать про праздничный набор">Позвонить</a>
+        </div>
+        <p class="celebration-note">
+          ⚠️ Торт и подарки заказываются <strong>только при 100% оплате</strong>.<br>
+          Бронировать <strong>исключительно заранее</strong>.
+        </p>
       </div>
     </section>
 
@@ -1320,13 +1512,56 @@
             <textarea class="textarea" name="comment" placeholder="Комментарий (необязательно)"></textarea>
           </div>
 
+          <!-- Праздничный набор (доп. услуги) -->
+          <div class="addons" id="addons">
+            <div class="addons__head">🎉 Праздничный набор <span>(по желанию)</span></div>
+
+            <label class="addon">
+              <input type="checkbox" class="addon-cb" name="addon_cake" data-addon-key="cake" data-price="350000" value="Торт «София» — 350 000 сум">
+              <span class="addon__name">🎂 Торт «София»</span>
+              <b class="addon__price">350 000</b>
+            </label>
+            <label class="addon">
+              <input type="checkbox" class="addon-cb" name="addon_tshirt" data-addon-key="tshirt" data-price="600000" value="Футболка с фирменным принтом — 600 000 сум">
+              <span class="addon__name">👕 Футболка с принтом</span>
+              <b class="addon__price">600 000</b>
+            </label>
+            <label class="addon">
+              <input type="checkbox" class="addon-cb" name="addon_mug" data-addon-key="mug" data-price="150000" value="Кружка с принтом квеста — 150 000 сум">
+              <span class="addon__name">☕ Кружка с принтом</span>
+              <b class="addon__price">150 000</b>
+            </label>
+
+            <button type="button" class="btn btn--ghost addons__all" id="addonsAll">🎁 Взять всё сразу — 1 100 000</button>
+
+            <p class="addons__note">
+              ⚠️ Торт и подарки заказываются <b>только при 100% оплате</b>. Бронировать <b>исключительно заранее</b>.
+            </p>
+          </div>
+
+          <input type="hidden" name="addons_total" id="addonsTotalField">
+          <input type="hidden" name="total" id="totalField">
+
           <!-- Авто-калькулятор стоимости -->
           <div class="price-box" id="priceBox" aria-live="polite">
             <div class="price-box__row">
-              <span class="price-box__label">Стоимость за <span id="priceCount">—</span></span>
+              <span class="price-box__label">Квест за <span id="priceCount">—</span></span>
               <span class="price-box__value" id="priceValue">— </span>
             </div>
             <div class="price-box__hint" id="priceHint">Укажите количество игроков, чтобы увидеть сумму</div>
+
+            <div class="price-box__addons" id="priceAddons" hidden>
+              <div class="price-box__addons-row">
+                <span class="price-box__label">🎉 Праздничный набор</span>
+                <span class="price-box__addons-val" id="priceAddonsValue">—</span>
+              </div>
+              <div class="price-box__addons-list" id="priceAddonsList"></div>
+            </div>
+
+            <div class="price-box__total" id="priceTotalRow" hidden>
+              <span class="price-box__total-label">ИТОГО</span>
+              <span class="price-box__total-val" id="priceTotal">—</span>
+            </div>
           </div>
 
           <p class="prepayment-note" style="margin:10px 0; font-size:14px; color:#f0f0f0; text-align:center;">
@@ -2059,7 +2294,7 @@
   <!-- Toasts -->
   <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="/script.js?v=13" defer></script>
+  <script src="/script.js?v=15" defer></script>
 
   <script>
   (function(){
@@ -2075,6 +2310,12 @@
         desc: 'Актуальные сценарии, 2–12 игроков, 16+. Бронируйте онлайн.',
         canonical: 'https://www.questportal.uz/quests',
         onEnter(){ scrollToId('quests'); }
+      },
+      '/celebration': {
+        title: 'Праздник в квесте и мерч — Quest Portal',
+        desc: 'Поздравление в квесте и фирменный мерч Quest Portal — за отдельную плату.',
+        canonical: 'https://www.questportal.uz/celebration',
+        onEnter(){ scrollToId('celebration'); }
       },
       '/reviews': {
         title: 'Отзывы игроков — Quest Portal',

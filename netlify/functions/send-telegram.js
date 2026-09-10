@@ -54,6 +54,19 @@ export async function handler(event) {
     const players = String(data.players).trim();
     const comment = (data.comment ? String(data.comment).trim() : '');
 
+    // праздничный набор: все поля addon_* приходят только когда отмечены
+    const addons = Object.keys(data)
+      .filter(k => k.startsWith('addon_') && data[k])
+      .map(k => String(data[k]).trim())
+      .filter(Boolean);
+    const addonsTotal = data.addons_total ? String(data.addons_total).trim() : '';
+    const grandTotal  = data.total ? String(data.total).trim() : '';
+
+    const money = (v) => {
+      const n = Number(v);
+      return Number.isFinite(n) ? n.toLocaleString('ru-RU') + ' сум' : v;
+    };
+
 // ── форматируем сообщение ──────────────────────────────────
 const title = escapeMd('Новая заявка (сайт)'); // экранируем скобки
 const text = [
@@ -63,7 +76,13 @@ const text = [
   `*Квест:* ${escapeMd(quest)}`,
   `*Дата/время:* ${escapeMd(date)} ${escapeMd(time)}`,
   `*Игроки:* ${escapeMd(players)}`,
-  comment ? `*Комментарий:* ${escapeMd(comment)}` : ''
+  addons.length
+    ? `\n🎉 *Праздничный набор:*\n${addons.map(a => '• ' + escapeMd(a)).join('\n')}` +
+      (addonsTotal ? `\n*Набор итого:* ${escapeMd(money(addonsTotal))}` : '') +
+      `\n⚠️ ${escapeMd('Торт и подарки — только при 100% оплате')}`
+    : '',
+  grandTotal ? `\n💰 *ИТОГО:* ${escapeMd(money(grandTotal))}` : '',
+  comment ? `\n*Комментарий:* ${escapeMd(comment)}` : ''
 ].filter(Boolean).join('\n');
 
 const tgUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;

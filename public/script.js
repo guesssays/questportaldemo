@@ -489,6 +489,15 @@ document.addEventListener('click', (e) => {
   const countEl = document.getElementById('priceCount');
   const valueEl = document.getElementById('priceValue');
   const hintEl  = document.getElementById('priceHint');
+  // праздничный набор
+  const addonsWrap    = document.getElementById('priceAddons');
+  const addonsValueEl = document.getElementById('priceAddonsValue');
+  const addonsListEl  = document.getElementById('priceAddonsList');
+  const totalRow      = document.getElementById('priceTotalRow');
+  const totalEl       = document.getElementById('priceTotal');
+  const addonsTotalField = document.getElementById('addonsTotalField');
+  const totalField       = document.getElementById('totalField');
+  const addonBoxes = () => Array.from(document.querySelectorAll('#bookingForm .addon-cb'));
   if (!input || !box) return;
 
   // Ночная доплата действует с 23:00 и до утра (00:00–05:59)
@@ -508,27 +517,55 @@ document.addEventListener('click', (e) => {
     return 'игроков';
   };
 
+  // выбранные позиции праздничного набора
+  function selectedAddons(){
+    return addonBoxes()
+      .filter(cb => cb.checked)
+      .map(cb => ({
+        price: parseInt(cb.dataset.price, 10) || 0,
+        name: (cb.closest('.addon')?.querySelector('.addon__name')?.textContent || '').trim()
+      }));
+  }
+
   function update(){
     const raw = parseInt(input.value, 10);
     const min = parseInt(input.min, 10) || 2;
     const max = parseInt(input.max, 10) || 12;
+
+    // --- праздничный набор (считаем всегда, не зависит от числа игроков) ---
+    const addons    = selectedAddons();
+    const addonsSum = addons.reduce((s, a) => s + a.price, 0);
+
+    if (addonsWrap){
+      addonsWrap.hidden = addonsSum === 0;
+      if (addonsSum > 0){
+        addonsValueEl.textContent = `${fmt(addonsSum)} сум`;
+        addonsListEl.textContent  = addons.map(a => a.name).join(' · ');
+      }
+    }
+    if (addonsTotalField) addonsTotalField.value = addonsSum ? String(addonsSum) : '';
+
+    // --- стоимость квеста ---
+    const night = isNight();
+    box.classList.toggle('is-night', night);
 
     if (!raw || raw < min) {
       countEl.textContent = '—';
       valueEl.textContent = '—';
       hintEl.textContent  = `Укажите количество игроков (от ${min} до ${max})`;
       box.classList.remove('is-active');
+      if (totalRow) totalRow.hidden = true;
+      if (totalField) totalField.value = '';
       return;
     }
 
-    const players = Math.min(raw, max);
-    const extra   = Math.max(0, players - BASE_PLAYERS);
-    const night   = isNight();
-    const base    = night ? NIGHT_PRICE : BASE_PRICE;
-    const total   = base + extra * EXTRA_PRICE;
+    const players    = Math.min(raw, max);
+    const extra      = Math.max(0, players - BASE_PLAYERS);
+    const base       = night ? NIGHT_PRICE : BASE_PRICE;
+    const questTotal = base + extra * EXTRA_PRICE;
 
     countEl.textContent = `${players} ${plural(players)}`;
-    valueEl.textContent = `${fmt(total)} сум`;
+    valueEl.textContent = `${fmt(questTotal)} сум`;
 
     const baseLabel = night
       ? `Команда до ${BASE_PLAYERS} чел. — ${fmt(NIGHT_PRICE)} сум (ночная доплата с 23:00)`
@@ -537,7 +574,14 @@ document.addEventListener('click', (e) => {
       ? `${baseLabel} + ${extra} × ${fmt(EXTRA_PRICE)} сум`
       : baseLabel;
 
-    box.classList.toggle('is-night', night);
+    // --- итого ---
+    const grand = questTotal + addonsSum;
+    if (totalRow){
+      totalRow.hidden = addonsSum === 0; // без набора итог = цене квеста
+      if (addonsSum > 0) totalEl.textContent = `${fmt(grand)} сум`;
+    }
+    if (totalField) totalField.value = String(grand);
+
     box.classList.add('is-active');
   }
 
@@ -547,10 +591,36 @@ document.addEventListener('click', (e) => {
     timeEl.addEventListener('input', update);
     timeEl.addEventListener('change', update);
   }
-  // пересчёт при открытии модалки брони
+  // пересчёт при переключении позиций набора
+  document.addEventListener('change', (e) => {
+    if (e.target.classList && e.target.classList.contains('addon-cb')) update();
+  });
+
+  // «Взять всё сразу» внутри формы
+  document.getElementById('addonsAll')?.addEventListener('click', () => {
+    const boxes = addonBoxes();
+    const allOn = boxes.every(cb => cb.checked);
+    boxes.forEach(cb => { cb.checked = !allOn; }); // повторное нажатие снимает выбор
+    update();
+  });
+
+  // кнопки из секции «Праздник в квесте» — отмечают нужные позиции
   document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-addon]');
+    if (trigger){
+      const key = trigger.dataset.addon;
+      setTimeout(() => {
+        addonBoxes().forEach(cb => {
+          if (key === 'all' || cb.dataset.addonKey === key) cb.checked = true;
+        });
+        update();
+      }, 120);
+      return;
+    }
+    // пересчёт при открытии модалки брони
     if (e.target.closest('.open-booking')) setTimeout(update, 80);
   });
+
   update();
 })();
 
