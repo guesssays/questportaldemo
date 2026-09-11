@@ -55,7 +55,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/styles.css?v=12">
+  <link rel="stylesheet" href="/styles.css?v=13">
 
   <!-- LocalBusiness -->
   <script type="application/ld+json">
@@ -600,151 +600,67 @@
   }
 
 
-  /* Большой кликабельный телефон для бронирования */
-  .booking-phone-spot{
-    position:relative;
-    z-index:5;
-    max-width:820px;
-    margin:-96px auto 34px;
-    padding:0 18px;
-    text-align:center;
+  /* Модалка выбора принта на футболку */
+  .print-facts{
+    list-style:none; margin:0 0 12px; padding:0;
+    display:grid; gap:8px; grid-template-columns:repeat(2,1fr);
+  }
+  .print-facts li{
+    background:#0f1016; border:1px solid rgba(228,0,43,.35); border-radius:12px;
+    padding:10px 12px; font-size:14px; color:#e8e8e8;
+  }
+  .print-facts b{ color:#fff; }
+  .print-hint{ margin:0 0 12px; font-size:13px; color:#cfd4da; }
+  .print-grid{
+    display:grid; gap:12px;
+    grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));
+  }
+  .print-item{
+    position:relative; display:block; padding:0; cursor:pointer;
+    border:2px solid rgba(255,255,255,.1); border-radius:14px; overflow:hidden;
+    background:#0b0b0d;
+    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .print-item:hover{ transform:translateY(-2px); border-color:rgba(228,0,43,.55); }
+  .print-item img{ display:block; width:100%; height:auto; aspect-ratio:3/4; object-fit:cover; }
+  .print-num{
+    position:absolute; left:8px; top:8px;
+    padding:4px 9px; border-radius:999px;
+    background:rgba(0,0,0,.72); color:#fff;
+    font-size:12px; font-weight:800; letter-spacing:.02em;
+  }
+  .print-item.is-selected{
+    border-color:#e4002b;
+    box-shadow:0 0 0 3px rgba(228,0,43,.35), 0 0 22px rgba(228,0,43,.45);
+  }
+  .print-item.is-selected::after{
+    content:"✓";
+    position:absolute; right:8px; top:8px;
+    width:28px; height:28px; border-radius:50%;
+    display:grid; place-items:center;
+    background:#e4002b; color:#fff; font-weight:900; font-size:15px;
+  }
+  .print-form{ margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); }
+  .print-selected{
+    display:flex; align-items:center; gap:12px; margin-bottom:12px;
+    padding:10px; border-radius:12px;
+    background:rgba(228,0,43,.1); border:1px solid rgba(228,0,43,.4);
+  }
+  .print-selected img{ width:64px; height:auto; aspect-ratio:3/4; object-fit:cover; border-radius:8px; }
+  .print-selected img[hidden]{ display:none; } /* пока принт не выбран — без пустой рамки */
+  .print-selected__txt{ font-size:15px; color:#fff; }
+  .print-selected__txt b{ color:#ff6a6a; }
+  .print-date{ grid-column:1/-1; display:grid; gap:6px; font-size:13px; color:#cfd4da; }
+  .print-note{ margin:10px 0; font-size:12.5px; line-height:1.4; color:#ffd9d9; text-align:center; }
+  .print-note b{ color:#ff8a8a; }
+  .print-submit{ width:100%; }
+  @media (max-width:560px){
+    .print-facts{ grid-template-columns:1fr; }
+    .print-grid{ gap:10px; grid-template-columns:repeat(2,1fr); }
   }
 
-  .booking-phone-link{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    width:100%;
-    min-height:118px;
-    padding:22px 18px;
-    border-radius:28px;
-    text-decoration:none;
-    color:#fff;
-    background:
-      radial-gradient(circle at 50% 0%, rgba(228,0,43,.26), transparent 58%),
-      rgba(5,5,5,.72);
-    border:1px solid rgba(255,255,255,.14);
-    box-shadow:0 18px 48px rgba(0,0,0,.45), 0 0 32px rgba(122,0,4,.32);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-  }
-
-  .booking-phone-link:hover{
-    transform:translateY(-1px);
-    border-color:rgba(228,0,43,.46);
-    box-shadow:0 20px 54px rgba(0,0,0,.5), 0 0 40px rgba(228,0,43,.34);
-  }
-
-  .booking-phone-label{
-    font-size:clamp(13px, 2.8vw, 18px);
-    font-weight:800;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:rgba(255,255,255,.86);
-  }
-
-  .booking-phone-number{
-    font-family:'Russo One', Inter, sans-serif;
-    font-size:clamp(34px, 8vw, 72px);
-    line-height:1;
-    letter-spacing:.04em;
-    text-shadow:0 4px 20px rgba(0,0,0,.55), 0 0 22px rgba(228,0,43,.38);
-    white-space:nowrap;
-  }
-
-  .booking-phone-hint{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    margin-top:4px;
-    padding:6px 14px;
-    border-radius:12px;
-    font-size:clamp(12px, 3vw, 15px);
-    font-weight:700;
-    color:#ffd9d9;
-    background:rgba(228,0,43,.14);
-    border:1px solid rgba(228,0,43,.46);
-  }
-  .booking-phone-hint::before{
-    content:"⚠";
-    font-size:15px;
-    line-height:1;
-    color:#ff5a5a;
-  }
-
-  /* Объявление о ночных играх (после 23:00) */
-  .late-notice{
-    max-width:820px;
-    margin:0 auto 40px;
-    padding:0 18px;
-  }
-  .late-notice__box{
-    text-align:center;
-    padding:26px 24px;
-    border-radius:22px;
-    color:#fff;
-    background:
-      radial-gradient(circle at 50% 0%, rgba(228,0,43,.30), transparent 62%),
-      rgba(10,4,4,.82);
-    border:1px solid rgba(228,0,43,.5);
-    box-shadow:0 16px 44px rgba(0,0,0,.5), 0 0 30px rgba(228,0,43,.28);
-  }
-  .late-notice__icon{
-    display:block;
-    font-size:clamp(30px, 7vw, 44px);
-    line-height:1;
-    margin-bottom:6px;
-  }
-  .late-notice__title{
-    margin:0 0 8px;
-    font-family:'Russo One', Inter, sans-serif;
-    font-size:clamp(22px, 5.4vw, 38px);
-    line-height:1.1;
-    letter-spacing:.02em;
-    text-transform:uppercase;
-    text-shadow:0 3px 16px rgba(0,0,0,.55), 0 0 20px rgba(228,0,43,.4);
-  }
-  .late-notice__text{
-    margin:0 0 8px;
-    font-size:clamp(17px, 4.2vw, 26px);
-    font-weight:700;
-    line-height:1.25;
-  }
-  .late-notice__text strong{
-    color:#ff6a6a;
-  }
-  .late-notice__sub{
-    margin:0;
-    font-size:clamp(13px, 3.2vw, 16px);
-    font-weight:600;
-    color:#e6c9c9;
-    opacity:.92;
-  }
-  @media (max-width:520px){
-    .late-notice{ margin:0 auto 28px; padding:0 14px; }
-    .late-notice__box{ padding:20px 16px; border-radius:18px; }
-  }
-
-  @media (max-width:520px){
-    .booking-phone-spot{
-      margin:-76px auto 24px;
-      padding:0 14px;
-    }
-    .booking-phone-link{
-      min-height:104px;
-      border-radius:22px;
-      padding:18px 12px;
-    }
-    .booking-phone-number{
-      font-size:clamp(30px, 8.2vw, 40px);
-      letter-spacing:.02em;
-    }
-    .booking-phone-label{
-      letter-spacing:.14em;
-    }
-  }
+  /* две кнопки в карточке праздника (футболка) */
+  .celebration-card .btn + .btn{ margin-top:8px; }
 
 
   /* Карточка квеста, который скоро откроется */
@@ -929,28 +845,6 @@
     </section>
 
 
-    <!-- ТЕЛЕФОН ДЛЯ БРОНИРОВАНИЯ -->
-    <section class="booking-phone-spot" aria-label="Телефон для бронирования">
-      <a class="booking-phone-link" href="tel:+998994016996" aria-label="Позвонить для бронирования по номеру +998 99 401 69 96">
-        <span class="booking-phone-label">Бронирование по телефону</span>
-        <span class="booking-phone-number">+998&nbsp;99&nbsp;401&nbsp;69&nbsp;96</span>
-        <span class="booking-phone-hint">Бронь подтверждается только после предоплаты</span>
-      </a>
-    </section>
-
-
-    <!-- ОБЪЯВЛЕНИЕ О НОЧНЫХ ИГРАХ -->
-    <section class="late-notice" aria-label="Важно о ночных играх">
-      <div class="late-notice__box">
-        <span class="late-notice__icon" aria-hidden="true">🕚</span>
-        <p class="late-notice__title">Хотите играть после 23:00?</p>
-        <p class="late-notice__text">
-          Бронируйте <strong>заранее</strong> — позвоните нам <strong>до 23:00</strong>.
-        </p>
-        <p class="late-notice__sub">Ночные игры проводятся только по предварительной брони.</p>
-      </div>
-    </section>
-
     <!-- ПРАЗДНИК В КВЕСТЕ + МЕРЧ -->
     <section id="celebration" class="section celebration-wrap" aria-label="Праздник в квесте и фирменный мерч">
       <div class="inner celebration-inner">
@@ -972,8 +866,9 @@
           <div class="celebration-card">
             <div class="celebration-ico">👕</div>
             <h3>Футболка</h3>
-            <p>С фирменным принтом и логотипом Quest Portal — качественная печать с собственной фабрики.</p>
+            <p>Варёнка оверсайз с фирменным принтом и логотипом Quest Portal. Принт на спину — на ваш выбор из каталога.</p>
             <div class="celebration-price">600 000 сум</div>
+            <button type="button" class="btn btn--accent" data-modal="printModal">👕 Выбрать принт</button>
             <button type="button" class="btn btn--ghost open-booking" data-addon="tshirt">Добавить к брони</button>
           </div>
           <div class="celebration-card">
@@ -2281,6 +2176,54 @@
     </div>
   </div>
 
+  <!-- Модалка: выбор принта на футболку -->
+  <div class="modal quest-modal" id="printModal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="printModal-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <header class="qm-head">
+        <h2 id="printModal-title" class="qm-title">ВЫБЕРИТЕ ПРИНТ НА ФУТБОЛКУ</h2>
+      </header>
+
+      <div class="qm-scroll">
+        <ul class="print-facts">
+          <li>👕 <b>Варёнка, оверсайз</b></li>
+          <li>✨ <b>Премиальное качество</b> ткани и печати</li>
+          <li>⏱ Изготовление — <b>за сутки</b>, это самый быстрый срок</li>
+          <li>💰 <b>600 000 сум</b></li>
+        </ul>
+        <p class="print-hint">Нажмите на принт для спины футболки — выбранный подсветится. Затем заполните форму ниже.</p>
+
+        <!-- карточки генерируются в script.js: /images/prints/print-01.jpg … print-14.jpg -->
+        <div class="print-grid" id="printGrid" data-count="14"></div>
+
+        <form id="printForm" class="print-form" autocomplete="on" novalidate>
+          <div class="print-selected">
+            <img id="printSelectedImg" alt="" hidden>
+            <div class="print-selected__txt" id="printSelectedTxt">Принт ещё не выбран — нажмите на понравившийся выше</div>
+          </div>
+          <input type="hidden" name="print" id="printField">
+          <input type="text" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form-grid">
+            <input class="input" type="text" name="name" placeholder="ИМЯ *" autocomplete="name" required>
+            <input class="input" type="tel" name="phone" inputmode="tel" placeholder="ТЕЛЕФОН *" autocomplete="tel" required>
+            <label class="print-date">
+              <span>К какой дате нужна футболка *</span>
+              <input class="input" type="date" name="date" id="printDate" required>
+            </label>
+            <textarea class="textarea" name="comment" placeholder="Комментарий: размер, пожелания (необязательно)"></textarea>
+          </div>
+
+          <p class="print-note">⏱ Футболка готовится <b>минимум за сутки</b> — выберите дату не раньше завтрашней.</p>
+          <button class="btn btn--accent print-submit" type="submit">Заказать футболку</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Лайтбокс -->
   <div class="lightbox" id="lightbox" aria-hidden="true" style="content-visibility:auto; contain-intrinsic-size: 600px;">
     <button class="lightbox__close" type="button" aria-label="Закрыть">×</button>
@@ -2294,7 +2237,7 @@
   <!-- Toasts -->
   <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="/script.js?v=15" defer></script>
+  <script src="/script.js?v=16" defer></script>
 
   <script>
   (function(){

@@ -368,7 +368,8 @@ if (form) {
   }
   function closeLB(){
     lb.classList.remove('is-open'); // было 'open'
-    document.body.classList.remove('modal-open');
+    // если фото открыто поверх модалки квеста — страницу под ней не разблокируем
+    if (!document.querySelector('.modal.is-open')) document.body.classList.remove('modal-open');
   }
 
   function navLB(step){
@@ -622,6 +623,117 @@ document.addEventListener('click', (e) => {
   });
 
   update();
+})();
+
+/* ===== Выбор принта на футболку (модалка #printModal) ===== */
+(function(){
+  const grid = document.getElementById('printGrid');
+  const form = document.getElementById('printForm');
+  if (!grid || !form) return;
+
+  const count  = parseInt(grid.dataset.count, 10) || 0;
+  const field  = document.getElementById('printField');
+  const selImg = document.getElementById('printSelectedImg');
+  const selTxt = document.getElementById('printSelectedTxt');
+  const dateEl = document.getElementById('printDate');
+  const src = (n) => `/images/prints/print-${String(n).padStart(2, '0')}.jpg`;
+
+  // карточки принтов: /images/prints/print-01.jpg … print-NN.jpg
+  for (let n = 1; n <= count; n++){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'print-item';
+    b.dataset.print = String(n);
+    b.setAttribute('aria-pressed', 'false');
+    b.setAttribute('aria-label', `Принт №${n}`);
+    b.innerHTML = `<img src="${src(n)}" alt="Принт №${n}" loading="lazy" decoding="async" width="600" height="800"><span class="print-num">№${n}</span>`;
+    grid.appendChild(b);
+  }
+
+  // выбранный принт остаётся подсвеченным и показывается над формой
+  function select(n){
+    grid.querySelectorAll('.print-item').forEach(b => {
+      const on = b.dataset.print === String(n);
+      b.classList.toggle('is-selected', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    field.value = n ? String(n) : '';
+    if (n){
+      selImg.src = src(n);
+      selImg.alt = `Выбранный принт №${n}`;
+      selImg.hidden = false;
+      selTxt.innerHTML = `Выбран принт <b>№${n}</b>`;
+    } else {
+      selImg.hidden = true;
+      selImg.removeAttribute('src');
+      selTxt.textContent = 'Принт ещё не выбран — нажмите на понравившийся выше';
+    }
+  }
+
+  grid.addEventListener('click', (e) => {
+    const b = e.target.closest('.print-item');
+    if (b) select(b.dataset.print);
+  });
+
+  // самый быстрый срок — сутки, поэтому дата не раньше завтрашней
+  function tomorrowISO(){
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    const p = (x) => String(x).padStart(2, '0');
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+  }
+  if (dateEl) dateEl.min = tomorrowISO();
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    if (!data.print){
+      showToast('Выберите принт', 'error', 3500);
+      // прокручиваем только окно модалки, а не страницу под ней
+      const sc = grid.closest('.qm-scroll');
+      if (sc) sc.scrollTo({ top: sc.scrollTop + grid.getBoundingClientRect().top - sc.getBoundingClientRect().top - 12, behavior: 'smooth' });
+      return;
+    }
+    const labels = { name: 'Имя', phone: 'Телефон', date: 'К какой дате' };
+    for (const k of ['name', 'phone', 'date']){
+      if (!data[k] || String(data[k]).trim() === ''){
+        showToast(`Заполните поле «${labels[k]}»`, 'error', 4000);
+        form.elements[k]?.focus();
+        return;
+      }
+    }
+    if (data.date < tomorrowISO()){
+      showToast('Футболка готовится минимум за сутки — выберите дату не раньше завтрашней', 'error', 5000);
+      dateEl?.focus();
+      return;
+    }
+
+    const btn = form.querySelector('.print-submit');
+    btn?.setAttribute('disabled', 'disabled');
+    try {
+      showToast('Отправка…', 'info', 1200);
+      const resp = await fetch('/.netlify/functions/send-print-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      let res = {};
+      try { res = await resp.json(); } catch {}
+      if (!resp.ok || !res.ok) throw new Error(res && res.error ? res.error : 'Серверная ошибка');
+
+      showToast('Заказ принят! Мы свяжемся с вами для подтверждения.', 'success');
+      form.reset();
+      select(null);
+      if (dateEl) dateEl.min = tomorrowISO();
+      closeModal();
+    } catch (err) {
+      console.error(err);
+      showToast('Ошибка при отправке. Попробуйте ещё раз.', 'error');
+    } finally {
+      btn?.removeAttribute('disabled');
+    }
+  });
 })();
 
 /* ===== Подпись «бронь по предоплате» под кнопками брони ===== */
