@@ -479,13 +479,18 @@ document.addEventListener('click', (e) => {
 
 /* ===== Авто-калькулятор стоимости в форме брони ===== */
 (function(){
-  const BASE_PRICE   = 800000; // за команду до 4 человек (день)
-  const NIGHT_PRICE  = 900000; // базовая цена с ночной доплатой (с 23:00)
-  const BASE_PLAYERS = 4;
-  const EXTRA_PRICE  = 200000; // за каждого игрока свыше базы
+  const BASE_PRICE      = 800000; // за команду до 4 человек (день)
+  const NIGHT_SURCHARGE = 100000; // ночная доплата с 23:00
+  const BASE_PLAYERS    = 4;
+  const EXTRA_PRICE     = 200000; // за каждого игрока свыше базы
+  // квесты со своей базовой ценой (остальные — по BASE_PRICE)
+  const QUEST_PRICES = {
+    'НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ': 900000
+  };
 
   const input  = document.getElementById('players');
   const timeEl  = document.getElementById('time');
+  const questEl = document.getElementById('quest');
   const box     = document.getElementById('priceBox');
   const countEl = document.getElementById('priceCount');
   const valueEl = document.getElementById('priceValue');
@@ -507,6 +512,12 @@ document.addEventListener('click', (e) => {
     const h = parseInt(timeEl.value.split(':')[0], 10);
     if (Number.isNaN(h)) return false;
     return h >= 23 || h < 6;
+  }
+
+  // базовая цена зависит от выбранного квеста
+  function basePrice(){
+    const q = questEl && questEl.value ? questEl.value.trim() : '';
+    return QUEST_PRICES[q] || BASE_PRICE;
   }
 
   const fmt = (n) => n.toLocaleString('ru-RU').replace(/ /g, ' ');
@@ -562,14 +573,14 @@ document.addEventListener('click', (e) => {
 
     const players    = Math.min(raw, max);
     const extra      = Math.max(0, players - BASE_PLAYERS);
-    const base       = night ? NIGHT_PRICE : BASE_PRICE;
+    const base       = basePrice() + (night ? NIGHT_SURCHARGE : 0);
     const questTotal = base + extra * EXTRA_PRICE;
 
     countEl.textContent = `${players} ${plural(players)}`;
     valueEl.textContent = `${fmt(questTotal)} сум`;
 
     const baseLabel = night
-      ? `Команда до ${BASE_PLAYERS} чел. — ${fmt(NIGHT_PRICE)} сум (ночная доплата с 23:00)`
+      ? `Команда до ${BASE_PLAYERS} чел. — ${fmt(base)} сум (ночная доплата с 23:00)`
       : `Базовая цена за команду до ${BASE_PLAYERS} человек`;
     hintEl.textContent = extra > 0
       ? `${baseLabel} + ${extra} × ${fmt(EXTRA_PRICE)} сум`
@@ -592,6 +603,7 @@ document.addEventListener('click', (e) => {
     timeEl.addEventListener('input', update);
     timeEl.addEventListener('change', update);
   }
+  questEl?.addEventListener('change', update);
   // пересчёт при переключении позиций набора
   document.addEventListener('change', (e) => {
     if (e.target.classList && e.target.classList.contains('addon-cb')) update();
