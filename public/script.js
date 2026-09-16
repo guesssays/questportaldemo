@@ -753,7 +753,7 @@ document.addEventListener('click', (e) => {
   const NOTE = 'Бронь подтверждается только после предоплаты';
   document.querySelectorAll('.open-booking').forEach((btn) => {
     // не дублируем и пропускаем кнопку в шапке-меню
-    if (btn.closest('#nav')) return;
+    if (btn.closest('#nav') || btn.closest('.celebration-card')) return;
     if (btn.nextElementSibling && btn.nextElementSibling.classList.contains('prepay-note')) return;
     const note = document.createElement('small');
     note.className = 'prepay-note';
