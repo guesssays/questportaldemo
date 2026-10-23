@@ -55,7 +55,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/styles.css?v=13">
+  <link rel="stylesheet" href="/styles.css?v=14">
 
   <!-- LocalBusiness -->
   <script type="application/ld+json">
@@ -445,7 +445,7 @@
   }
   .celebration-lead strong{ color:#ff6a6a; }
   .celebration-grid{
-    display:grid; gap:16px; grid-template-columns:repeat(4,1fr);
+    display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr));
   }
   .celebration-card{
     position:relative;
@@ -503,10 +503,10 @@
     font-size:13px; color:#e6c9c9; opacity:.9;
   }
   @media (max-width:900px){
-    .celebration-grid{ grid-template-columns:repeat(2,1fr); }
+    .celebration-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   }
   @media (max-width:520px){
-    .celebration-grid{ grid-template-columns:1fr; }
+    .celebration-grid{ grid-template-columns:minmax(0,1fr); }
   }
 
   /* Праздничный набор в форме брони */
@@ -603,7 +603,7 @@
   /* Модалка выбора принта на футболку */
   .print-facts{
     list-style:none; margin:0 0 12px; padding:0;
-    display:grid; gap:8px; grid-template-columns:repeat(2,1fr);
+    display:grid; gap:8px; grid-template-columns:repeat(2,minmax(0,1fr));
   }
   .print-facts li{
     background:#0f1016; border:1px solid rgba(228,0,43,.35); border-radius:12px;
@@ -655,8 +655,8 @@
   .print-note b{ color:#ff8a8a; }
   .print-submit{ width:100%; }
   @media (max-width:560px){
-    .print-facts{ grid-template-columns:1fr; }
-    .print-grid{ gap:10px; grid-template-columns:repeat(2,1fr); }
+    .print-facts{ grid-template-columns:minmax(0,1fr); }
+    .print-grid{ gap:10px; grid-template-columns:repeat(2,minmax(0,1fr)); }
   }
 
   /* две кнопки в карточке праздника (футболка) */

@@ -197,8 +197,8 @@ h3{ font-size:clamp(16px,3.8vw,18px); }
 @media (min-width:900px){ .section--bg.bg-footer .inner{ padding:60px 16px; } }
 
 /* =================== ANNOUNCEMENTS =================== */
-.ann-grid{ display:grid; gap:16px; }
-@media(min-width:800px){ .ann-grid{ grid-template-columns:1fr; } }
+.ann-grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:16px; }
+@media(min-width:800px){ .ann-grid{ grid-template-columns:minmax(0,1fr); } }
 
 .section--bg.bg-anons{ min-height:auto; display:block; }
 .section--bg.bg-anons .inner{ padding-top:16px; padding-bottom:16px; }
@@ -253,11 +253,11 @@ h3{ font-size:clamp(16px,3.8vw,18px); }
 /* =================== QUESTS =================== */
 .section-quests{ padding:48px 0; }
 .section-quests .title-center{ text-align:center; margin-bottom:16px; }
-.qgrid{ display:grid; gap:16px; }
-@media(min-width:900px){ .qgrid{ grid-template-columns:1fr 1fr; } }
+.qgrid{ display:grid; grid-template-columns:minmax(0,1fr); gap:16px; }
+@media(min-width:900px){ .qgrid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
 
 .quest{ background:var(--card); border:1px solid #161a1d; border-radius:18px; overflow:hidden; }
-.mini-thumbs{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; padding:8px; border-bottom:1px solid #161a1d; background:#161a1d; }
+.mini-thumbs{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; padding:8px; border-bottom:1px solid #161a1d; background:#161a1d; }
 .mini-img{ width:100%; height:100%; object-fit:cover; border-radius:8px; border:1px solid #161a1d; aspect-ratio:1.3/1; }
 
 .thumb{
@@ -315,8 +315,8 @@ h3{ font-size:clamp(16px,3.8vw,18px); }
 .qgrid > .quest:last-child:nth-child(odd) .thumb{ margin-top:6px; }
 
 /* =================== REVIEWS =================== */
-.reviews-grid{ display:grid; gap:16px; }
-@media(min-width:900px){ .reviews-grid{ grid-template-columns:1fr 1fr; } }
+.reviews-grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:16px; }
+@media(min-width:900px){ .reviews-grid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
 .review-card{ background:#7A0004; border:1px solid #7A0004; border-radius:16px; padding:16px; color:#fff; }
 .review-quote{ font-weight:700; line-height:1.4; margin:0 0 12px; }
 .review-footer{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
@@ -335,8 +335,8 @@ h3{ font-size:clamp(16px,3.8vw,18px); }
 /* =================== FAQ =================== */
 .faq-wrap{ padding:40px 16px; }
 .faq-card{ background:transparent; border:0; padding:0; }
-.faq{ display:grid; grid-template-columns:1fr; gap:16px; }
-@media(min-width:768px){ .faq{ grid-template-columns:1fr 1fr; } }
+.faq{ display:grid; grid-template-columns:minmax(0,1fr); gap:16px; }
+@media(min-width:768px){ .faq{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
 .faq details{
   border:1px solid var(--accent); border-radius:12px; background:transparent;
   overflow:hidden; min-width:0; transition:border-color .3s ease, box-shadow .3s ease; margin-bottom:12px;
@@ -353,8 +353,8 @@ h3{ font-size:clamp(16px,3.8vw,18px); }
 .faq .content{ padding:12px 18px 16px 40px; border-top:1px solid var(--accent); color:#d7d7d7; }
 
 /* =================== CONTACTS / LOCATION =================== */
-.contacts-grid{ display:grid; gap:32px; }
-@media(min-width:900px){ .contacts-grid{ grid-template-columns:1fr 1fr; } }
+.contacts-grid{ display:grid; gap:32px; grid-template-columns:minmax(0,1fr); }
+@media(min-width:900px){ .contacts-grid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
 .contacts h2, .location h2{ text-align:center; margin-bottom:16px; color:var(--contacts-h); }
 .contacts .item{
   display:flex; gap:10px; align-items:flex-start; padding:10px 12px;
@@ -394,8 +394,8 @@ body.modal-open{ overflow:hidden; }
 .booking-card{
   background:#7A0004; border:1px solid #7A0004; border-radius:16px; padding:22px; width:100%; max-width:520px;
 }
-.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-@media(max-width:640px){ .form-grid{ grid-template-columns:1fr; } }
+.form-grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; }
+@media(max-width:640px){ .form-grid{ grid-template-columns:minmax(0,1fr); } }
 .input,.select,.textarea{
   width:100%; padding:12px; border-radius:12px; border:1px solid #cbd1d6;
   background:#fff; color:#111; outline:none;
@@ -476,37 +476,37 @@ body.modal-open{ overflow:hidden; }
 
 .qm-scroll{ overflow:auto; padding:18px; }
 
-.qm-grid{ display:grid; gap:16px; grid-template-columns: 1.25fr .75fr; align-items:stretch; }
-@media (max-width:920px){ .qm-grid{ grid-template-columns:1fr; } }
+.qm-grid{ display:grid; gap:16px; grid-template-columns: minmax(0,1.25fr) minmax(0,.75fr); align-items:stretch; }
+@media (max-width:920px){ .qm-grid{ grid-template-columns:minmax(0,1fr); } }
 
-.qm-media{ display:flex; flex-direction:column; gap:12px; min-height: auto; }
+.qm-media{ display:flex; flex-direction:column; gap:12px; min-height: auto; min-width:0; }
 .qm-video{
   width:100%; aspect-ratio:16/9; height:auto; object-fit:cover; background:#000;
   border-radius:14px; border:1px solid rgba(255,255,255,.08); margin:0;
 }
-.qm-gallery{ display:grid; gap:12px; grid-template-columns:repeat(4,1fr); }
+.qm-gallery{ display:grid; gap:12px; grid-template-columns:repeat(4,minmax(0,1fr)); }
 .qm-gallery img{
   width:100%; aspect-ratio: 4/3; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.08);
   cursor:zoom-in; transition:transform .18s ease, filter .18s ease;
 }
 .qm-gallery img:hover{ transform:translateY(-2px); filter:brightness(.96); }
-@media (max-width:920px){ .qm-gallery{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:920px){ .qm-gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
 
-.qm-side{ display:grid; gap:14px; align-content:start; grid-template-rows:auto auto 1fr auto; }
+.qm-side{ display:grid; gap:14px; align-content:start; grid-template-rows:auto auto 1fr auto; grid-template-columns:minmax(0,1fr); min-width:0; }
 
 .qm-facts{
-  display:grid; grid-template-columns:1fr 1fr; gap:10px; list-style:none; margin:0; padding:0; font-size:14px;
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; list-style:none; margin:0; padding:0; font-size:14px;
 }
 .qm-facts li{ background:#0f1016; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:10px 12px; }
 .qm-facts b{ font-weight:800; margin-right:6px; }
-@media (max-width:560px){ .qm-facts{ grid-template-columns:1fr; } }
+@media (max-width:560px){ .qm-facts{ grid-template-columns:minmax(0,1fr); } }
 
 .qm-card{
   background:#0f1016; border:1px solid rgba(255,255,255,.08);
   border-radius:14px; padding:14px 16px; color:#d7d7d7;
 }
 .qm-card h3{ margin:0 0 8px; font-size:16px; letter-spacing:.06em; text-transform:uppercase; font-family:"Ustroke", sans-serif; }
-.qm-story{ display:grid; gap:8px; line-height:1.65; }
+.qm-story{ display:grid; grid-template-columns:minmax(0,1fr); gap:8px; line-height:1.65; }
 
 /* сворачиваемая история */
 .qm-story[data-collapsed]{ --collapsed-h:170px; max-height:var(--collapsed-h); overflow:hidden; position:relative; transition:max-height .35s ease; }
@@ -523,7 +523,7 @@ body.modal-open{ overflow:hidden; }
   margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,.08);
   display:flex; justify-content:flex-end; gap:10px; align-items:center;
 }
-.qm-cta{ display:flex; gap:10px; }
+.qm-cta{ display:flex; gap:10px; flex-wrap:wrap; } /* плашка о предоплате имеет flex-basis:100% — без переноса она выталкивает кнопки за край */
 .qm-cta .btn{ min-width:160px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px; }
 
 /* =================== LIGHTBOX (фикс стрелок поверх изображения) =================== */
@@ -584,7 +584,7 @@ body.modal-open{ overflow:hidden; }
   border-radius: 12px; border: 1px solid rgba(255,255,255,.15);
   background: rgba(11,11,13,.96); color: #fff;
   box-shadow: 0 10px 24px rgba(0,0,0,.35);
-  font-size: 14px; line-height: 1.4; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start;
+  font-size: 14px; line-height: 1.4; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; align-items: start;
   animation: toast-in .25s ease-out;
 }
 .toast--success{ border-color: rgba(0,200,120,.45); box-shadow: 0 8px 20px rgba(0,200,120,.15); }
@@ -626,14 +626,14 @@ form select:focus{ outline: none; border-color: var(--accent); background: rgba(
   .flex-btns .btn{ min-width:140px; }
   .qactions{ flex-direction:column; }
   .qactions .btn{ width:100%; }
-  .reviews-grid{ grid-template-columns:1fr; }
-  .faq{ grid-template-columns:1fr; }
-  .contacts-grid{ grid-template-columns:1fr; gap:20px; }
+  .reviews-grid{ grid-template-columns:minmax(0,1fr); }
+  .faq{ grid-template-columns:minmax(0,1fr); }
+  .contacts-grid{ grid-template-columns:minmax(0,1fr); gap:20px; }
   footer.footer .flex-btns{ justify-content:center; gap:12px; }
   .qm-cta{ gap:8px; }
   .qm-cta .btn{ min-width:unset; width:100%; }
   .qm-bar{ justify-content:stretch; }
-  .qm-gallery{ grid-template-columns:repeat(2,1fr); }
+  .qm-gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   .qm-gallery img{ height:110px; }
 }
 
@@ -652,7 +652,7 @@ form select:focus{ outline: none; border-color: var(--accent); background: rgba(
   .btn{ padding:11px 12px; }
   .flex-btns{ gap:8px; }
   .flex-btns .btn{ min-width:108px; }
-  .mini-thumbs{ grid-template-columns:repeat(3,1fr); gap:4px; }
+  .mini-thumbs{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
   .qactions{ gap:6px; }
   .ann-dots{ gap:6px; }
   .qm-gallery img{ height:92px; }
@@ -724,7 +724,7 @@ footer.footer .contacts h2::after{
 /* Строки контактов */
 footer.footer .contacts .item{
   display:grid;
-  grid-template-columns:auto 1fr;
+  grid-template-columns:auto minmax(0,1fr);
   align-items:center;
   gap:12px;
   padding:12px 14px;
@@ -772,7 +772,7 @@ footer.footer .flex-btns .btn{
 /* Сетка «Контакты/Локация» — чуть шире справа на десктопе */
 @media (min-width:900px){
   .contacts-grid{
-    grid-template-columns:1.1fr .9fr; /* левый блок немного шире */
+    grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); /* левый блок немного шире */
   }
 }
 
@@ -1021,19 +1021,19 @@ footer.footer .contacts .item:hover::after{
 .b2b-card{ background:var(--card,#161a1d); border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,.35); }
 .b2b-title{ font-family:"Russo One",system-ui; letter-spacing:.02em; margin:0 0 6px; text-transform:uppercase; }
 .b2b-sub{ margin:0; opacity:.85 }
-.b2b-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap:20px; margin-top:16px; }
-.b2b-list{ margin:0; padding-left:18px; display:grid; gap:8px; }
+.b2b-grid{ display:grid; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); gap:20px; margin-top:16px; }
+.b2b-list{ margin:0; padding-left:18px; display:grid; grid-template-columns:minmax(0,1fr); gap:8px; }
 .b2b-list li{ position:relative; }
 .b2b-list li::marker{ content:"• "; }
-.b2b-side{ display:grid; gap:10px; align-content:start; }
+.b2b-side{ display:grid; grid-template-columns:minmax(0,1fr); gap:10px; align-content:start; }
 .b2b-note{ color:#ffb703; font-weight:700; }
 .b2b-pay{ font-size:14px; opacity:.9 }
 .b2b-cta{ display:flex; gap:10px; flex-wrap:wrap; }
-.b2b-contact{ margin-top:8px; display:grid; gap:6px; }
+.b2b-contact{ margin-top:8px; display:grid; grid-template-columns:minmax(0,1fr); gap:6px; }
 .b2b-phone{ font-weight:800; font-size:18px; text-decoration:underline; }
 
 @media (max-width: 860px){
-  .b2b-grid{ grid-template-columns:1fr; }
+  .b2b-grid{ grid-template-columns:minmax(0,1fr); }
 }
 
 /* Модалка шире для текста услуг */
@@ -1055,12 +1055,12 @@ footer.footer .contacts .item:hover::after{
 /* Сетка и адаптив — как было, + мелкий твик */
 .b2b-grid{
   display:grid;
-  grid-template-columns: 1.2fr .8fr;
+  grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr);
   gap:20px;
   margin-top:16px;
 }
 @media (max-width: 860px){
-  .b2b-grid{ grid-template-columns:1fr; }
+  .b2b-grid{ grid-template-columns:minmax(0,1fr); }
 }
 /* Кнопки в B2B */
 .b2b-cta{
