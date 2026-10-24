@@ -244,6 +244,46 @@
           "url": "https://www.questportal.uz/#qm-evildead"
         }
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "Product",
+        "name": "ОНО: Добро пожаловать в Дерри — хоррор-квест с актёрами",
+        "image": [
+          "https://www.questportal.uz/images/quests/ono-poster.jpg"
+        ],
+        "description": "Скоро открытие. 700 м², от 5 до 12 игроков, 16+. 200 000 сум с человека.",
+        "brand": "Quest Portal",
+        "offers": {
+          "@type": "Offer",
+          "price": "200000",
+          "priceCurrency": "UZS",
+          "availability": "https://schema.org/PreOrder",
+          "url": "https://www.questportal.uz/#qm-ono"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "Product",
+        "name": "Молитва проклятых — хоррор-квест с актёрами",
+        "image": [
+          "https://www.questportal.uz/images/quests/molitva-2.jpg"
+        ],
+        "description": "Скоро открытие. 500 м², от 5 до 10 игроков, 16+. 200 000 сум с человека.",
+        "brand": "Quest Portal",
+        "offers": {
+          "@type": "Offer",
+          "price": "200000",
+          "priceCurrency": "UZS",
+          "availability": "https://schema.org/PreOrder",
+          "url": "https://www.questportal.uz/#qm-molitva"
+        }
+      }
     }
   ]
 }
@@ -527,6 +567,38 @@
   }
   @media (max-width:520px){
     .celebration-grid{ grid-template-columns:minmax(0,1fr); }
+  }
+
+  /* Подарочные сертификаты */
+  .cert-wrap{ padding:10px 0 48px; }
+  .cert-inner{ max-width:1100px; margin:0 auto; padding:0 18px; }
+  .cert-inner .title-center{ text-align:center; margin-bottom:8px; }
+  .cert-lead{
+    max-width:720px; margin:8px auto 22px; text-align:center;
+    color:#eaeaea; font-size:16px; line-height:1.5;
+  }
+  .cert-lead strong{ color:#ff6a6a; }
+  .cert-gallery{
+    display:grid; gap:16px; grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .cert-gallery img{
+    width:100%; height:auto; display:block;
+    border-radius:16px;
+    border:1px solid rgba(228,0,43,.4);
+    box-shadow:0 14px 40px rgba(0,0,0,.45);
+    cursor:zoom-in;
+    transition:transform .18s ease, border-color .18s ease;
+  }
+  .cert-gallery img:hover{ transform:translateY(-3px); border-color:rgba(228,0,43,.7); }
+  .cert-cta{
+    display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:22px;
+  }
+  .cert-note{
+    margin:14px auto 0; max-width:640px; text-align:center;
+    font-size:13px; color:#e6c9c9; opacity:.9;
+  }
+  @media (max-width:640px){
+    .cert-gallery{ grid-template-columns:minmax(0,1fr); }
   }
 
   /* Праздничный набор в форме брони */
@@ -958,21 +1030,64 @@
 
 
           <!-- ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ (СКОРО ОТКРОЕТСЯ) -->
-          <article class="quest quest--soon" aria-label="ОНО: Добро пожаловать в Дерри — скоро откроется">
-            <div class="soon-thumb">
-              <img
-                class="soon-img"
-                src="/images/quests/ono.PNG"
-                alt="ОНО: Добро пожаловать в Дерри — скоро откроется"
-                loading="lazy"
-                decoding="async">
-              <div class="soon-overlay" aria-hidden="true">
-                <span class="soon-label">Скоро откроется</span>
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/ono-poster.jpg" alt="ОНО: Добро пожаловать в Дерри — постер" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/ono-1.jpg"      alt="ОНО: Добро пожаловать в Дерри — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/ono-2.jpg"      alt="ОНО: Добро пожаловать в Дерри — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <div class="qbadges">
+                <span class="qbadge-open">Скоро откроется</span>
               </div>
+              <video
+                class="qvideo qvideo--portrait"
+                playsinline
+                preload="none"
+                controls
+                poster="/images/quests/ono-poster.jpg">
+                <source src="/images/quests/ono-trailer.mp4" type="video/mp4">
+              </video>
             </div>
 
             <div class="qtitle">ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ</div>
-            <div class="qmeta qmeta--soon">Скоро откроется</div>
+            <div class="qmeta">5–12 игроков • 700 м² • 16+</div>
+            <div class="qprice-visible"><b>200 000</b> сум с человека</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-ono">ПОДРОБНЕЕ</button>
+            </div>
+          </article>
+
+
+          <!-- МОЛИТВА ПРОКЛЯТЫХ (СКОРО ОТКРОЕТСЯ) -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/molitva-1.jpg" alt="Молитва проклятых — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/molitva-2.jpg" alt="Молитва проклятых — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/molitva-3.jpg" alt="Молитва проклятых — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <div class="qbadges">
+                <span class="qbadge-open">Скоро откроется</span>
+              </div>
+              <video
+                class="qvideo qvideo--portrait"
+                playsinline
+                preload="none"
+                controls
+                poster="/images/quests/molitva-2.jpg">
+                <source src="/images/quests/molitva-trailer.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qtitle">МОЛИТВА ПРОКЛЯТЫХ</div>
+            <div class="qmeta">5–10 игроков • 500 м² • 16+</div>
+            <div class="qprice-visible"><b>200 000</b> сум с человека</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-molitva">ПОДРОБНЕЕ</button>
+            </div>
           </article>
 
 
@@ -1260,6 +1375,28 @@
           ⚠️ Торт и подарки заказываются <strong>только при 100% оплате</strong>.<br>
           Бронировать <strong>исключительно заранее</strong>.
         </p>
+      </div>
+    </section>
+
+    <!-- ПОДАРОЧНЫЕ СЕРТИФИКАТЫ -->
+    <section id="certificates" class="section cert-wrap" aria-label="Подарочные сертификаты">
+      <div class="inner cert-inner">
+        <h2 class="title-center">🎟️ ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</h2>
+        <p class="cert-lead">
+          Подарите близким <strong>реальный страх и настоящие эмоции</strong> — сертификат
+          на посещение любого квеста Quest Portal. Впишем имя, квест и дату.
+        </p>
+
+        <div class="cert-gallery">
+          <img src="/images/cert-front.jpg" alt="Подарочный сертификат Quest Portal — лицевая сторона" loading="lazy" decoding="async" width="1400" height="933">
+          <img src="/images/cert-back.jpg"  alt="Подарочный сертификат Quest Portal — оборотная сторона" loading="lazy" decoding="async" width="1400" height="933">
+        </div>
+
+        <div class="cert-cta">
+          <a class="btn btn--accent" href="tel:+998994016996">Заказать сертификат</a>
+          <a class="btn btn--ghost" href="https://t.me/Quest_Portal_01" target="_blank" rel="noopener">Написать в Telegram</a>
+        </div>
+        <p class="cert-note">Стоимость зависит от выбранного квеста и количества игроков — уточните при заказе.</p>
       </div>
     </section>
 
@@ -2194,6 +2331,125 @@
     </div>
   </div>
 
+  <!-- Quest Modal: ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ (скоро) -->
+  <div class="modal quest-modal" id="qm-ono" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-ono-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <header class="qm-head">
+        <h2 id="qm-ono-title" class="qm-title">ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ</h2>
+      </header>
+
+      <div class="qm-scroll">
+        <div class="qm-grid">
+          <div class="qm-media">
+            <div class="qm-media-top">
+              <video
+                class="qm-video qvideo qm-video--portrait qvideo--portrait"
+                playsinline
+                preload="none"
+                controls
+                poster="/images/quests/ono-poster.jpg">
+                <source src="/images/quests/ono-trailer.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qm-gallery">
+              <img src="/images/quests/ono-poster.jpg" alt="ОНО: Добро пожаловать в Дерри — постер" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/ono-1.jpg"      alt="ОНО: Добро пожаловать в Дерри — кадр 1" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/ono-2.jpg"      alt="ОНО: Добро пожаловать в Дерри — кадр 2" loading="lazy" decoding="async" width="640" height="400">
+            </div>
+          </div>
+
+          <aside class="qm-side">
+            <ul class="qm-facts">
+              <li><b>Статус:</b> скоро откроется</li>
+              <li><b>Игроки:</b> 5–12</li>
+              <li><b>Площадь:</b> 700 м²</li>
+              <li><b>Возраст:</b> 16+</li>
+              <li><b>Цена:</b> 200 000 сум с человека</li>
+            </ul>
+
+            <div class="qm-card">
+              <h3>Скоро открытие</h3>
+              <p>Квест готовится к запуску — описание появится позже. Дату открытия и бронь уточняйте по телефону.</p>
+            </div>
+
+            <div class="qm-bar">
+              <div class="qm-cta">
+                <button type="button" class="btn" data-close>Закрыть</button>
+                <a class="btn btn--accent" href="tel:+998994016996">Позвонить</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Quest Modal: МОЛИТВА ПРОКЛЯТЫХ (скоро) -->
+  <div class="modal quest-modal" id="qm-molitva" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-molitva-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <header class="qm-head">
+        <h2 id="qm-molitva-title" class="qm-title">МОЛИТВА ПРОКЛЯТЫХ</h2>
+      </header>
+
+      <div class="qm-scroll">
+        <div class="qm-grid">
+          <div class="qm-media">
+            <div class="qm-media-top">
+              <video
+                class="qm-video qvideo qm-video--portrait qvideo--portrait"
+                playsinline
+                preload="none"
+                controls
+                poster="/images/quests/molitva-2.jpg">
+                <source src="/images/quests/molitva-trailer.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qm-gallery">
+              <img src="/images/quests/molitva-main.jpg" alt="Молитва проклятых — постер" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/molitva-1.jpg"    alt="Молитва проклятых — кадр 1" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/molitva-2.jpg"    alt="Молитва проклятых — кадр 2" loading="lazy" decoding="async" width="640" height="400">
+              <img src="/images/quests/molitva-3.jpg"    alt="Молитва проклятых — кадр 3" loading="lazy" decoding="async" width="640" height="400">
+            </div>
+          </div>
+
+          <aside class="qm-side">
+            <ul class="qm-facts">
+              <li><b>Статус:</b> скоро откроется</li>
+              <li><b>Игроки:</b> 5–10</li>
+              <li><b>Площадь:</b> 500 м²</li>
+              <li><b>Возраст:</b> 16+</li>
+              <li><b>Цена:</b> 200 000 сум с человека</li>
+            </ul>
+
+            <div class="qm-card">
+              <h3>Скоро открытие</h3>
+              <p>Квест готовится к запуску — описание появится позже. Дату открытия и бронь уточняйте по телефону.</p>
+            </div>
+
+            <div class="qm-bar">
+              <div class="qm-cta">
+                <button type="button" class="btn" data-close>Закрыть</button>
+                <a class="btn btn--accent" href="tel:+998994016996">Позвонить</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Модалка: выбор принта на футболку -->
   <div class="modal quest-modal" id="printModal" aria-hidden="true">
     <div class="modal__overlay" data-close></div>
@@ -2255,7 +2511,7 @@
   <!-- Toasts -->
   <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="/script.js?v=18" defer></script>
+  <script src="/script.js?v=19" defer></script>
 
   <script>
   (function(){
@@ -2277,6 +2533,12 @@
         desc: 'Поздравление в квесте и фирменный мерч Quest Portal — за отдельную плату.',
         canonical: 'https://www.questportal.uz/celebration',
         onEnter(){ scrollToId('celebration'); }
+      },
+      '/certificates': {
+        title: 'Подарочные сертификаты — Quest Portal',
+        desc: 'Подарочный сертификат на посещение хоррор-квеста Quest Portal в Ташкенте.',
+        canonical: 'https://www.questportal.uz/certificates',
+        onEnter(){ scrollToId('certificates'); }
       },
       '/reviews': {
         title: 'Отзывы игроков — Quest Portal',

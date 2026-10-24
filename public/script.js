@@ -355,7 +355,7 @@ if (form) {
   const btnNext = lb.querySelector('.lightbox__next');
   const btnClose = lb.querySelector('.lightbox__close');
 
-  const imgs = Array.from(document.querySelectorAll('.mini-img, .qm-gallery img'));
+  const imgs = Array.from(document.querySelectorAll('.mini-img, .qm-gallery img, .cert-gallery img'));
   let idx = -1;
 
   // === LIGHTBOX ===
