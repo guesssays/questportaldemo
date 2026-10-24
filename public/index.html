@@ -569,36 +569,44 @@
     .celebration-grid{ grid-template-columns:minmax(0,1fr); }
   }
 
-  /* Подарочные сертификаты */
-  .cert-wrap{ padding:10px 0 48px; }
+  /* Подарочные сертификаты — компактная карточка над квестами */
+  .cert-wrap{ padding:26px 0 10px; }
   .cert-inner{ max-width:1100px; margin:0 auto; padding:0 18px; }
-  .cert-inner .title-center{ text-align:center; margin-bottom:8px; }
-  .cert-lead{
-    max-width:720px; margin:8px auto 22px; text-align:center;
-    color:#eaeaea; font-size:16px; line-height:1.5;
-  }
-  .cert-lead strong{ color:#ff6a6a; }
-  .cert-gallery{
-    display:grid; gap:16px; grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-  .cert-gallery img{
-    width:100%; height:auto; display:block;
-    border-radius:16px;
-    border:1px solid rgba(228,0,43,.4);
+  .cert-card{
+    display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:18px; align-items:center;
+    padding:16px;
+    border-radius:18px;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(228,0,43,.22), transparent 60%),
+      rgba(12,8,10,.76);
+    border:1px solid rgba(228,0,43,.42);
     box-shadow:0 14px 40px rgba(0,0,0,.45);
-    cursor:zoom-in;
-    transition:transform .18s ease, border-color .18s ease;
   }
-  .cert-gallery img:hover{ transform:translateY(-3px); border-color:rgba(228,0,43,.7); }
-  .cert-cta{
-    display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:22px;
+  .cert-card__media{ position:relative; }
+  .cert-card__media img{
+    display:block; width:100%; height:auto;
+    border-radius:12px; border:1px solid rgba(255,255,255,.1);
   }
-  .cert-note{
-    margin:14px auto 0; max-width:640px; text-align:center;
-    font-size:13px; color:#e6c9c9; opacity:.9;
+  .cert-card__badge{ position:absolute; top:10px; left:10px; }
+  .cert-card__title{
+    margin:0 0 8px;
+    font-family:"EternaBreaks", sans-serif;
+    font-size:clamp(20px, 3vw, 26px);
+    letter-spacing:.02em; color:#fff;
   }
-  @media (max-width:640px){
-    .cert-gallery{ grid-template-columns:minmax(0,1fr); }
+  .cert-card__text{ margin:0 0 14px; font-size:15px; line-height:1.5; color:#dcdcdc; }
+  .cert-card__text strong{ color:#ff6a6a; }
+  .cert-card__actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  .cert-card__actions .btn{ flex:1; min-width:140px; }
+
+  /* сертификат в модалке — широкие горизонтальные картинки */
+  .qm-gallery--cert{ grid-template-columns:minmax(0,1fr); }
+  .qm-gallery--cert img{ aspect-ratio:3/2; }
+
+  @media (max-width:720px){
+    .cert-wrap{ padding:18px 0 6px; }
+    .cert-card{ grid-template-columns:minmax(0,1fr); gap:14px; padding:14px; }
   }
 
   /* Праздничный набор в форме брони */
@@ -936,6 +944,30 @@
       </div>
     </section>
 
+    <!-- ПОДАРОЧНЫЕ СЕРТИФИКАТЫ (закреплены сверху) -->
+    <section id="certificates" class="section cert-wrap" aria-label="Подарочные сертификаты">
+      <div class="cert-inner">
+        <article class="cert-card">
+          <div class="cert-card__media">
+            <img src="/images/cert-front.jpg" alt="Подарочный сертификат Quest Portal" loading="lazy" decoding="async" width="1400" height="933">
+            <span class="qbadge-open cert-card__badge">Подарочный сертификат</span>
+          </div>
+
+          <div class="cert-card__body">
+            <h2 class="cert-card__title">ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</h2>
+            <p class="cert-card__text">
+              Подарите близким <strong>реальный страх и настоящие эмоции</strong> — сертификат
+              на посещение любого квеста Quest Portal. Впишем имя, квест и дату.
+            </p>
+            <div class="cert-card__actions">
+              <button type="button" class="btn open-quest" data-target="#qm-cert">ПОДРОБНЕЕ</button>
+              <a class="btn btn--accent" href="tel:+998994016996">Заказать</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
   <!-- НАШИ КВЕСТЫ -->
     <section id="quests" class="section section--bg bg-quests" style="--bg-image:url('/images/quest-bg.png'); content-visibility:auto; contain-intrinsic-size: 1200px;">
       <div class="inner section-quests">
@@ -955,6 +987,68 @@
         </p>
 
         <div class="qgrid">
+
+          <!-- ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ (СКОРО ОТКРОЕТСЯ) -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/ono-poster.jpg" alt="ОНО: Добро пожаловать в Дерри — постер" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/ono-1.jpg"      alt="ОНО: Добро пожаловать в Дерри — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/ono-2.jpg"      alt="ОНО: Добро пожаловать в Дерри — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <div class="qbadges">
+                <span class="qbadge-open">Скоро откроется</span>
+              </div>
+              <video
+                class="qvideo qvideo--portrait"
+                playsinline
+                preload="none"
+                controls
+                poster="/images/quests/ono-poster.jpg">
+                <source src="/images/quests/ono-trailer.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qtitle">ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ</div>
+            <div class="qmeta">5–12 игроков • 700 м² • 16+</div>
+            <div class="qprice-visible"><b>200 000</b> сум с человека</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-ono">ПОДРОБНЕЕ</button>
+            </div>
+          </article>
+
+
+          <!-- МОЛИТВА ПРОКЛЯТЫХ (СКОРО ОТКРОЕТСЯ) -->
+          <article class="quest">
+            <div class="mini-thumbs">
+              <img class="mini-img" src="/images/quests/molitva-1.jpg" alt="Молитва проклятых — кадр 1" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/molitva-2.jpg" alt="Молитва проклятых — кадр 2" loading="lazy" decoding="async" width="360" height="277">
+              <img class="mini-img" src="/images/quests/molitva-3.jpg" alt="Молитва проклятых — кадр 3" loading="lazy" decoding="async" width="360" height="277">
+            </div>
+
+            <div class="thumb">
+              <div class="qbadges">
+                <span class="qbadge-open">Скоро откроется</span>
+              </div>
+              <video
+                class="qvideo qvideo--portrait"
+                playsinline
+                preload="none"
+                controls
+                poster="/images/quests/molitva-2.jpg">
+                <source src="/images/quests/molitva-trailer.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="qtitle">МОЛИТВА ПРОКЛЯТЫХ</div>
+            <div class="qmeta">5–10 игроков • 500 м² • 16+</div>
+            <div class="qprice-visible"><b>200 000</b> сум с человека</div>
+            <div class="qactions">
+              <button type="button" class="btn open-quest" data-target="#qm-molitva">ПОДРОБНЕЕ</button>
+            </div>
+          </article>
+
 
           <!-- НОЧЬ ДЕМОНОВ 2: ТЬМА ВОЗВРАЩАЕТСЯ -->
           <article class="quest">
@@ -1027,70 +1121,6 @@
               </button>
             </div>
           </article>
-
-
-          <!-- ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ (СКОРО ОТКРОЕТСЯ) -->
-          <article class="quest">
-            <div class="mini-thumbs">
-              <img class="mini-img" src="/images/quests/ono-poster.jpg" alt="ОНО: Добро пожаловать в Дерри — постер" loading="lazy" decoding="async" width="360" height="277">
-              <img class="mini-img" src="/images/quests/ono-1.jpg"      alt="ОНО: Добро пожаловать в Дерри — кадр 1" loading="lazy" decoding="async" width="360" height="277">
-              <img class="mini-img" src="/images/quests/ono-2.jpg"      alt="ОНО: Добро пожаловать в Дерри — кадр 2" loading="lazy" decoding="async" width="360" height="277">
-            </div>
-
-            <div class="thumb">
-              <div class="qbadges">
-                <span class="qbadge-open">Скоро откроется</span>
-              </div>
-              <video
-                class="qvideo qvideo--portrait"
-                playsinline
-                preload="none"
-                controls
-                poster="/images/quests/ono-poster.jpg">
-                <source src="/images/quests/ono-trailer.mp4" type="video/mp4">
-              </video>
-            </div>
-
-            <div class="qtitle">ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ</div>
-            <div class="qmeta">5–12 игроков • 700 м² • 16+</div>
-            <div class="qprice-visible"><b>200 000</b> сум с человека</div>
-            <div class="qactions">
-              <button type="button" class="btn open-quest" data-target="#qm-ono">ПОДРОБНЕЕ</button>
-            </div>
-          </article>
-
-
-          <!-- МОЛИТВА ПРОКЛЯТЫХ (СКОРО ОТКРОЕТСЯ) -->
-          <article class="quest">
-            <div class="mini-thumbs">
-              <img class="mini-img" src="/images/quests/molitva-1.jpg" alt="Молитва проклятых — кадр 1" loading="lazy" decoding="async" width="360" height="277">
-              <img class="mini-img" src="/images/quests/molitva-2.jpg" alt="Молитва проклятых — кадр 2" loading="lazy" decoding="async" width="360" height="277">
-              <img class="mini-img" src="/images/quests/molitva-3.jpg" alt="Молитва проклятых — кадр 3" loading="lazy" decoding="async" width="360" height="277">
-            </div>
-
-            <div class="thumb">
-              <div class="qbadges">
-                <span class="qbadge-open">Скоро откроется</span>
-              </div>
-              <video
-                class="qvideo qvideo--portrait"
-                playsinline
-                preload="none"
-                controls
-                poster="/images/quests/molitva-2.jpg">
-                <source src="/images/quests/molitva-trailer.mp4" type="video/mp4">
-              </video>
-            </div>
-
-            <div class="qtitle">МОЛИТВА ПРОКЛЯТЫХ</div>
-            <div class="qmeta">5–10 игроков • 500 м² • 16+</div>
-            <div class="qprice-visible"><b>200 000</b> сум с человека</div>
-            <div class="qactions">
-              <button type="button" class="btn open-quest" data-target="#qm-molitva">ПОДРОБНЕЕ</button>
-            </div>
-          </article>
-
-
 
           <!-- ВОССТАНИЕ ЗЛОВЕЩИХ МЕРТВЕЦОВ -->
 <article class="quest">
@@ -1375,28 +1405,6 @@
           ⚠️ Торт и подарки заказываются <strong>только при 100% оплате</strong>.<br>
           Бронировать <strong>исключительно заранее</strong>.
         </p>
-      </div>
-    </section>
-
-    <!-- ПОДАРОЧНЫЕ СЕРТИФИКАТЫ -->
-    <section id="certificates" class="section cert-wrap" aria-label="Подарочные сертификаты">
-      <div class="inner cert-inner">
-        <h2 class="title-center">🎟️ ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</h2>
-        <p class="cert-lead">
-          Подарите близким <strong>реальный страх и настоящие эмоции</strong> — сертификат
-          на посещение любого квеста Quest Portal. Впишем имя, квест и дату.
-        </p>
-
-        <div class="cert-gallery">
-          <img src="/images/cert-front.jpg" alt="Подарочный сертификат Quest Portal — лицевая сторона" loading="lazy" decoding="async" width="1400" height="933">
-          <img src="/images/cert-back.jpg"  alt="Подарочный сертификат Quest Portal — оборотная сторона" loading="lazy" decoding="async" width="1400" height="933">
-        </div>
-
-        <div class="cert-cta">
-          <a class="btn btn--accent" href="tel:+998994016996">Заказать сертификат</a>
-          <a class="btn btn--ghost" href="https://t.me/Quest_Portal_01" target="_blank" rel="noopener">Написать в Telegram</a>
-        </div>
-        <p class="cert-note">Стоимость зависит от выбранного квеста и количества игроков — уточните при заказе.</p>
       </div>
     </section>
 
@@ -2331,6 +2339,55 @@
     </div>
   </div>
 
+  <!-- Modal: ПОДАРОЧНЫЙ СЕРТИФИКАТ -->
+  <div class="modal quest-modal" id="qm-cert" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qm-cert-title">
+      <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+
+      <header class="qm-head">
+        <h2 id="qm-cert-title" class="qm-title">ПОДАРОЧНЫЙ СЕРТИФИКАТ</h2>
+      </header>
+
+      <div class="qm-scroll">
+        <div class="qm-grid">
+          <div class="qm-media">
+            <div class="qm-gallery qm-gallery--cert">
+              <img src="/images/cert-front.jpg" alt="Подарочный сертификат Quest Portal — лицевая сторона" loading="lazy" decoding="async" width="1400" height="933">
+              <img src="/images/cert-back.jpg"  alt="Подарочный сертификат Quest Portal — оборотная сторона" loading="lazy" decoding="async" width="1400" height="933">
+            </div>
+          </div>
+
+          <aside class="qm-side">
+            <ul class="qm-facts">
+              <li><b>Подходит:</b> на любой квест</li>
+              <li><b>Впишем:</b> имя, квест и дату</li>
+            </ul>
+
+            <div class="qm-card">
+              <h3>Как это работает</h3>
+              <p>
+                Вы выбираете квест и количество игроков, мы оформляем сертификат
+                на имя получателя. Он приходит с друзьями в удобную дату и играет.
+                Стоимость зависит от квеста и числа игроков — уточните при заказе.
+              </p>
+            </div>
+
+            <div class="qm-bar">
+              <div class="qm-cta">
+                <button type="button" class="btn" data-close>Закрыть</button>
+                <a class="btn btn--accent" href="tel:+998994016996">Заказать</a>
+                <a class="btn btn--ghost" href="https://t.me/Quest_Portal_01" target="_blank" rel="noopener">Telegram</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Quest Modal: ОНО: ДОБРО ПОЖАЛОВАТЬ В ДЕРРИ (скоро) -->
   <div class="modal quest-modal" id="qm-ono" aria-hidden="true">
     <div class="modal__overlay" data-close></div>
@@ -2511,7 +2568,7 @@
   <!-- Toasts -->
   <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="/script.js?v=19" defer></script>
+  <script src="/script.js?v=20" defer></script>
 
   <script>
   (function(){
