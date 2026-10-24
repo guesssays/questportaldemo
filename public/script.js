@@ -637,6 +637,49 @@ document.addEventListener('click', (e) => {
   update();
 })();
 
+/* ===== Заявка на подарочный сертификат (уходит в группу с бронями) ===== */
+(function(){
+  const form = document.getElementById('certForm');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    const labels = { name: 'Имя', phone: 'Телефон' };
+    for (const k of ['name', 'phone']){
+      if (!data[k] || String(data[k]).trim() === ''){
+        showToast(`Заполните поле «${labels[k]}»`, 'error', 4000);
+        form.elements[k]?.focus();
+        return;
+      }
+    }
+
+    const btn = form.querySelector('.cert-submit');
+    btn?.setAttribute('disabled', 'disabled');
+    try {
+      showToast('Отправка…', 'info', 1200);
+      const resp = await fetch('/.netlify/functions/send-certificate-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      let res = {};
+      try { res = await resp.json(); } catch {}
+      if (!resp.ok || !res.ok) throw new Error(res && res.error ? res.error : 'Серверная ошибка');
+
+      showToast('Заявка принята! Мы свяжемся с вами для оформления.', 'success');
+      form.reset();
+      closeModal();
+    } catch (err) {
+      console.error(err);
+      showToast('Ошибка при отправке. Попробуйте ещё раз.', 'error');
+    } finally {
+      btn?.removeAttribute('disabled');
+    }
+  });
+})();
+
 /* ===== Выбор принта на футболку (модалка #printModal) ===== */
 (function(){
   const grid = document.getElementById('printGrid');

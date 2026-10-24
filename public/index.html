@@ -604,6 +604,15 @@
   .qm-gallery--cert{ grid-template-columns:minmax(0,1fr); }
   .qm-gallery--cert img{ aspect-ratio:3/2; }
 
+  /* форма заказа сертификата */
+  #certForm .form-grid{ gap:8px; }
+  #certForm .textarea{ min-height:64px; }
+  #certForm .cert-submit{ width:100%; margin-top:10px; }
+  .cert-form__note{
+    margin:10px 0 0; font-size:12.5px; line-height:1.4;
+    color:#e6c9c9; opacity:.9; text-align:center;
+  }
+
   @media (max-width:720px){
     .cert-wrap{ padding:18px 0 6px; }
     .cert-card{ grid-template-columns:minmax(0,1fr); gap:14px; padding:14px; }
@@ -1527,7 +1536,7 @@
             <div class="b2b-pay">💡 Оплата рассчитывается индивидуально — от сложности проекта</div>
             <div class="b2b-cta">
               <a class="btn" href="tel:+998994016996">Позвонить</a>
-              <a class="btn btn--accent" href="https://t.me/Quest_Portal_01" target="_blank" rel="noopener">Подробнее</a>
+              <a class="btn btn--accent" href="https://t.me/quest_horror_tashkent" target="_blank" rel="noopener">Подробнее</a>
             </div>
           </div>
         </div>
@@ -2370,15 +2379,28 @@
               <p>
                 Вы выбираете квест и количество игроков, мы оформляем сертификат
                 на имя получателя. Он приходит с друзьями в удобную дату и играет.
-                Стоимость зависит от квеста и числа игроков — уточните при заказе.
+                Стоимость зависит от квеста и числа игроков — уточним при заказе.
               </p>
+            </div>
+
+            <div class="qm-card">
+              <h3>Оставьте заявку</h3>
+              <form id="certForm" autocomplete="on" novalidate>
+                <input type="text" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <div class="form-grid">
+                  <input class="input" type="text" name="name" placeholder="ИМЯ *" autocomplete="name" required>
+                  <input class="input" type="tel" name="phone" inputmode="tel" placeholder="ТЕЛЕФОН *" autocomplete="tel" required>
+                  <textarea class="textarea" name="comment" placeholder="На какой квест, сколько игроков, пожелания (необязательно)"></textarea>
+                </div>
+                <button class="btn btn--accent btn--block cert-submit" type="submit">Заказать сертификат</button>
+              </form>
+              <p class="cert-form__note">Перезвоним и всё оформим. Или сразу позвоните нам.</p>
             </div>
 
             <div class="qm-bar">
               <div class="qm-cta">
                 <button type="button" class="btn" data-close>Закрыть</button>
-                <a class="btn btn--accent" href="tel:+998994016996">Заказать</a>
-                <a class="btn btn--ghost" href="https://t.me/Quest_Portal_01" target="_blank" rel="noopener">Telegram</a>
+                <a class="btn btn--ghost" href="tel:+998994016996">Позвонить</a>
               </div>
             </div>
           </aside>
@@ -2568,7 +2590,7 @@
   <!-- Toasts -->
   <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="/script.js?v=20" defer></script>
+  <script src="/script.js?v=21" defer></script>
 
   <script>
   (function(){
